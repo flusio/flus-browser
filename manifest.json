@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+    "name": "Flus",
+    "version": "0.1",
+    "description": "L’extension officielle pour le service flus.fr",
+    "homepage_url": "https://flus.fr",
+
+    "icons": {
+        "48": "icons/icon-48.png",
+        "96": "icons/icon-96.png"
+    },
+
+    "permissions": [
+        "activeTab",
+        "https://*.flus.fr/*"
+    ],
+
+    "browser_action": {
+        "default_icon": "icons/icon-32.png",
+        "default_title": "Flus",
+        "default_popup": "popup/index.html"
+    }
+}
