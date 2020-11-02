@@ -1,14 +1,39 @@
-const bookmarksButton = document.querySelector('#bookmarks-button');
-bookmarksButton.addEventListener('click', (event) => {
-    const activeTabs = browser.tabs.query({
-        active: true,
-        currentWindow: true,
-    });
+let state;
 
-    activeTabs.then((tabs) => {
-        const destination = 'https://app.flus.fr/links/new?url='+encodeURIComponent(tabs[0].url);
+// Create a port to discuss with the background process and keep the state
+// synchronized
+let myPort = browser.runtime.connect({name: 'port-from-popup'});;
+
+function changeState(message) {
+    if (message.type !== 'state.changed') {
+        return;
+    }
+
+    state = message.state;
+    updatePopup();
+}
+
+myPort.onMessage.addListener(changeState);
+myPort.postMessage({
+    type: 'state.get',
+});
+
+// Manage the popup interface
+const bookmarksButton = document.querySelector('#bookmarks-button');
+
+function updatePopup() {
+    if (state.currentUrl) {
+        bookmarksButton.disabled = false;
+    } else {
+        bookmarksButton.disabled = true;
+    }
+}
+
+bookmarksButton.addEventListener('click', () => {
+    if (state.currentUrl) {
+        const destination = 'https://app.flus.fr/links/new?url=' + state.currentUrl;
         browser.tabs.create({
             url: destination,
         });
-    });
+    }
 });
