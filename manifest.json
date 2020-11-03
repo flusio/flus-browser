@@ -12,7 +12,8 @@
 
     "permissions": [
         "tabs",
-        "https://*.flus.fr/*"
+        "webRequest",
+        "https://app.flus.fr/*",
     ],
 
     "browser_action": {

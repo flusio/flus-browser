@@ -102,6 +102,36 @@ body {
     background-color: var(--color-body);
 }
 
+a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+
+    transition:
+        color 0.3s ease-in-out,
+        border-color 0.3s ease-in-out;
+}
+
+a:hover,
+a:focus {
+    color: var(--color-link);
+}
+
+a:focus {
+    outline-color: var(--color-purple-4);
+}
+
+.anchor--action {
+    display: inline-block;
+    padding: var(--space-smaller) var(--space-medium);
+
+    line-height: 1.5;
+    text-decoration: none;
+
+    border: 0.1em solid currentColor;
+    border-radius: var(--border-button-radius);
+}
+
 .popup {
     min-width: 30rem;
 }
@@ -163,4 +193,8 @@ button:active {
 
     background-color: var(--color-grey-1);
     border-color: var(--color-grey-2);
+}
+
+#popup-connected {
+    display: none;
 }

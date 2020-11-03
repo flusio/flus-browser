@@ -1,6 +1,6 @@
 import configuration from '../configuration.js';
 
-let state;
+let state = {};
 
 // Create a port to discuss with the background process and keep the state
 // synchronized
@@ -21,17 +21,33 @@ myPort.postMessage({
 });
 
 // Manage the popup interface
-const bookmarksButton = document.querySelector('#bookmarks-button');
+const anchorLogin = document.querySelector('#anchor-login');
+const buttonBookmarks = document.querySelector('#bookmarks-button');
+const popupConnected = document.querySelector('#popup-connected');
+const popupNotConnected = document.querySelector('#popup-not-connected');
 
 function updatePopup() {
+    if (!state.csrf || !state.bookmarksId) {
+        popupConnected.style.display = 'none';
+        popupNotConnected.style.display = 'block';
+        anchorLogin.addEventListener('click', () => {
+            browser.tabs.create({
+                url: configuration.app_endpoint + '/login',
+            });
+        });
+        return;
+    }
+
+    popupConnected.style.display = 'block';
+    popupNotConnected.style.display = 'none';
     if (state.currentUrl) {
-        bookmarksButton.disabled = false;
+        buttonBookmarks.disabled = false;
     } else {
-        bookmarksButton.disabled = true;
+        buttonBookmarks.disabled = true;
     }
 }
 
-bookmarksButton.addEventListener('click', () => {
+buttonBookmarks.addEventListener('click', () => {
     if (state.currentUrl) {
         const destination = configuration.app_endpoint + '/links/new?url=' + state.currentUrl;
         browser.tabs.create({
