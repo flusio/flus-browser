@@ -84,14 +84,15 @@ function updateCurrentUrl() {
         currentWindow: true,
     });
     gettingActiveTab.then((tabs) => {
-        if (!tabs[0]) {
+        if (!tabs[0] || !tabs[0].url) {
             return;
         }
 
-        if (tabs[0].url) {
-            state.currentUrl = encodeURIComponent(tabs[0].url);
+        const url = new URL(tabs[0].url);
+        if (url.protocol === 'http:' || url.protocol === 'https:') {
+            state.currentUrl = tabs[0].url;
         }
-
+    }).then(() => {
         if (portPopup) {
             portPopup.postMessage({
                 type: 'state.changed',

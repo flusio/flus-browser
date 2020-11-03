@@ -49,7 +49,8 @@ function updatePopup() {
 
 buttonBookmarks.addEventListener('click', () => {
     if (state.currentUrl) {
-        const destination = configuration.app_endpoint + '/links/new?url=' + state.currentUrl;
+        const encodedUrl = encodeURIComponent(state.currentUrl);
+        const destination = configuration.app_endpoint + '/links/new?url=' + encodedUrl;
         browser.tabs.create({
             url: destination,
         });
