@@ -195,6 +195,7 @@ button:active {
     border-color: var(--color-grey-2);
 }
 
-#popup-connected {
+#popup-connected,
+#paragraph-bookmarked {
     display: none;
 }

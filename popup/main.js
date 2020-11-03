@@ -22,7 +22,8 @@ myPort.postMessage({
 
 // Manage the popup interface
 const anchorLogin = document.querySelector('#anchor-login');
-const buttonBookmarks = document.querySelector('#bookmarks-button');
+const buttonBookmarks = document.querySelector('#button-bookmarks');
+const paragraphBookmarked = document.querySelector('#paragraph-bookmarked');
 const popupConnected = document.querySelector('#popup-connected');
 const popupNotConnected = document.querySelector('#popup-not-connected');
 
@@ -47,12 +48,44 @@ function updatePopup() {
     }
 }
 
-buttonBookmarks.addEventListener('click', () => {
-    if (state.currentUrl) {
-        const encodedUrl = encodeURIComponent(state.currentUrl);
-        const destination = configuration.app_endpoint + '/links/new?url=' + encodedUrl;
-        browser.tabs.create({
-            url: destination,
+// Manage adding links to Flus
+function addCurrentUrlToBookmarks() {
+    if (state.currentUrl && state.csrf && state.bookmarksId) {
+        const url = configuration.app_endpoint + '/links/new';
+        const formData = new FormData();
+        formData.append('csrf', state.csrf);
+        formData.append('url', state.currentUrl);
+        formData.append('is_public', false);
+        formData.append('collection_ids[]', [state.bookmarksId]);
+        return window.fetch(url, {
+            method: 'POST',
+            body: formData,
+        }).then((response) => {
+            if (response.ok) {
+
+                buttonBookmarks.style.display = 'none';
+                paragraphBookmarked.style.display = 'initial';
+
+                setTimeout(() => {
+                    buttonBookmarks.style.display = 'initial';
+                    paragraphBookmarked.style.display = 'none';
+                }, 3000);
+
+                fetchLink(response.url);
+            }
         });
     }
-});
+}
+
+function fetchLink(fetchUrl) {
+    if (state.csrf) {
+        const formData = new FormData();
+        formData.append('csrf', state.csrf);
+        return window.fetch(fetchUrl, {
+            method: 'POST',
+            body: formData,
+        });
+    }
+}
+
+buttonBookmarks.addEventListener('click', addCurrentUrlToBookmarks);
