@@ -13,7 +13,7 @@
     "permissions": [
         "tabs",
         "webRequest",
-        "https://app.flus.fr/*",
+        "https://app.flus.fr/*"
     ],
 
     "browser_action": {
