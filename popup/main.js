@@ -22,20 +22,46 @@ myPort.postMessage({
 
 // Manage the popup interface
 const anchorLogin = document.querySelector('#anchor-login');
+const anchorNews = document.querySelector('#anchor-news');
+const anchorBookmarks = document.querySelector('#anchor-bookmarks');
+const anchorCollections = document.querySelector('#anchor-collections');
 const buttonBookmarks = document.querySelector('#button-bookmarks');
 const paragraphBookmarked = document.querySelector('#paragraph-bookmarked');
 const popupConnected = document.querySelector('#popup-connected');
 const popupNotConnected = document.querySelector('#popup-not-connected');
 
+anchorLogin.addEventListener('click', (event) => {
+    event.preventDefault();
+    browser.tabs.create({
+        url: configuration.app_endpoint + '/login',
+    });
+});
+
+anchorNews.addEventListener('click', (event) => {
+    event.preventDefault();
+    browser.tabs.create({
+        url: configuration.app_endpoint + '/news',
+    });
+});
+
+anchorBookmarks.addEventListener('click', (event) => {
+    event.preventDefault();
+    browser.tabs.create({
+        url: configuration.app_endpoint + '/bookmarks',
+    });
+});
+
+anchorCollections.addEventListener('click', (event) => {
+    event.preventDefault();
+    browser.tabs.create({
+        url: configuration.app_endpoint + '/collections',
+    });
+});
+
 function updatePopup() {
     if (!state.csrf || !state.bookmarksId) {
         popupConnected.style.display = 'none';
         popupNotConnected.style.display = 'block';
-        anchorLogin.addEventListener('click', () => {
-            browser.tabs.create({
-                url: configuration.app_endpoint + '/login',
-            });
-        });
         return;
     }
 

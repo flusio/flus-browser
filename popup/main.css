@@ -132,19 +132,93 @@ a:focus {
     border-radius: var(--border-button-radius);
 }
 
+.icon {
+    position: relative;
+
+    display: inline-block;
+    width: 1.5em;
+    height: 1.25em;
+}
+
+.icon::before {
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    left: 0;
+
+    width: 1.5em;
+    height: 1.5em;
+    margin-top: -0.6em;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.5em;
+}
+
+.icon--anchor::before {
+    transition: filter 0.3s ease-in-out;
+}
+
+/*
+ * This is pretty hacky, but hey, it's also pretty cool! :)
+ * @see https://stackoverflow.com/a/53336754
+ * @see https://stackoverflow.com/a/43960991
+ */
+.icon--anchor:hover::before,
+.icon--anchor:focus::before {
+    filter: invert(36%) sepia(23%) saturate(4309%) hue-rotate(229deg) brightness(83%) contrast(80%);
+}
+
+.icon--library::before {
+    background-image: url("../icons/library-line.svg");
+}
+
+.icon--tree::before {
+    background-image: url("../icons/tree-line.svg");
+}
+
+.icon--bookmark::before {
+    background-image: url("../icons/bookmark-line.svg");
+}
+
 .popup {
     min-width: 30rem;
 }
 
+.popup__header {
+    display: flex;
+
+    align-items: stretch;
+    justify-content: center;
+
+    text-align: center;
+
+    background-color: var(--color-turquoise-3);
+}
+
+.popup__header-item {
+    display: block;
+    height: 5.5rem;
+    padding: var(--space-small);
+    padding-left: 2.4em;
+}
+
+.popup__header-item::before {
+    left: 0.75em;
+}
+
 .popup__title {
+    display: flex;
     margin-top: 0;
     margin-bottom: 0;
     padding: var(--space-small);
 
-    font-size: var(--size-normal);
-    text-align: center;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
 
-    background-color: var(--color-turquoise-3);
+    font-size: var(--size-normal);
 }
 
 .popup__container {

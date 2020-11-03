@@ -9,15 +9,26 @@
 
     <body>
         <div id="popup-not-connected" class="popup">
-            <h1 class="popup__title">Flus</h1>
+            <div class="popup__header">
+                <h1 class="popup__title">Flus</h1>
+            </div>
 
             <div class="popup__container">
-                <a class="anchor--action" href="/login" id="anchor-login">Se connecter</a>
+                <a class="anchor--action" href="#" id="anchor-login">Se connecter</a>
             </div>
         </div>
 
         <div id="popup-connected" class="popup">
-            <h1 class="popup__title">Ajouter un lien</h1>
+            <div class="popup__header">
+                <a class="popup__header-item icon icon--anchor icon--tree" href="#" id="anchor-news">
+                </a>
+
+                <a class="popup__header-item icon icon--anchor icon--bookmark" href="#" id="anchor-bookmarks">
+                </a>
+
+                <a class="popup__header-item icon icon--anchor icon--library" href="#" id="anchor-collections">
+                </a>
+            </div>
 
             <div class="popup__container">
                 <button disabled class="button--ghost" id="button-bookmarks">Ajouter aux signets</button>
