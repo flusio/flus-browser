@@ -1,3 +1,5 @@
+import configuration from '../configuration.js';
+
 let state;
 
 // Create a port to discuss with the background process and keep the state
@@ -31,7 +33,7 @@ function updatePopup() {
 
 bookmarksButton.addEventListener('click', () => {
     if (state.currentUrl) {
-        const destination = 'https://app.flus.fr/links/new?url=' + state.currentUrl;
+        const destination = configuration.app_endpoint + '/links/new?url=' + state.currentUrl;
         browser.tabs.create({
             url: destination,
         });

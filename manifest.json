@@ -22,9 +22,6 @@
     },
 
     "background": {
-        "scripts": [
-            "browser-polyfill.js",
-            "background.js"
-        ]
+        "page": "background/index.html"
     }
 }
