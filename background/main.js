@@ -2,9 +2,11 @@ import configuration from '../configuration.js';
 
 let state = {
     currentUrl: null,
+    currentUrlBookmarked: false,
     csrf: null,
     bookmarksId: null,
 };
+let bookmarkedUrls = [];
 let portPopup;
 
 // Get user info from flus.fr
@@ -28,24 +30,18 @@ function fetchUserInfo() {
         }).then((data) => {
             state.csrf = data.csrf;
             state.bookmarksId = data.bookmarks_id;
+            state.currentUrlBookmarked = false;
+            bookmarkedUrls = data.bookmarked_urls;
 
-            if (portPopup) {
-                portPopup.postMessage({
-                    type: 'state.changed',
-                    state,
-                });
-            }
+            updateCurrentUrl();
         }).catch((error) => {
             // Can’t get user info (i.e. not logged in)
             state.csrf = null;
             state.bookmarksId = null;
+            state.currentUrlBookmarked = false;
+            bookmarkedUrls = [];
 
-            if (portPopup) {
-                portPopup.postMessage({
-                    type: 'state.changed',
-                    state,
-                });
-            }
+            updateCurrentUrl();
         });
 }
 
@@ -78,6 +74,7 @@ fetchUserInfo();
 // Maintain the state of the current URL
 function updateCurrentUrl() {
     state.currentUrl = null;
+    state.currentUrlBookmarked = false;
 
     const gettingActiveTab = browser.tabs.query({
         active: true,
@@ -91,6 +88,7 @@ function updateCurrentUrl() {
         const url = new URL(tabs[0].url);
         if (url.protocol === 'http:' || url.protocol === 'https:') {
             state.currentUrl = tabs[0].url;
+            state.currentUrlBookmarked = bookmarkedUrls.includes(tabs[0].url);
         }
     }).then(() => {
         if (portPopup) {
@@ -114,6 +112,8 @@ function listenPopupRequests(message) {
             type: 'state.changed',
             state,
         });
+    } else if (message.type === 'state.refresh') {
+        fetchUserInfo();
     }
 }
 

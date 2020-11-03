@@ -46,6 +46,14 @@ function updatePopup() {
     } else {
         buttonBookmarks.disabled = true;
     }
+
+    if (state.currentUrlBookmarked) {
+        buttonBookmarks.style.display = 'none';
+        paragraphBookmarked.style.display = 'initial';
+    } else {
+        buttonBookmarks.style.display = 'initial';
+        paragraphBookmarked.style.display = 'none';
+    }
 }
 
 // Manage adding links to Flus
@@ -62,15 +70,7 @@ function addCurrentUrlToBookmarks() {
             body: formData,
         }).then((response) => {
             if (response.ok) {
-
-                buttonBookmarks.style.display = 'none';
-                paragraphBookmarked.style.display = 'initial';
-
-                setTimeout(() => {
-                    buttonBookmarks.style.display = 'initial';
-                    paragraphBookmarked.style.display = 'none';
-                }, 3000);
-
+                myPort.postMessage({ type: 'state.refresh' });
                 fetchLink(response.url);
             }
         });
