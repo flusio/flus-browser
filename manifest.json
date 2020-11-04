@@ -5,6 +5,13 @@
     "description": "L’extension officielle pour le service flus.fr",
     "homepage_url": "https://flus.fr",
 
+    "update_url": "https://flus.fr/addons/updates.xml",
+    "browser_specific_settings": {
+        "gecko": {
+            "update_url": "https://flus.fr/addons/updates.json"
+        }
+    },
+
     "icons": {
         "48": "icons/icon-48.png",
         "96": "icons/icon-96.png"
