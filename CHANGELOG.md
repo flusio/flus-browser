@@ -1,5 +1,11 @@
 # Changelog of flusio-browser
 
+## 2020-11-04 - v0.4
+
+### New
+
+- Configure an auto-update server
+
 ## 2020-11-03 - v0.3
 
 Just a mistake when publishing the extension. Nothing changed :)
