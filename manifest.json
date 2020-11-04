@@ -8,6 +8,7 @@
     "update_url": "https://flus.fr/addons/updates.xml",
     "browser_specific_settings": {
         "gecko": {
+            "id": "{4f83b8ac-d692-44f8-9a5d-d018c9865bea}",
             "update_url": "https://flus.fr/addons/updates.json"
         }
     },
