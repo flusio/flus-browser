@@ -1,6 +1,10 @@
 # Changelog of flusio-browser
 
-## 2020-06-26 - v0.2
+## 2020-11-03 - v0.3
+
+Just a mistake when publishing the extension. Nothing changed :)
+
+## 2020-11-03 - v0.2
 
 ### New
 
