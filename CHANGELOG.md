@@ -1,5 +1,20 @@
 # Changelog of flusio-browser
 
+## 2020-11-05 - v0.5
+
+### New
+
+- Remove .no-extension-class elements in flusio
+
+### Improvements
+
+- Show a spinner on link adding
+
+### Misc
+
+- Remove the `update_url` for Chrome
+- Prepare extension for web-ext script
+
 ## 2020-11-04 - v0.4
 
 ### New

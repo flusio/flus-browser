@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Flus",
-    "version": "0.4",
+    "version": "0.5",
     "description": "L’extension officielle pour le service flus.fr",
     "homepage_url": "https://flus.fr",
 
