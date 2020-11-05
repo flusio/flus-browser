@@ -222,7 +222,13 @@ a:focus {
 }
 
 .popup__container {
+    display: flex;
+    min-height: 9rem;
     padding: var(--space-small);
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     text-align: center;
 }
@@ -270,6 +276,31 @@ button:active {
 }
 
 #popup-connected,
+#icon-loading,
 #paragraph-bookmarked {
     display: none;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    margin-right: auto;
+    margin-left: auto;
+
+    background-color: var(--color-purple-6);
+    border-radius: 100%;
+
+    animation: sk-scaleout 1s infinite ease-in-out;
+}
+
+@keyframes sk-scaleout {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform: scale(1);
+    }
 }

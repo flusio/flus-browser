@@ -25,6 +25,7 @@ const anchorLogin = document.querySelector('#anchor-login');
 const anchorNews = document.querySelector('#anchor-news');
 const anchorBookmarks = document.querySelector('#anchor-bookmarks');
 const anchorCollections = document.querySelector('#anchor-collections');
+const iconLoading = document.querySelector('#icon-loading');
 const buttonBookmarks = document.querySelector('#button-bookmarks');
 const paragraphBookmarked = document.querySelector('#paragraph-bookmarked');
 const popupConnected = document.querySelector('#popup-connected');
@@ -73,6 +74,7 @@ function updatePopup() {
         buttonBookmarks.disabled = true;
     }
 
+    iconLoading.style.display = 'none';
     if (state.currentUrlBookmarked) {
         buttonBookmarks.style.display = 'none';
         paragraphBookmarked.style.display = 'initial';
@@ -91,6 +93,9 @@ function addCurrentUrlToBookmarks() {
         formData.append('url', state.currentUrl);
         formData.append('is_public', false);
         formData.append('collection_ids[]', [state.bookmarksId]);
+
+        buttonBookmarks.style.display = 'none';
+        iconLoading.style.display = 'block';
         return window.fetch(url, {
             method: 'POST',
             body: formData,
