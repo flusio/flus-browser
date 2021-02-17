@@ -1,14 +1,13 @@
 {
     "manifest_version": 2,
     "name": "Flus",
-    "version": "0.5",
+    "version": "0.8",
     "description": "L’extension officielle pour le service flus.fr",
     "homepage_url": "https://flus.fr",
 
     "browser_specific_settings": {
         "gecko": {
-            "id": "{4f83b8ac-d692-44f8-9a5d-d018c9865bea}",
-            "update_url": "https://flus.fr/addons/updates.json"
+            "id": "{4f83b8ac-d692-44f8-9a5d-d018c9865bea}"
         }
     },
 
