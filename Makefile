@@ -17,6 +17,10 @@ else
 	npm run start -- --target firefox-desktop
 endif
 
+.PHONY: build
+build: ## Build the web extension
+	npm run build
+
 .PHONY: lint
 lint: LINTER ?= all
 lint: ## Execute the linters (can take a LINTER argument)

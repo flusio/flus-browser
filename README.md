@@ -28,3 +28,4 @@ Dedicated to the developers:
 Dedicated to the maintainers:
 
 - [How to release a version](/docs/release.md)
+- [Upload a new version](/docs/upload.md)

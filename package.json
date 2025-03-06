@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "web-ext run --source-dir . --devtools",
-    "lint": "web-ext lint --source-dir . --warnings-as-errors"
+    "lint": "web-ext lint --source-dir . --warnings-as-errors",
+    "build": "web-ext build --source-dir . --overwrite-dest"
   },
   "devDependencies": {
     "web-ext": "^8.4.0"
