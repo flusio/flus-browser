@@ -21,6 +21,10 @@ Flus Browser is licensed under [GNU Affero General Public License v3.0 or later]
 
 ## Documentation
 
+Dedicated to the developers:
+
+- [Setup the development environment](/docs/development.md)
+
 Dedicated to the maintainers:
 
-- [How to release a version](/release.md)
+- [How to release a version](/docs/release.md)

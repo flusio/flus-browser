@@ -4,6 +4,19 @@
 
 .DEFAULT_GOAL := help
 
+.PHONY: install
+install: ## Install the dependencies
+	npm install
+
+.PHONY: run
+run: BROWSER ?= firefox
+run: ## Run the extension in a browser (can take a BROWSER argument)
+ifeq ($(BROWSER),chromium)
+	npm run start -- --target chromium
+else
+	npm run start -- --target firefox-desktop
+endif
+
 .PHONY: release
 release: ## Release a new version (take a VERSION argument)
 ifndef VERSION

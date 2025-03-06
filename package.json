@@ -1,0 +1,12 @@
+{
+  "name": "Flus Browser",
+  "license": "AGPL-3.0-or-later",
+  "repository": "github:flusio/flus-browser",
+  "type": "module",
+  "scripts": {
+    "start": "web-ext run --source-dir . --devtools"
+  },
+  "devDependencies": {
+    "web-ext": "^8.4.0"
+  }
+}
