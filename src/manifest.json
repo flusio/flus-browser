@@ -26,12 +26,5 @@
 
     "background": {
         "page": "background/index.html"
-    },
-
-    "content_scripts": [
-        {
-            "matches": ["https://app.flus.fr/*"],
-            "js": ["content-script.js"]
-        }
-    ]
+    }
 }
