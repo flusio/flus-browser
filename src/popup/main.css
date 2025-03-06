@@ -276,6 +276,7 @@ button:active {
     border-color: var(--color-grey-2);
 }
 
+#popup-not-connected,
 #popup-connected,
 #icon-loading,
 #paragraph-bookmarked {
