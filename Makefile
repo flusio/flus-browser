@@ -17,6 +17,13 @@ else
 	npm run start -- --target firefox-desktop
 endif
 
+.PHONY: lint
+lint: LINTER ?= all
+lint: ## Execute the linters (can take a LINTER argument)
+ifeq ($(LINTER), $(filter $(LINTER), all webext))
+	npm run lint
+endif
+
 .PHONY: release
 release: ## Release a new version (take a VERSION argument)
 ifndef VERSION

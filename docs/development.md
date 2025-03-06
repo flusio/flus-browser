@@ -24,3 +24,11 @@ Or in Chromium:
 ```console
 $ make run BROWSER=chromium
 ```
+
+## Linter
+
+Run the linter with:
+
+```console
+$ make lint
+```
