@@ -4,9 +4,9 @@
   "repository": "github:flusio/flus-browser",
   "type": "module",
   "scripts": {
-    "start": "web-ext run --source-dir . --devtools",
-    "lint": "web-ext lint --source-dir . --warnings-as-errors",
-    "build": "web-ext build --source-dir . --overwrite-dest"
+    "start": "web-ext run --source-dir src/ --devtools",
+    "lint": "web-ext lint --source-dir src/ --warnings-as-errors",
+    "build": "web-ext build --source-dir src/ --overwrite-dest"
   },
   "devDependencies": {
     "web-ext": "^8.4.0"

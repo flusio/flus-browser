@@ -33,7 +33,7 @@ release: ## Release a new version (take a VERSION argument)
 ifndef VERSION
 	$(error You need to provide a "VERSION" argument)
 endif
-	sed -i 's/"version": ".*"/"version": "$(VERSION)"/' manifest.json
+	sed -i 's/"version": ".*"/"version": "$(VERSION)"/' src/manifest.json
 	$(EDITOR) CHANGELOG.md
 	git add .
 	git commit -m "release: Publish version v$(VERSION)"

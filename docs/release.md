@@ -16,7 +16,7 @@ $ git switch -c release/1.0.0
 $ make release VERSION=1.0.0
 ```
 
-It will write the version number in the file [`manifest.json`](/manifest.json).
+It will write the version number in the file [`src/manifest.json`](/src/manifest.json).
 
 ## Generate the changelog
 

@@ -13,7 +13,7 @@ This repository contains the code of the browser extension.
 For now, it allows you to easily add any website URL to your bookmarks.
 
 **Note that it only works for the [flus.fr](https://flus.fr) service at the moment.**
-If you want to use it with your self-hosted service, you’ll have to change the URL in the file [`configuration.js`](/configuration.js) and package the extension yourself.
+If you want to use it with your self-hosted service, you’ll have to change the URL in the file [`src/configuration.js`](/src/configuration.js) and package the extension yourself.
 
 For the code of the Web application, see [flusio/Flus](https://github.com/flusio/Flus).
 
