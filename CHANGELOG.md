@@ -1,4 +1,10 @@
-# Changelog of flusio-browser
+# Changelog of Flus Browser
+
+## 2021-02-17 - v0.8
+
+### New
+
+- The extension is now available on Firefox and Chrome extension stores
 
 ## 2020-11-05 - v0.5
 
