@@ -18,3 +18,9 @@ If you want to use it with your self-hosted service, you’ll have to change the
 For the code of the Web application, see [flusio/Flus](https://github.com/flusio/Flus).
 
 Flus Browser is licensed under [GNU Affero General Public License v3.0 or later](/LICENSE.txt).
+
+## Documentation
+
+Dedicated to the maintainers:
+
+- [How to release a version](/release.md)
