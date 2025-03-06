@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "start": "web-ext run --source-dir src/ --devtools",
-    "lint": "web-ext lint --source-dir src/ --warnings-as-errors",
+    "lint:webext": "web-ext lint --source-dir src/ --warnings-as-errors",
+    "lint:biome": "biome lint --error-on-warnings --config-path=.biome.json && biome format --error-on-warnings --config-path=.biome.json",
     "build": "web-ext build --source-dir src/ --overwrite-dest"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "web-ext": "^8.4.0"
   }
 }

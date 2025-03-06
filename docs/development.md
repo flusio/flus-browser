@@ -25,10 +25,17 @@ Or in Chromium:
 $ make run BROWSER=chromium
 ```
 
-## Linter
+## Linters
 
-Run the linter with:
+Run the linters with:
 
 ```console
 $ make lint
+```
+
+You can run a specific linter with:
+
+```console
+$ make lint LINTER=biome
+$ make lint LINTER=webext
 ```

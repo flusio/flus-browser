@@ -24,8 +24,11 @@ build: ## Build the web extension
 .PHONY: lint
 lint: LINTER ?= all
 lint: ## Execute the linters (can take a LINTER argument)
+ifeq ($(LINTER), $(filter $(LINTER), all biome))
+	npm run lint:biome
+endif
 ifeq ($(LINTER), $(filter $(LINTER), all webext))
-	npm run lint
+	npm run lint:webext
 endif
 
 .PHONY: release

@@ -71,7 +71,8 @@
     --border-radius: 0.75rem;
     --border-button-radius: 3rem;
 
-    --font-family-text: "Open Sans", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", "sans-serif";
+    --font-family-text: "Open Sans", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto",
+        "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", "sans-serif";
     --font-family-title: "Comfortaa", "cursive";
 
     --content-width: 1000px;
@@ -111,9 +112,7 @@ a {
     text-decoration: underline;
     text-decoration-thickness: 0.1em;
 
-    transition:
-        color 0.3s ease-in-out,
-        border-color 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 a:hover,
@@ -145,7 +144,7 @@ a:focus {
 }
 
 .icon::before {
-    content: '';
+    content: "";
 
     position: absolute;
     top: 50%;
@@ -247,9 +246,7 @@ button {
     border: var(--border-width) solid var(--color-grey-5);
     border-radius: var(--border-button-radius);
 
-    transition:
-        background-color 0.2s ease-in-out,
-        border-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
 button:hover,

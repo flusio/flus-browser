@@ -3,5 +3,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 export default {
-    app_endpoint: 'https://app.flus.fr',
+    app_endpoint: "https://app.flus.fr",
 };
