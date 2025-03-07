@@ -31,6 +31,14 @@ Or in Chromium:
 $ make run BROWSER=chromium
 ```
 
+Build the extension with:
+
+```console
+$ make build
+```
+
+It builds the assets under the `dist/assets` folder, and builds a ZIP archive under `dist/artifacts/`.
+
 ## Linters
 
 Run the linters with:

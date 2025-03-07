@@ -19,6 +19,29 @@ For the code of the Web application, see [flusio/Flus](https://github.com/flusio
 
 Flus Browser is licensed under [GNU Affero General Public License v3.0 or later](/LICENSE.txt).
 
+## Quick start
+
+Make sure to have the `npm` command available:
+
+```console
+$ npm --version
+10.9.2
+```
+
+Install the dependencies:
+
+```console
+$ make install
+```
+
+Build the extension with:
+
+```console
+$ make build
+```
+
+It builds the assets under the `dist/assets` folder, and builds a ZIP archive under `dist/artifacts/`.
+
 ## Documentation
 
 Dedicated to the developers:
