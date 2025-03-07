@@ -2,7 +2,8 @@
 // Copyright 2020-2025 Marien Fressinaud
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import configuration from "../configuration.js";
+import browser from "webextension-polyfill";
+import configuration from "./configuration.js";
 
 const state = {
     currentUrl: null,

@@ -2,6 +2,7 @@
 // Copyright 2020-2025 Marien Fressinaud
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import browser from "webextension-polyfill";
 import configuration from "../configuration.js";
 
 let state = {};
