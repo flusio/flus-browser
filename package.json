@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build:assets": "parcel build --dist-dir dist/assets src/manifest.json",
-    "build:artifact": "web-ext build --source-dir dist/assets --overwrite-dest",
+    "build:artifact": "web-ext build --source-dir dist/assets --artifacts-dir dist/artifacts --overwrite-dest",
     "start:watcher": "parcel watch --no-hmr --dist-dir dist/dev_assets src/manifest.json",
     "start:browser": "web-ext run --source-dir dist/dev_assets --devtools",
     "lint:webext": "web-ext lint --source-dir dist/assets --warnings-as-errors",

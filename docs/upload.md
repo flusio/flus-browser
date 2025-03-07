@@ -6,7 +6,7 @@ Build the extension with:
 $ make build
 ```
 
-It builds the assets under the `dist/` folder, and builds a ZIP archive under `web-ext-artifacts/`.
+It builds the assets under the `dist/assets` folder, and builds a ZIP archive under `dist/artifacts/`.
 
 ## Upload to the Firefox Add-ons store
 
