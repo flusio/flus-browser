@@ -1,2 +1,5 @@
-/node_modules
+/dist
 /web-ext-artifacts
+
+/node_modules
+/.parcel-cache

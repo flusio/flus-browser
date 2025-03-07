@@ -8,18 +8,25 @@
 install: ## Install the dependencies
 	npm install
 
+.PHONY: watch
+watch: ## Watch and build the assets
+	rm -rf dist/dev_assets
+	npm run start:watcher
+
 .PHONY: run
 run: BROWSER ?= firefox
 run: ## Run the extension in a browser (can take a BROWSER argument)
 ifeq ($(BROWSER),chromium)
-	npm run start -- --target chromium
+	npm run start:browser -- --target chromium
 else
-	npm run start -- --target firefox-desktop
+	npm run start:browser -- --target firefox-desktop
 endif
 
 .PHONY: build
 build: ## Build the web extension
-	npm run build
+	rm -rf dist/assets
+	npm run build:assets
+	npm run build:artifact
 
 .PHONY: lint
 lint: LINTER ?= all
@@ -28,6 +35,8 @@ ifeq ($(LINTER), $(filter $(LINTER), all biome))
 	npm run lint:biome
 endif
 ifeq ($(LINTER), $(filter $(LINTER), all webext))
+	rm -rf dist/assets
+	npm run build:assets
 	npm run lint:webext
 endif
 

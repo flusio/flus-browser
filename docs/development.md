@@ -13,6 +13,12 @@ Install the dependencies:
 $ make install
 ```
 
+Build the assets with the Parcel watcher:
+
+```console
+$ make watch
+```
+
 Run the extension in Firefox:
 
 ```console
@@ -39,3 +45,6 @@ You can run a specific linter with:
 $ make lint LINTER=biome
 $ make lint LINTER=webext
 ```
+
+Note that the webext linter runs over the `dist/assets` files and not the files under `src/`.
+This is to check that the final assets don't present any problems.
