@@ -3,9 +3,13 @@
   -->
 
 <template>
-    <component :is="currentView" />
+    <component v-if="store.ready" :is="currentView" />
+    <LoadingScreen v-else />
 </template>
 
 <script setup>
+import { store } from "./store.js";
 import { currentView } from "./router.js";
+
+import LoadingScreen from "./screens/LoadingScreen.vue";
 </script>
