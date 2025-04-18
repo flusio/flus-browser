@@ -16,7 +16,7 @@
         "96": "icons/icon-96.png"
     },
 
-    "permissions": ["activeTab"],
+    "permissions": ["activeTab", "storage"],
 
     "host_permissions": ["https://app.flus.fr/*"],
 

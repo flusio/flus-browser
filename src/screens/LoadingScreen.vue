@@ -4,6 +4,15 @@
 
 <template>
     <p>
-        Loading in progress…
+        {{ t("loading.in_progress") }}
     </p>
 </template>
+
+<script setup>
+import { useI18n } from "vue-i18n";
+
+import { store } from "../store.js";
+
+const { t, locale } = useI18n();
+locale.value = store.locale;
+</script>
