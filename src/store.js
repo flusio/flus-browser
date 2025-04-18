@@ -9,18 +9,51 @@ export const store = reactive({
 
     locale: "fr",
 
+    auth: {
+        server: "https://app.flus.fr",
+        email: "",
+        token: "",
+    },
+
     setLocale(locale) {
         this.locale = locale;
     },
+
+    rememberCredentials(server, email, token) {
+        this.auth = {
+            server,
+            email,
+            token,
+        };
+    },
+
+    logout() {
+        this.auth = {
+            server: "https://app.flus.fr",
+            email: "",
+            token: "",
+        };
+    },
 });
 
-browser.storage.local.get(["locale"]).then((results) => {
+browser.storage.local.get(["locale", "auth"]).then((results) => {
     if (Object.hasOwn(results, "locale")) {
         store.setLocale(results.locale);
     }
 
+    if (Object.hasOwn(results, "auth")) {
+        store.auth = results.auth;
+    }
+
     store.ready = true;
 });
+
+watch(
+    () => store.auth,
+    (auth) => {
+        browser.storage.local.set({ auth: toRaw(auth) });
+    },
+);
 
 watch(
     () => store.locale,

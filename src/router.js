@@ -3,11 +3,13 @@
 
 import { ref, computed } from "vue";
 
+import LinkScreen from "./screens/LinkScreen.vue";
 import LoginScreen from "./screens/LoginScreen.vue";
 import NotFoundScreen from "./screens/NotFoundScreen.vue";
 
 const routes = {
-    "/": LoginScreen,
+    "/": LinkScreen,
+    "/login": LoginScreen,
 };
 
 const currentPath = ref(window.location.hash);

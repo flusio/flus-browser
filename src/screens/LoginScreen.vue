@@ -9,16 +9,27 @@
         <p>
             {{ t("login.intro") }}
         </p>
+
+        <button @click="login">
+            {{ t("login.form.submit") }}
+        </button>
     </div>
 </template>
 
 <script setup>
 import { useI18n } from "vue-i18n";
 
+import { requireNotAuth } from "../auth.js";
 import { store } from "../store.js";
 
 import logo from "url:../images/logo.svg";
 
+requireNotAuth();
+
 const { t, locale } = useI18n();
 locale.value = store.locale;
+
+function login() {
+    store.rememberCredentials("https://app.flus.fr", "alix", "my-token");
+}
 </script>
