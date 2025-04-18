@@ -3,9 +3,13 @@
   -->
 
 <template>
-    <p>
-        {{ t("loading.in_progress") }}
-    </p>
+    <div class="panel flow text--center">
+        <h1>
+            {{ t("loading.in_progress") }}
+        </h1>
+
+        <div class="spinner"></div>
+    </div>
 </template>
 
 <script setup>

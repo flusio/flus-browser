@@ -3,9 +3,21 @@
   -->
 
 <template>
-    <h1>
-        {{ t("not_found.title") }}
-    </h1>
+    <div class="panel flow text--center">
+        <h1>
+            {{ t("not_found.title") }}
+        </h1>
+
+        <p>
+            {{ t("not_found.details") }}
+        </p>
+
+        <p>
+            <a class="button button--primary" href="#/">
+                {{ t("not_found.back") }}
+            </a>
+        </p>
+    </div>
 </template>
 
 <script setup>
