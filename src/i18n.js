@@ -14,6 +14,7 @@ export const i18n = createI18n({
             "loading.in_progress": "Loading in progress…",
             "login.form.submit": "Log in",
             "login.intro": "Log in to access Flus.",
+            "login.title": "Login",
             "not_found.back": "Back",
             "not_found.details":
                 "This screen doesn’t exist, so it’s probably a problem with the extension.",
@@ -25,6 +26,7 @@ export const i18n = createI18n({
             "loading.in_progress": "Chargement en cours…",
             "login.form.submit": "Se connecter",
             "login.intro": "Identifiez-vous pour accéder à votre veille Flus.",
+            "login.title": "Connexion",
             "not_found.back": "Retour",
             "not_found.details":
                 "Cet écran n’existe pas, il s’agit probablement d’un problème de l’extension.",

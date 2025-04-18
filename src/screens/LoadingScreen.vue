@@ -3,13 +3,15 @@
   -->
 
 <template>
-    <div class="panel flow text--center">
-        <h1>
-            {{ t("loading.in_progress") }}
-        </h1>
+    <Screen :title="title">
+        <div class="panel flow text--center">
+            <h1>
+                {{ title }}
+            </h1>
 
-        <div class="spinner"></div>
-    </div>
+            <div class="spinner"></div>
+        </div>
+    </Screen>
 </template>
 
 <script setup>
@@ -19,4 +21,6 @@ import { store } from "../store.js";
 
 const { t, locale } = useI18n();
 locale.value = store.locale;
+
+const title = t("loading.in_progress");
 </script>

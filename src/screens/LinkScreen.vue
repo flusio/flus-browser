@@ -3,15 +3,17 @@
   -->
 
 <template>
-    <div class="flow text--center">
-        <h1>
-            {{ title }}
-        </h1>
+    <Screen :title="title">
+        <div class="flow text--center">
+            <h1>
+                {{ title }}
+            </h1>
 
-        <button @click="logout">
-            {{ t("auth.logout") }}
-        </button>
-    </div>
+            <button @click="logout">
+                {{ t("auth.logout") }}
+            </button>
+        </div>
+    </Screen>
 </template>
 
 <script setup>
