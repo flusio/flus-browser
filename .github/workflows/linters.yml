@@ -2,9 +2,9 @@ name: Linters
 
 on:
     push:
-        branches: [ main ]
+        branches: [ "main", "new/redesign" ]
     pull_request:
-        branches: [ main ]
+        branches: [ "main", "new/redesign" ]
 
 jobs:
     build:
