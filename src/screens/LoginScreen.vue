@@ -3,9 +3,7 @@
   -->
 
 <template>
-    <component :is="currentView" />
+    <p>
+        Hello World!
+    </p>
 </template>
-
-<script setup>
-import { currentView } from "./router.js";
-</script>

@@ -3,9 +3,7 @@
   -->
 
 <template>
-    <component :is="currentView" />
+    <p>
+        Page not found
+    </p>
 </template>
-
-<script setup>
-import { currentView } from "./router.js";
-</script>
