@@ -30,9 +30,12 @@ const titleRef = useTemplateRef("title");
 function giveFocusToTitle() {
     const titleValue = titleRef.value.innerText;
 
-    document.title = titleValue;
+    const previousTitle = document.title;
 
-    titleRef.value.focus();
+    if (previousTitle !== titleValue) {
+        document.title = titleValue;
+        titleRef.value.focus();
+    }
 }
 
 onMounted(() => {
