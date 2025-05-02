@@ -11,12 +11,17 @@
             aria-live="polite"
         >{{ title }}</span>
 
+        <Notification v-if="store.notification" />
+
         <slot />
     </main>
 </template>
 
 <script setup>
 import { watch, useTemplateRef, onMounted, onUpdated } from "vue";
+
+import { store } from "../store.js";
+import Notification from "../components/Notification.vue";
 
 const props = defineProps({
     title: {

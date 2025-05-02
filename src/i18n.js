@@ -19,6 +19,7 @@ export const i18n = createI18n({
             "not_found.details":
                 "This screen doesn’t exist, so it’s probably a problem with the extension.",
             "not_found.title": "Screen not found",
+            "notification.close": "Close the notification",
         },
 
         fr: {
@@ -31,6 +32,7 @@ export const i18n = createI18n({
             "not_found.details":
                 "Cet écran n’existe pas, il s’agit probablement d’un problème de l’extension.",
             "not_found.title": "Écran introuvable",
+            "notification.close": "Fermer la notification",
         },
     },
 });

@@ -15,6 +15,8 @@ export const store = reactive({
         token: "",
     },
 
+    notification: null,
+
     setLocale(locale) {
         this.locale = locale;
     },
@@ -33,6 +35,17 @@ export const store = reactive({
             email: "",
             token: "",
         };
+    },
+
+    notify(type, message) {
+        this.notification = {
+            type,
+            message,
+        };
+    },
+
+    resetNotification() {
+        this.notification = null;
     },
 });
 
