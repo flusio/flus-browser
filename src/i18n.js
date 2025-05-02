@@ -11,9 +11,20 @@ export const i18n = createI18n({
     messages: {
         en: {
             "auth.logout": "Log out",
+            "errors.@base.invalid_credentials": "The credentials are invalid.",
+            "errors.email.presence": "The email address is required.",
+            "errors.password.presence": "The password is required.",
+            "forms.error": "Error:",
             "loading.in_progress": "Loading in progress…",
-            "login.form.submit": "Log in",
+            "login.email.label": "Email address",
+            "login.errors.server_error":
+                "The server “{server}” cannot be reached, please check its address.",
             "login.intro": "Log in to access Flus.",
+            "login.password.label": "Password",
+            "login.server": "Server:",
+            "login.server.label": "Server",
+            "login.server.change": "Change",
+            "login.submit": "Log in",
             "login.title": "Login",
             "not_found.back": "Back",
             "not_found.details":
@@ -24,9 +35,20 @@ export const i18n = createI18n({
 
         fr: {
             "auth.logout": "Se déconnecter",
+            "errors.@base.invalid_credentials": "Les identifiants sont incorrects.",
+            "errors.email.presence": "L’adresse email est obligatoire.",
+            "errors.password.presence": "Le mot de passe est obligatoire.",
+            "forms.error": "Erreur :",
             "loading.in_progress": "Chargement en cours…",
-            "login.form.submit": "Se connecter",
+            "login.email.label": "Adresse courriel",
+            "login.errors.server_error":
+                "Le serveur « {server} » est injoignable, veuillez vérifier son adresse.",
             "login.intro": "Identifiez-vous pour accéder à votre veille Flus.",
+            "login.password.label": "Mot de passe",
+            "login.server": "Serveur :",
+            "login.server.label": "Serveur",
+            "login.server.change": "Changer",
+            "login.submit": "Se connecter",
             "login.title": "Connexion",
             "not_found.back": "Retour",
             "not_found.details":
