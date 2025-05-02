@@ -31,7 +31,7 @@ export const store = reactive({
 
     logout() {
         this.auth = {
-            server: "https://app.flus.fr",
+            server: this.auth.server,
             email: "",
             token: "",
         };
