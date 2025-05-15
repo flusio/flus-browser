@@ -11,9 +11,17 @@ export const i18n = createI18n({
     messages: {
         en: {
             "errors.@base.invalid_credentials": "The credentials are invalid.",
+            "errors.auth.invalid_token":
+                "You are no longer connected to Flus, please log in again.",
             "errors.email.presence": "The email address is required.",
             "errors.password.presence": "The password is required.",
+            "errors.unknown":
+                "An unknown error has occurred. Please close and reopen the extension. If it still doesn’t work, please contact the support.",
+            "errors.url.url": "The URL of the current page is not supported by Flus.",
             "forms.error": "Error:",
+            "link.invalid_protocol":
+                "This page cannot be handled by Flus (non-supported protocol).",
+            "link.loading": "Loading the link…",
             "loading.in_progress": "Loading in progress…",
             "login.email.label": "Email address",
             "login.errors.server_error":
@@ -41,9 +49,17 @@ export const i18n = createI18n({
 
         fr: {
             "errors.@base.invalid_credentials": "Les identifiants sont incorrects.",
+            "errors.auth.invalid_token":
+                "Vous n’êtes plus connecté à Flus, veuillez vous reconnecter.",
             "errors.email.presence": "L’adresse email est obligatoire.",
             "errors.password.presence": "Le mot de passe est obligatoire.",
+            "errors.unknown":
+                "Une erreur inconnue est survenue. Veuillez fermer et réouvrir l’extension. Si cela ne suffit pas, veuillez contacter le support.",
+            "errors.url.url": "L’URL de la page actuelle n’est pas supportée par Flus.",
             "forms.error": "Erreur :",
+            "link.invalid_protocol":
+                "Cette page ne peut pas être enregistrée dans Flus (protocole non supporté).",
+            "link.loading": "Chargement du lien…",
             "loading.in_progress": "Chargement en cours…",
             "login.email.label": "Adresse courriel",
             "login.errors.server_error":

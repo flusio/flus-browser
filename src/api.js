@@ -1,6 +1,8 @@
 // This file is part of Flus Browser
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import { store } from "./store.js";
+
 function authenticate(server, email, password) {
     const endpoint = `${server}/api/v1/sessions`;
 
@@ -24,22 +26,51 @@ function authenticate(server, email, password) {
         })
         .then((response) => {
             if (!response.ok) {
-                throw new ApiError(response.data.errors);
+                throw new ApiError(response.status, response.data.errors);
             }
 
             return response.data.token;
         });
 }
 
+function searchLink(url) {
+    const endpoint = new URL(`${store.auth.server}/api/v1/search`);
+    endpoint.searchParams.append("url", url);
+
+    return fetch(endpoint, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${store.auth.token}`,
+        },
+    })
+        .then((response) => {
+            return response.json().then((data) => ({
+                ok: response.ok,
+                status: response.status,
+                data: data,
+            }));
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new ApiError(response.status, response.data.errors);
+            }
+
+            return response.data.links[0];
+        });
+}
+
 class ApiError extends Error {
-    constructor(errors) {
+    constructor(status, errors) {
         super("API error");
         this.name = this.constructor.name;
+        this.status = status;
         this.errors = errors;
     }
 }
 
 export default {
     authenticate,
+    searchLink,
     ApiError,
 };

@@ -30,6 +30,10 @@ body {
     flex: 1;
 }
 
+.tag {
+    margin-right: var(--space-smaller);
+}
+
 img {
     vertical-align: middle;
 }
