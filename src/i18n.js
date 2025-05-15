@@ -19,7 +19,9 @@ export const i18n = createI18n({
             "login.errors.server_error":
                 "The server “{server}” cannot be reached, please check its address.",
             "login.intro": "Log in to access Flus.",
+            "login.or": "or",
             "login.password.label": "Password",
+            "login.register": "create an account",
             "login.server": "Server:",
             "login.server.label": "Server",
             "login.server.change": "Change",
@@ -47,7 +49,9 @@ export const i18n = createI18n({
             "login.errors.server_error":
                 "Le serveur « {server} » est injoignable, veuillez vérifier son adresse.",
             "login.intro": "Identifiez-vous pour accéder à votre veille Flus.",
+            "login.or": "ou",
             "login.password.label": "Mot de passe",
+            "login.register": "créer un compte",
             "login.server": "Serveur :",
             "login.server.label": "Serveur",
             "login.server.change": "Changer",

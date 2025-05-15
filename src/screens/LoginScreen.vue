@@ -103,6 +103,14 @@
                     </button>
                 </div>
             </form>
+
+            <div class="text--center">
+                {{ t("login.or") }}
+
+                <a @click.prevent="openRegistrationPage" :href="registrationUrl">
+                    {{ t("login.register") }}
+                </a>
+            </div>
         </div>
     </Screen>
 </template>
@@ -140,6 +148,10 @@ const serverWithoutScheme = computed(() => {
     return urlWithoutScheme;
 });
 
+const registrationUrl = computed(() => {
+    return `${server.value}/registration`;
+});
+
 function login() {
     form.startRequest();
 
@@ -158,5 +170,11 @@ function login() {
                 store.notify("error", t("login.errors.server_error", { server: server.value }));
             }
         });
+}
+
+function openRegistrationPage() {
+    browser.tabs.create({
+        url: registrationUrl.value,
+    });
 }
 </script>
