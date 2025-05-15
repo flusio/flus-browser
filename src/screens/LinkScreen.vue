@@ -3,11 +3,11 @@
   -->
 
 <template>
-    <Screen :title="linkTitle" header>
+    <Screen :title="link.title" header>
         <div v-if="ready && alert.type === ''">
             <div class="flow flow--small">
                 <h1 class="text--normal">
-                    {{ linkTitle }}
+                    {{ link.title }}
                 </h1>
 
                 <p class="text--secondary">
@@ -68,13 +68,16 @@ const alert = ref({
     message: "",
 });
 
-const linkTitle = ref("");
-const linkUrl = ref("");
-const linkReadingTime = ref(0);
-const linkTags = ref({});
+const link = ref({
+    id: "",
+    title: "",
+    url: "",
+    readingTime: 0,
+    tags: {},
+});
 
 const hostLabel = computed(() => {
-    const parsedUrl = new URL(linkUrl.value);
+    const parsedUrl = new URL(link.value.url);
 
     if (parsedUrl.host.startsWith("www.")) {
         return parsedUrl.host.slice(4);
@@ -84,15 +87,15 @@ const hostLabel = computed(() => {
 });
 
 const readingTimeLabel = computed(() => {
-    if (linkReadingTime.value < 1) {
+    if (link.value.readingTime < 1) {
         return "< 1 min";
     }
 
-    return `${linkReadingTime.value} min`;
+    return `${link.value.readingTime} min`;
 });
 
 const tags = computed(() => {
-    return Object.values(linkTags.value);
+    return Object.values(link.value.tags);
 });
 
 async function getCurrentTab() {
@@ -121,11 +124,14 @@ async function refreshForCurrentTab() {
     }
 
     api.searchLink(url)
-        .then((link) => {
-            linkTitle.value = link.title;
-            linkUrl.value = link.url;
-            linkReadingTime.value = link.reading_time;
-            linkTags.value = link.tags;
+        .then((fetchedLink) => {
+            link.value = {
+                id: fetchedLink.id,
+                title: fetchedLink.title,
+                url: fetchedLink.url,
+                readingTime: fetchedLink.reading_time,
+                tags: fetchedLink.tags,
+            };
 
             ready.value = true;
         })
