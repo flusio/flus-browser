@@ -6,10 +6,14 @@ import { watch } from "vue";
 import { redirect } from "./router.js";
 import { store } from "./store.js";
 
+export function isAuthenticated() {
+    return store.auth.token.length > 0;
+}
+
 export function requireAuth() {
     const redirectPath = "/login";
 
-    if (store.auth.token.length === 0) {
+    if (!isAuthenticated()) {
         redirect(redirectPath);
     }
 
@@ -26,7 +30,7 @@ export function requireAuth() {
 export function requireNotAuth() {
     const redirectPath = "/";
 
-    if (store.auth.token.length > 0) {
+    if (isAuthenticated()) {
         redirect(redirectPath);
     }
 
