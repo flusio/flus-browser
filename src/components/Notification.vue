@@ -4,7 +4,7 @@
 
 <template>
     <div :class="['notification', 'panel', 'panel--rounded', panelType]">
-        <div class="cols cols--always">
+        <div class="cols cols--always cols--gap-small">
             <p class="col--extend text--bold" role="alert">
                 {{ store.notification.message }}
             </p>
