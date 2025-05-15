@@ -3,34 +3,72 @@
   -->
 
 <template>
-    <main role="main">
-        <span
-            ref="title"
-            tabindex="-1"
-            class="sr-only"
-            aria-live="polite"
-        >{{ title }}</span>
+    <div class="screen">
+        <header v-if="header" class="screen__header panel panel--gable cols cols--always cols--center">
+            <div class="col--extend">
+                <img :src="logo" alt="Flus" height="32">
+            </div>
 
-        <Notification v-if="store.notification" />
+            <div>
+                <a v-if="menuOpened" href="#/" class="button button--icon button--small">
+                    <Icon name="times" />
 
-        <slot />
-    </main>
+                    <span class="sr-only">
+                        {{ t("menu.close") }}
+                    </span>
+                </a>
+
+                <a v-else href="#/menu" class="button button--icon button--small">
+                    <Icon name="menu" />
+
+                    <span class="sr-only">
+                        {{ t("menu.open") }}
+                    </span>
+                </a>
+            </div>
+        </header>
+
+        <main role="main" :class="{ 'panel': true, 'screen__body': true, 'panel--gable': menuOpened }">
+            <span
+                ref="title"
+                tabindex="-1"
+                class="sr-only"
+                aria-live="polite"
+            >{{ title }}</span>
+
+            <Notification v-if="store.notification" />
+
+            <slot />
+        </main>
+    </div>
 </template>
 
 <script setup>
 import { watch, useTemplateRef, onMounted, onUpdated } from "vue";
+import { useI18n } from "vue-i18n";
 
 import { store } from "../store.js";
 import Notification from "../components/Notification.vue";
+
+import logo from "url:../images/logo-white.svg";
 
 const props = defineProps({
     title: {
         type: String,
         required: true,
     },
+    header: {
+        type: Boolean,
+    },
+    menuOpened: {
+        type: Boolean,
+    },
 });
 
 const titleRef = useTemplateRef("title");
+
+const { t, locale } = useI18n();
+locale.value = store.locale;
 
 function giveFocusToTitle() {
     const titleValue = titleRef.value.innerText;

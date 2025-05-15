@@ -10,7 +10,6 @@ export const i18n = createI18n({
 
     messages: {
         en: {
-            "auth.logout": "Log out",
             "errors.@base.invalid_credentials": "The credentials are invalid.",
             "errors.email.presence": "The email address is required.",
             "errors.password.presence": "The password is required.",
@@ -26,6 +25,11 @@ export const i18n = createI18n({
             "login.server.change": "Change",
             "login.submit": "Log in",
             "login.title": "Login",
+            "menu.close": "Close the menu",
+            "menu.logout": "Log out",
+            "menu.open": "Open the menu",
+            "menu.open_flus": "Open Flus",
+            "menu.title": "Menu",
             "not_found.back": "Back",
             "not_found.details":
                 "This screen doesn’t exist, so it’s probably a problem with the extension.",
@@ -34,7 +38,6 @@ export const i18n = createI18n({
         },
 
         fr: {
-            "auth.logout": "Se déconnecter",
             "errors.@base.invalid_credentials": "Les identifiants sont incorrects.",
             "errors.email.presence": "L’adresse email est obligatoire.",
             "errors.password.presence": "Le mot de passe est obligatoire.",
@@ -50,6 +53,11 @@ export const i18n = createI18n({
             "login.server.change": "Changer",
             "login.submit": "Se connecter",
             "login.title": "Connexion",
+            "menu.close": "Fermer le menu",
+            "menu.logout": "Se déconnecter",
+            "menu.open": "Ouvrir le menu",
+            "menu.open_flus": "Ouvrir Flus",
+            "menu.title": "Menu",
             "not_found.back": "Retour",
             "not_found.details":
                 "Cet écran n’existe pas, il s’agit probablement d’un problème de l’extension.",

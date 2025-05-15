@@ -4,13 +4,28 @@
 
 <template>
     <Screen :title="title">
-        <div class="flow flow--large">
-            <div class="panel text--center flow">
-                <img :src="logo" alt="Flus" height="50">
+        <div class="flow">
+            <div>
+                <div class="cols cols--always">
+                    <div class="col--extend">
+                    </div>
 
-                <p>
-                    {{ t("login.intro") }}
-                </p>
+                    <a href="#/menu" class="button button--icon button--ghost button--small">
+                        <Icon name="menu" />
+
+                        <span class="sr-only">
+                            {{ t("menu.open") }}
+                        </span>
+                    </a>
+                </div>
+
+                <div class="panel text--center flow">
+                    <img :src="logo" alt="Flus" height="50">
+
+                    <p>
+                        {{ t("login.intro") }}
+                    </p>
+                </div>
             </div>
 
             <form @submit.prevent="login" class="flow">

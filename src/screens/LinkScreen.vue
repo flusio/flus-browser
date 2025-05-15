@@ -3,31 +3,22 @@
   -->
 
 <template>
-    <Screen :title="title">
+    <Screen :title="title" header>
         <div class="flow text--center">
             <h1>
                 {{ title }}
             </h1>
-
-            <button @click="logout">
-                {{ t("auth.logout") }}
-            </button>
         </div>
     </Screen>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useI18n } from "vue-i18n";
 import browser from "webextension-polyfill";
 
 import { requireAuth } from "../auth.js";
-import { store } from "../store.js";
 
 requireAuth();
-
-const { t, locale } = useI18n();
-locale.value = store.locale;
 
 const title = ref("");
 
@@ -47,8 +38,4 @@ async function refreshForCurrentTab() {
 }
 
 onMounted(refreshForCurrentTab);
-
-function logout() {
-    store.logout();
-}
 </script>

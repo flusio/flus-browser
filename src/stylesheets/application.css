@@ -13,3 +13,23 @@ body {
 
     overflow: auto;
 }
+
+.screen {
+    display: flex;
+    height: 100%;
+
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.screen__header {
+    height: 4.2rem;
+}
+
+.screen__body {
+    flex: 1;
+}
+
+img {
+    vertical-align: middle;
+}
