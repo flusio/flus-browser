@@ -54,8 +54,8 @@ import browser from "webextension-polyfill";
 
 import { requireAuth, isAuthenticated } from "../auth.js";
 import { store } from "../store.js";
-import { redirect } from "../router.js";
 import api from "../api.js";
+import http from "../http.js";
 
 requireAuth();
 
@@ -123,7 +123,7 @@ async function refreshForCurrentTab() {
         return;
     }
 
-    api.searchLink(url)
+    api.search(url)
         .then((fetchedLink) => {
             link.value = {
                 id: fetchedLink.id,
@@ -136,11 +136,7 @@ async function refreshForCurrentTab() {
             ready.value = true;
         })
         .catch((error) => {
-            if (error instanceof api.ApiError && error.status === 401) {
-                store.logout();
-                store.notify("error", t("errors.auth.invalid_token"));
-                redirect("/login");
-            } else if (error instanceof api.ApiError) {
+            if (error instanceof http.HttpError) {
                 alert.value = {
                     type: "error",
                     message: error.errors.url.map((error) => {

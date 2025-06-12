@@ -123,6 +123,7 @@ import { requireNotAuth } from "../auth.js";
 import { store } from "../store.js";
 import api from "../api.js";
 import form from "../form.js";
+import http from "../http.js";
 
 import logo from "url:../images/logo.svg";
 
@@ -164,7 +165,7 @@ function login() {
         .catch((error) => {
             form.finishRequest();
 
-            if (error instanceof api.ApiError) {
+            if (error instanceof http.HttpError) {
                 form.setAndFormatErrors(error.errors, t);
             } else {
                 store.notify("error", t("login.errors.server_error", { server: server.value }));
