@@ -6,7 +6,9 @@
     <div class="screen">
         <header v-if="header" class="screen__header panel panel--gable cols cols--always cols--center">
             <div class="col--extend">
-                <img :src="logo" alt="Flus" height="32">
+                <a class="screen__logo" href="#/">
+                    <img :src="logo" alt="Flus" height="32">
+                </a>
             </div>
 
             <div>

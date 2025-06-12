@@ -26,6 +26,11 @@ body {
     height: 4.2rem;
 }
 
+.screen__logo {
+    display: inline-block;
+    padding: var(--space-smaller);
+}
+
 .screen__body {
     flex: 1;
 }
