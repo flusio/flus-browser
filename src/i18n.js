@@ -14,6 +14,7 @@ export const i18n = createI18n({
             "errors.auth.invalid_token":
                 "You are no longer connected to Flus, please log in again.",
             "errors.email.presence": "The email address is required.",
+            "errors.language.invalid": "The language is invalid.",
             "errors.password.presence": "The password is required.",
             "errors.unknown":
                 "An unknown error has occurred. Please close and reopen the extension. If it still doesn’t work, please contact the support.",
@@ -43,12 +44,15 @@ export const i18n = createI18n({
             "menu.logout": "Log out",
             "menu.open": "Open the menu",
             "menu.open_flus": "Open Flus",
+            "menu.settings": "Settings",
             "menu.title": "Menu",
             "not_found.back": "Back",
             "not_found.details":
                 "This screen doesn’t exist, so it’s probably a problem with the extension.",
             "not_found.title": "Screen not found",
             "notification.close": "Close the notification",
+            "settings.language.label": "Interface language",
+            "settings.submit": "Save",
         },
 
         fr: {
@@ -56,6 +60,7 @@ export const i18n = createI18n({
             "errors.auth.invalid_token":
                 "Vous n’êtes plus connecté à Flus, veuillez vous reconnecter.",
             "errors.email.presence": "L’adresse email est obligatoire.",
+            "errors.language.invalid": "La langue est invalide.",
             "errors.password.presence": "Le mot de passe est obligatoire.",
             "errors.unknown":
                 "Une erreur inconnue est survenue. Veuillez fermer et réouvrir l’extension. Si cela ne suffit pas, veuillez contacter le support.",
@@ -85,12 +90,15 @@ export const i18n = createI18n({
             "menu.logout": "Se déconnecter",
             "menu.open": "Ouvrir le menu",
             "menu.open_flus": "Ouvrir Flus",
+            "menu.settings": "Paramètres",
             "menu.title": "Menu",
             "not_found.back": "Retour",
             "not_found.details":
                 "Cet écran n’existe pas, il s’agit probablement d’un problème de l’extension.",
             "not_found.title": "Écran introuvable",
             "notification.close": "Fermer la notification",
+            "settings.language.label": "Langue de l’interface",
+            "settings.submit": "Sauvegarder",
         },
     },
 });

@@ -1,0 +1,82 @@
+<!-- This file is part of Flus Browser
+  -- SPDX-License-Identifier: AGPL-3.0-or-later
+  -->
+
+<template>
+    <Screen :title="title" header>
+        <form @submit.prevent="save" class="flow">
+            <p v-if="form.isInvalid('@base')" class="form-group__error" role="alert">
+                {{ t('forms.error') }}
+                {{ form.error('@base') }}
+            </p>
+
+            <div class="flow flow--smaller">
+                <label for="settings-language">
+                    {{ t('settings.language.label') }}
+                </label>
+
+                <p v-if="form.isInvalid('language')" id="settings-language-error" class="form-group__error" role="alert">
+                    {{ t('forms.error') }}
+                    {{ form.error('language') }}
+                </p>
+
+                <select
+                    id="settings-language"
+                    required
+                    v-model.trim="language"
+                    :aria-invalid="form.isInvalid('language')"
+                    :aria-errormessage="form.isInvalid('language') ? 'settings-language-error' : null"
+                >
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                </select>
+            </div>
+
+            <div class="text--center">
+                <button class="button--primary" :disabled="form.inProgress() ? 'true' : null">
+                    {{ t("settings.submit") }}
+                </button>
+            </div>
+        </form>
+    </Screen>
+</template>
+
+<script setup>
+import { ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
+
+import { isAuthenticated } from "../auth.js";
+import { store } from "../store.js";
+import form from "../form.js";
+
+const { t, locale } = useI18n();
+locale.value = store.locale;
+
+const title = t("settings.title");
+
+const language = ref(store.locale);
+
+watch(
+    () => store.locale,
+    (storeLocale) => {
+        locale.value = storeLocale;
+    },
+);
+
+function save() {
+    form.startRequest();
+
+    if (["en", "fr"].includes(language.value)) {
+        store.setLocale(language.value);
+    } else {
+        form.setAndFormatErrors(
+            {
+                language: [{ code: "invalid" }],
+            },
+            t,
+        );
+    }
+
+    form.finishRequest();
+}
+</script>

@@ -11,6 +11,12 @@
                 </a>
             </li>
 
+            <li>
+                <a href="#/settings" class="button button--ghost">
+                    {{ t("menu.settings") }}
+                </a>
+            </li>
+
             <li v-if="isAuthenticated()">
                 <button @click="logout" class="button--ghost">
                     {{ t("menu.logout") }}

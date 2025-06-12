@@ -7,11 +7,13 @@ import LinkScreen from "./screens/LinkScreen.vue";
 import LoginScreen from "./screens/LoginScreen.vue";
 import MenuScreen from "./screens/MenuScreen.vue";
 import NotFoundScreen from "./screens/NotFoundScreen.vue";
+import SettingsScreen from "./screens/SettingsScreen.vue";
 
 const routes = {
     "/": LinkScreen,
     "/login": LoginScreen,
     "/menu": MenuScreen,
+    "/settings": SettingsScreen,
 };
 
 const currentPath = ref(window.location.hash);
