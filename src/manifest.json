@@ -29,6 +29,18 @@
             "suggested_key": {
                 "default": "Ctrl+Shift+1"
             }
+        },
+        "_execute_sidebar_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+2"
+            },
+            "description": "Open Flus in the sidebar"
         }
+    },
+
+    "sidebar_action": {
+        "default_icon": "icons/icon-32.png",
+        "default_panel": "sidebar/index.html",
+        "default_title": "Flus"
     }
 }
