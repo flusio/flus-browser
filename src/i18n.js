@@ -21,7 +21,11 @@ export const i18n = createI18n({
             "forms.error": "Error:",
             "link.invalid_protocol":
                 "This page cannot be handled by Flus (non-supported protocol).",
+            "link.is_read": "You read this link.",
+            "link.is_read_later": "This link is marked to be read later.",
             "link.loading": "Loading the link…",
+            "link.mark_as_read": "Mark as read",
+            "link.mark_as_read_later": "Read later",
             "loading.in_progress": "Loading in progress…",
             "login.email.label": "Email address",
             "login.errors.server_error":
@@ -59,7 +63,11 @@ export const i18n = createI18n({
             "forms.error": "Erreur :",
             "link.invalid_protocol":
                 "Cette page ne peut pas être enregistrée dans Flus (protocole non supporté).",
+            "link.is_read": "Vous avez lu ce lien.",
+            "link.is_read_later": "Ce lien est à lire plus tard.",
             "link.loading": "Chargement du lien…",
+            "link.mark_as_read": "Marquer comme lu",
+            "link.mark_as_read_later": "Lire plus tard",
             "loading.in_progress": "Chargement en cours…",
             "login.email.label": "Adresse courriel",
             "login.errors.server_error":

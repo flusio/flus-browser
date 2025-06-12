@@ -4,19 +4,43 @@
 
 <template>
     <Screen :title="link.title" header>
-        <div v-if="ready && alert.type === ''">
-            <div class="flow flow--small">
+        <div v-if="ready && alert.type === ''" class="flow">
+            <div class="flow flow--smaller">
                 <h1 class="text--normal">
                     {{ link.title }}
                 </h1>
 
                 <p class="text--secondary">
                     {{ hostLabel }}&nbsp;·&nbsp;{{ readingTimeLabel }}
+
+                    <span v-if="link.isRead" :title="t('link.is_read')">
+                        <Icon name="check" />
+                    </span>
+
+                    <span v-if="link.isReadLater" :title="t('link.is_read_later')">
+                        <Icon name="bookmark" />
+                    </span>
                 </p>
 
                 <div v-if="tags">
                     <span v-for="tag in tags" class="tag badge badge--accent">#{{ tag }}</span>
                 </div>
+            </div>
+
+            <div class="cols cols--always cols--center cols--gap">
+                <button v-if="!link.isRead || link.isReadLater" class="button--icon button--small" @click.prevent="markAsRead">
+                    <Icon name="check" />
+                    <span class="sr-only">
+                        {{ t("link.mark_as_read") }}
+                    </span>
+                </button>
+
+                <button v-if="!link.isReadLater" class="button--icon button--small" @click.prevent="markAsReadLater">
+                    <Icon name="bookmark" />
+                    <span class="sr-only">
+                        {{ t("link.mark_as_read_later") }}
+                    </span>
+                </button>
             </div>
         </div>
 
@@ -74,6 +98,8 @@ const link = ref({
     url: "",
     readingTime: 0,
     tags: {},
+    isRead: false,
+    isReadLater: false,
 });
 
 const hostLabel = computed(() => {
@@ -131,6 +157,8 @@ async function refreshForCurrentTab() {
                 url: fetchedLink.url,
                 readingTime: fetchedLink.reading_time,
                 tags: fetchedLink.tags,
+                isRead: fetchedLink.is_read,
+                isReadLater: fetchedLink.is_read_later,
             };
 
             ready.value = true;
@@ -151,6 +179,33 @@ async function refreshForCurrentTab() {
             }
 
             ready.value = true;
+        });
+}
+
+async function markAsRead() {
+    api.markLinkAsRead(link.value)
+        .then((result) => {
+            link.value.isRead = true;
+            link.value.isReadLater = false;
+        })
+        .catch((error) => {
+            alert.value = {
+                type: "error",
+                message: t("errors.unknown"),
+            };
+        });
+}
+
+async function markAsReadLater() {
+    api.markLinkAsReadLater(link.value)
+        .then((result) => {
+            link.value.isReadLater = true;
+        })
+        .catch((error) => {
+            alert.value = {
+                type: "error",
+                message: t("errors.unknown"),
+            };
         });
 }
 

@@ -28,7 +28,17 @@ function search(url) {
     });
 }
 
+function markLinkAsRead(link) {
+    return http.post(`/links/${link.id}/read`);
+}
+
+function markLinkAsReadLater(link) {
+    return http.post(`/links/${link.id}/later`);
+}
+
 export default {
     authenticate,
     search,
+    markLinkAsRead,
+    markLinkAsReadLater,
 };
