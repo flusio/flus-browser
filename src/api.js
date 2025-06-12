@@ -35,14 +35,16 @@ function authenticate(server, email, password) {
 
 function searchLink(url) {
     const endpoint = new URL(`${store.auth.server}/api/v1/search`);
-    endpoint.searchParams.append("url", url);
 
     return fetch(endpoint, {
-        method: "GET",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${store.auth.token}`,
         },
+        body: JSON.stringify({
+            url,
+        }),
     })
         .then((response) => {
             return response.json().then((data) => ({
