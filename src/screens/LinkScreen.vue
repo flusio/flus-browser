@@ -27,21 +27,49 @@
                 </div>
             </div>
 
-            <div class="cols cols--always cols--center cols--gap">
-                <button v-if="!link.isRead || link.isReadLater" class="button--icon button--small" @click.prevent="markAsRead">
-                    <Icon name="check" />
-                    <span class="sr-only">
-                        {{ t("link.mark_as_read") }}
-                    </span>
+            <div class="cols cols--always cols--center cols--gap-small">
+                <div class="col--extend cols cols--always cols--center cols--gap-small">
+                    <button v-if="!link.isRead || link.isReadLater" class="button--icon button--small" @click.prevent="markAsRead">
+                        <Icon name="check" />
+                        <span class="sr-only">
+                            {{ t("link.mark_as_read") }}
+                        </span>
+                    </button>
+
+                    <button v-if="!link.isReadLater" class="button--icon button--small" @click.prevent="markAsReadLater">
+                        <Icon name="bookmark" />
+                        <span class="sr-only">
+                            {{ t("link.mark_as_read_later") }}
+                        </span>
+                    </button>
+                </div>
+
+                <button
+                    v-if="link.collections === 0"
+                    @click="toggleCollections"
+                    class="button--small"
+                    :aria-pressed="displayCollections"
+                >
+                    {{ t("link.store") }}
                 </button>
 
-                <button v-if="!link.isReadLater" class="button--icon button--small" @click.prevent="markAsReadLater">
-                    <Icon name="bookmark" />
-                    <span class="sr-only">
-                        {{ t("link.mark_as_read_later") }}
-                    </span>
+                <button
+                    v-else
+                    @click="toggleCollections"
+                    class="button--small"
+                    :aria-pressed="displayCollections"
+                >
+                    {{ t("link.count_collections", link.collections.length) }}
                 </button>
             </div>
+
+            <CollectionsSelector
+                v-if="displayCollections"
+                :link="link"
+                :disabled="collectionsForm.inProgress()"
+                @add="addCollection"
+                @remove="removeCollection"
+            />
         </div>
 
         <div v-else-if="ready && alert.type == 'info'">
@@ -80,7 +108,9 @@ import { requireAuth, isAuthenticated } from "../auth.js";
 import { store } from "../store.js";
 import api from "../api.js";
 import http from "../http.js";
+import collectionsForm from "../form.js";
 import { link, host, readingTime } from "../models/link.js";
+import CollectionsSelector from "../components/CollectionsSelector.vue";
 
 requireAuth();
 
@@ -88,10 +118,15 @@ const { t, locale } = useI18n();
 locale.value = store.locale;
 
 const ready = ref(false);
+const displayCollections = ref(false);
 const alert = ref({
     type: "",
     message: "",
 });
+
+function toggleCollections() {
+    displayCollections.value = !displayCollections.value;
+}
 
 async function getCurrentTab() {
     return await browser.tabs
@@ -165,6 +200,32 @@ async function markAsReadLater() {
                 type: "error",
                 message: t("errors.unknown"),
             };
+        });
+}
+
+function addCollection(collection) {
+    collectionsForm.startRequest();
+    api.addCollectionToLink(link, collection)
+        .then(() => {
+            collectionsForm.finishRequest();
+            link.addCollection(collection);
+        })
+        .catch((error) => {
+            collectionsForm.finishRequest();
+            store.notify("error", t("errors.unknown"));
+        });
+}
+
+function removeCollection(collection) {
+    collectionsForm.startRequest();
+    api.removeCollectionFromLink(link, collection)
+        .then(() => {
+            collectionsForm.finishRequest();
+            link.removeCollection(collection);
+        })
+        .catch((error) => {
+            collectionsForm.finishRequest();
+            store.notify("error", t("errors.unknown"));
         });
 }
 

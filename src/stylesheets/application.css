@@ -42,3 +42,10 @@ body {
 img {
     vertical-align: middle;
 }
+
+button[aria-pressed="true"],
+button[aria-pressed="true"]:hover {
+    --button-color: var(--color-grey-base);
+    --button-background-color: var(--color-grey-text-contrast);
+    --button-border-color: transparent;
+}

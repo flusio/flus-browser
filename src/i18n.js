@@ -10,6 +10,10 @@ export const i18n = createI18n({
 
     messages: {
         en: {
+            "collection.add": "Add",
+            "collection.add_to_collection": "Add to a collection",
+            "collection.public": "public",
+            "collection.remove": "Remove",
             "errors.@base.invalid_credentials": "The credentials are invalid.",
             "errors.auth.invalid_token":
                 "You are no longer connected to Flus, please log in again.",
@@ -20,6 +24,7 @@ export const i18n = createI18n({
                 "An unknown error has occurred. Please close and reopen the extension. If it still doesn’t work, please contact the support.",
             "errors.url.url": "The URL of the current page is not supported by Flus.",
             "forms.error": "Error:",
+            "link.count_collections": "No collections | 1 collection | {count} collections",
             "link.invalid_protocol":
                 "This page cannot be handled by Flus (non-supported protocol).",
             "link.is_read": "You read this link.",
@@ -27,6 +32,7 @@ export const i18n = createI18n({
             "link.loading": "Loading the link…",
             "link.mark_as_read": "Mark as read",
             "link.mark_as_read_later": "Read later",
+            "link.store": "Store",
             "loading.in_progress": "Loading in progress…",
             "login.email.label": "Email address",
             "login.errors.server_error":
@@ -57,6 +63,10 @@ export const i18n = createI18n({
         },
 
         fr: {
+            "collection.add": "Ajouter",
+            "collection.add_to_collection": "Ajouter à une collection",
+            "collection.public": "publique",
+            "collection.remove": "Retirer",
             "errors.@base.invalid_credentials": "Les identifiants sont incorrects.",
             "errors.auth.invalid_token":
                 "Vous n’êtes plus connecté à Flus, veuillez vous reconnecter.",
@@ -67,6 +77,7 @@ export const i18n = createI18n({
                 "Une erreur inconnue est survenue. Veuillez fermer et réouvrir l’extension. Si cela ne suffit pas, veuillez contacter le support.",
             "errors.url.url": "L’URL de la page actuelle n’est pas supportée par Flus.",
             "forms.error": "Erreur :",
+            "link.count_collections": "Aucune collection | 1 collection | {count} collections",
             "link.invalid_protocol":
                 "Cette page ne peut pas être enregistrée dans Flus (protocole non supporté).",
             "link.is_read": "Vous avez lu ce lien.",
@@ -74,6 +85,7 @@ export const i18n = createI18n({
             "link.loading": "Chargement du lien…",
             "link.mark_as_read": "Marquer comme lu",
             "link.mark_as_read_later": "Lire plus tard",
+            "link.store": "Ranger",
             "loading.in_progress": "Chargement en cours…",
             "login.email.label": "Adresse courriel",
             "login.errors.server_error":

@@ -36,8 +36,23 @@ function markLinkAsReadLater(link) {
     return http.post(`/links/${link.id}/later`);
 }
 
+function collections() {
+    return http.get("/collections");
+}
+
+function addCollectionToLink(link, collection) {
+    return http.put(`/links/${link.id}/collections/${collection.id}`);
+}
+
+function removeCollectionFromLink(link, collection) {
+    return http.delete(`/links/${link.id}/collections/${collection.id}`);
+}
+
 export default {
     authenticate,
+    collections,
+    addCollectionToLink,
+    removeCollectionFromLink,
     search,
     markLinkAsRead,
     markLinkAsReadLater,

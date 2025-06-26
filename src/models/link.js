@@ -8,6 +8,7 @@ export const link = reactive({
     title: "",
     url: "",
     readingTime: 0,
+    collections: [],
     tags: [],
     isRead: false,
     isReadLater: false,
@@ -17,6 +18,7 @@ export const link = reactive({
         this.title = fetchedLink.title;
         this.url = fetchedLink.url;
         this.readingTime = fetchedLink.reading_time;
+        this.collections = fetchedLink.collections;
         this.tags = Object.values(fetchedLink.tags);
         this.isRead = fetchedLink.is_read;
         this.isReadLater = fetchedLink.is_read_later;
@@ -29,6 +31,16 @@ export const link = reactive({
 
     markAsReadLater() {
         this.isReadLater = true;
+    },
+
+    addCollection(collection) {
+        this.collections = [...this.collections, collection.id];
+    },
+
+    removeCollection(collection) {
+        this.collections = this.collections.filter((collectionId) => {
+            return collectionId !== collection.id;
+        });
     },
 });
 

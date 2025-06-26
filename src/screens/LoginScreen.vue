@@ -83,6 +83,7 @@
                         id="login-server"
                         type="text"
                         required
+                        autofocus
                         v-model.trim="server"
                     >
                 </div>

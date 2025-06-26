@@ -25,11 +25,32 @@ function handleErrors(response) {
 }
 
 function get(endpoint, options = { server: null, authorization: "normal" }) {
+    return request("GET", endpoint, null, options);
+}
+
+function post(endpoint, payload = null, options = { server: null, authorization: "normal" }) {
+    return request("POST", endpoint, payload, options);
+}
+
+function put(endpoint, payload = null, options = { server: null, authorization: "normal" }) {
+    return request("PUT", endpoint, payload, options);
+}
+
+function delete_(endpoint, payload = null, options = { server: null, authorization: "normal" }) {
+    return request("DELETE", endpoint, payload, options);
+}
+
+function request(
+    method,
+    endpoint,
+    payload = null,
+    options = { server: null, authorization: "normal" },
+) {
     const server = options.server ? options.server : store.auth.server;
     const url = new URL(`${server}/api/v1${endpoint}`);
 
     const fetchOptions = {
-        method: "GET",
+        method: method,
         headers: {
             "Content-Type": "application/json",
         },
@@ -39,23 +60,8 @@ function get(endpoint, options = { server: null, authorization: "normal" }) {
         fetchOptions.headers.Authorization = `Bearer ${store.auth.token}`;
     }
 
-    return fetch(url, fetchOptions).then(parseJson).then(handleErrors);
-}
-
-function post(endpoint, payload, options = { server: null, authorization: "normal" }) {
-    const server = options.server ? options.server : store.auth.server;
-    const url = new URL(`${server}/api/v1${endpoint}`);
-
-    const fetchOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-    };
-
-    if (options.authorization !== "none") {
-        fetchOptions.headers.Authorization = `Bearer ${store.auth.token}`;
+    if (payload !== null) {
+        fetchOptions.body = JSON.stringify(payload);
     }
 
     return fetch(url, fetchOptions).then(parseJson).then(handleErrors);
@@ -71,7 +77,10 @@ class HttpError extends Error {
 }
 
 export default {
+    delete: delete_,
     get,
     post,
+    put,
+    request,
     HttpError,
 };
