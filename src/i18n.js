@@ -53,6 +53,7 @@ export const i18n = createI18n({
             "notification.close": "Close the notification",
             "settings.language.label": "Interface language",
             "settings.submit": "Save",
+            "settings.title": "Settings",
         },
 
         fr: {
@@ -99,6 +100,7 @@ export const i18n = createI18n({
             "notification.close": "Fermer la notification",
             "settings.language.label": "Langue de l’interface",
             "settings.submit": "Sauvegarder",
+            "settings.title": "Paramètres",
         },
     },
 });
