@@ -11,7 +11,7 @@
                 </h1>
 
                 <p class="text--secondary">
-                    {{ hostLabel }}&nbsp;·&nbsp;{{ readingTimeLabel }}
+                    {{ host }}&nbsp;·&nbsp;{{ readingTime }}
 
                     <span v-if="link.isRead" :title="t('link.is_read')">
                         <Icon name="check" />
@@ -22,8 +22,8 @@
                     </span>
                 </p>
 
-                <div v-if="tags">
-                    <span v-for="tag in tags" class="tag badge badge--accent">#{{ tag }}</span>
+                <div v-if="link.tags">
+                    <span v-for="tag in link.tags" class="tag badge badge--accent">#{{ tag }}</span>
                 </div>
             </div>
 
@@ -80,6 +80,7 @@ import { requireAuth, isAuthenticated } from "../auth.js";
 import { store } from "../store.js";
 import api from "../api.js";
 import http from "../http.js";
+import { link, host, readingTime } from "../models/link.js";
 
 requireAuth();
 
@@ -90,38 +91,6 @@ const ready = ref(false);
 const alert = ref({
     type: "",
     message: "",
-});
-
-const link = ref({
-    id: "",
-    title: "",
-    url: "",
-    readingTime: 0,
-    tags: {},
-    isRead: false,
-    isReadLater: false,
-});
-
-const hostLabel = computed(() => {
-    const parsedUrl = new URL(link.value.url);
-
-    if (parsedUrl.host.startsWith("www.")) {
-        return parsedUrl.host.slice(4);
-    }
-
-    return parsedUrl.host;
-});
-
-const readingTimeLabel = computed(() => {
-    if (link.value.readingTime < 1) {
-        return "< 1 min";
-    }
-
-    return `${link.value.readingTime} min`;
-});
-
-const tags = computed(() => {
-    return Object.values(link.value.tags);
 });
 
 async function getCurrentTab() {
@@ -151,16 +120,7 @@ async function refreshForCurrentTab() {
 
     api.search(url)
         .then((fetchedLink) => {
-            link.value = {
-                id: fetchedLink.id,
-                title: fetchedLink.title,
-                url: fetchedLink.url,
-                readingTime: fetchedLink.reading_time,
-                tags: fetchedLink.tags,
-                isRead: fetchedLink.is_read,
-                isReadLater: fetchedLink.is_read_later,
-            };
-
+            link.init(fetchedLink);
             ready.value = true;
         })
         .catch((error) => {
@@ -183,10 +143,9 @@ async function refreshForCurrentTab() {
 }
 
 async function markAsRead() {
-    api.markLinkAsRead(link.value)
+    api.markLinkAsRead(link)
         .then((result) => {
-            link.value.isRead = true;
-            link.value.isReadLater = false;
+            link.markAsRead();
         })
         .catch((error) => {
             alert.value = {
@@ -197,9 +156,9 @@ async function markAsRead() {
 }
 
 async function markAsReadLater() {
-    api.markLinkAsReadLater(link.value)
+    api.markLinkAsReadLater(link)
         .then((result) => {
-            link.value.isReadLater = true;
+            link.markAsReadLater();
         })
         .catch((error) => {
             alert.value = {
