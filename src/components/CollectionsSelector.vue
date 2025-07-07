@@ -119,25 +119,21 @@ const notSelectedCollectionsNoGroup = computed(() => {
 });
 
 const notSelectedCollectionsByGroup = computed(() => {
-    const collectionsByGroup = {};
+    const collectionsWithGroup = notSelectedCollections.value.filter((collection) => {
+        return collection.group !== null;
+    });
 
-    for (const collection of notSelectedCollections.value) {
-        if (collection.group === null) {
-            return;
-        }
+    const groupedCollections = Object.groupBy(collectionsWithGroup, (collection) => {
+        return collection.group;
+    });
 
-        if (collectionsByGroup[collection.group] == null) {
-            collectionsByGroup[collection.group] = [];
-        }
-
-        collectionsByGroup[collection.group].push(collection);
-    }
-
-    return Object.entries(collectionsByGroup);
+    return Object.entries(groupedCollections);
 });
 
 function setDefaultSelectedCollectionId() {
-    if (notSelectedCollections.value.length > 0) {
+    if (notSelectedCollectionsNoGroup.value.length > 0) {
+        newCollectionId.value = notSelectedCollectionsNoGroup.value[0].id;
+    } else if (notSelectedCollections.value.length > 0) {
         newCollectionId.value = notSelectedCollections.value[0].id;
     }
 }
