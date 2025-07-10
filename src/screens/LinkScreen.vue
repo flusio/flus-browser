@@ -4,64 +4,70 @@
 
 <template>
     <Screen :title="link.title" header>
-        <div v-if="ready && alert.type === ''" class="flow">
-            <div class="flow flow--smaller">
-                <h1 class="text--normal">
-                    {{ link.title }}
-                </h1>
+        <div v-if="ready && alert.type === ''" class="flow flow--large">
+            <div class="flow">
+                <div class="flow flow--smaller">
+                    <h1 class="text--normal">
+                        {{ link.title }}
+                    </h1>
 
-                <p class="text--secondary">
-                    {{ host }}&nbsp;·&nbsp;{{ readingTime }}
+                    <p class="text--secondary">
+                        {{ host }}&nbsp;·&nbsp;{{ readingTime }}
 
-                    <span v-if="link.isRead" :title="t('link.is_read')">
-                        <Icon name="check" />
-                    </span>
-
-                    <span v-if="link.isReadLater" :title="t('link.is_read_later')">
-                        <Icon name="bookmark" />
-                    </span>
-                </p>
-
-                <div v-if="link.tags">
-                    <span v-for="tag in link.tags" class="tag badge badge--accent">#{{ tag }}</span>
-                </div>
-            </div>
-
-            <div class="cols cols--always cols--center cols--gap-small">
-                <div class="col--extend cols cols--always cols--center cols--gap-small">
-                    <button v-if="!link.isRead || link.isReadLater" class="button--icon button--small" @click.prevent="markAsRead">
-                        <Icon name="check" />
-                        <span class="sr-only">
-                            {{ t("link.mark_as_read") }}
+                        <span v-if="link.isRead" :title="t('link.is_read')">
+                            <Icon name="check" />
                         </span>
-                    </button>
 
-                    <button v-if="!link.isReadLater" class="button--icon button--small" @click.prevent="markAsReadLater">
-                        <Icon name="bookmark" />
-                        <span class="sr-only">
-                            {{ t("link.mark_as_read_later") }}
+                        <span v-if="link.isReadLater" :title="t('link.is_read_later')">
+                            <Icon name="bookmark" />
                         </span>
-                    </button>
+                    </p>
+
+                    <div v-if="link.tags">
+                        <span v-for="tag in link.tags" class="tag badge badge--accent">#{{ tag }}</span>
+                    </div>
                 </div>
 
-                <button
-                    @click="toggleCollections"
-                    class="button--small"
-                    :aria-expanded="displayCollections"
-                    aria-controls="collections-selector"
-                >
-                    {{ t("link.count_collections", link.collections.length) }}
-                </button>
+                <div class="cols cols--always cols--center cols--gap-small">
+                    <div class="col--extend cols cols--always cols--center cols--gap-small">
+                        <button v-if="!link.isRead || link.isReadLater" class="button--icon button--small" @click.prevent="markAsRead">
+                            <Icon name="check" />
+                            <span class="sr-only">
+                                {{ t("link.mark_as_read") }}
+                            </span>
+                        </button>
+
+                        <button v-if="!link.isReadLater" class="button--icon button--small" @click.prevent="markAsReadLater">
+                            <Icon name="bookmark" />
+                            <span class="sr-only">
+                                {{ t("link.mark_as_read_later") }}
+                            </span>
+                        </button>
+                    </div>
+
+                    <button
+                        @click="toggleCollections"
+                        class="button--small"
+                        :aria-expanded="displayCollections"
+                        aria-controls="collections-selector"
+                    >
+                        {{ t("link.count_collections", link.collections.length) }}
+                    </button>
+                </div>
+
+                <CollectionsSelector
+                    id="collections-selector"
+                    :link="link"
+                    :open="displayCollections"
+                    :disabled="collectionsForm.inProgress()"
+                    @add="addCollection"
+                    @remove="removeCollection"
+                />
             </div>
 
-            <CollectionsSelector
-                id="collections-selector"
-                :link="link"
-                :open="displayCollections"
-                :disabled="collectionsForm.inProgress()"
-                @add="addCollection"
-                @remove="removeCollection"
-            />
+            <hr>
+
+            <Notes :link="link" />
         </div>
 
         <div v-else-if="ready && alert.type == 'info'">
@@ -103,6 +109,7 @@ import http from "../http.js";
 import collectionsForm from "../form.js";
 import { link, host, readingTime } from "../models/link.js";
 import CollectionsSelector from "../components/CollectionsSelector.vue";
+import Notes from "../components/Notes.vue";
 
 requireAuth();
 

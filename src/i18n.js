@@ -17,6 +17,7 @@ export const i18n = createI18n({
             "errors.@base.invalid_credentials": "The credentials are invalid.",
             "errors.auth.invalid_token":
                 "You are no longer connected to Flus, please log in again.",
+            "errors.content.presence": "The note is required.",
             "errors.email.presence": "The email address is required.",
             "errors.language.invalid": "The language is invalid.",
             "errors.password.presence": "The password is required.",
@@ -55,6 +56,9 @@ export const i18n = createI18n({
             "not_found.details":
                 "This screen doesn’t exist, so it’s probably a problem with the extension.",
             "not_found.title": "Screen not found",
+            "notes.add": "Add a note",
+            "notes.content": "What can be said about this content?",
+            "notes.title": "Note-taking",
             "notification.close": "Close the notification",
             "settings.language.label": "Interface language",
             "settings.submit": "Save",
@@ -69,6 +73,7 @@ export const i18n = createI18n({
             "errors.@base.invalid_credentials": "Les identifiants sont incorrects.",
             "errors.auth.invalid_token":
                 "Vous n’êtes plus connecté à Flus, veuillez vous reconnecter.",
+            "errors.content.presence": "La note est obligatoire.",
             "errors.email.presence": "L’adresse email est obligatoire.",
             "errors.language.invalid": "La langue est invalide.",
             "errors.password.presence": "Le mot de passe est obligatoire.",
@@ -107,6 +112,9 @@ export const i18n = createI18n({
             "not_found.details":
                 "Cet écran n’existe pas, il s’agit probablement d’un problème de l’extension.",
             "not_found.title": "Écran introuvable",
+            "notes.add": "Ajouter une note",
+            "notes.content": "Que retenez-vous de ce contenu ?",
+            "notes.title": "Prise de notes",
             "notification.close": "Fermer la notification",
             "settings.language.label": "Langue de l’interface",
             "settings.submit": "Sauvegarder",
