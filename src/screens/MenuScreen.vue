@@ -44,9 +44,23 @@ function logout() {
     redirect("/login");
 }
 
-function openFlus() {
-    browser.tabs.create({
-        url: store.auth.server,
-    });
+async function isFirefoxMobile() {
+    const browserInfo = await browser.runtime.getBrowserInfo();
+    const platformInfo = await browser.runtime.getPlatformInfo();
+    //alert(browserInfo.name);
+    //alert(platformInfo.os);
+    return browserInfo.name === 'Firefox' && platformInfo.os === 'android';
+}
+
+async function openFlus() {
+    if (isFirefoxMobile()) {
+        location.assign(store.auth.server);
+    } else {
+        browser.tabs.create({
+            url: store.auth.server,
+        });
+
+        window.close();
+    }
 }
 </script>
