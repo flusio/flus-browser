@@ -45,27 +45,19 @@
                 </div>
 
                 <button
-                    v-if="link.collections === 0"
                     @click="toggleCollections"
                     class="button--small"
-                    :aria-pressed="displayCollections"
-                >
-                    {{ t("link.store") }}
-                </button>
-
-                <button
-                    v-else
-                    @click="toggleCollections"
-                    class="button--small"
-                    :aria-pressed="displayCollections"
+                    :aria-expanded="displayCollections"
+                    aria-controls="collections-selector"
                 >
                     {{ t("link.count_collections", link.collections.length) }}
                 </button>
             </div>
 
             <CollectionsSelector
-                v-if="displayCollections"
+                id="collections-selector"
                 :link="link"
+                :open="displayCollections"
                 :disabled="collectionsForm.inProgress()"
                 @add="addCollection"
                 @remove="removeCollection"

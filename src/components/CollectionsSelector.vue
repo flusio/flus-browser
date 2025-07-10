@@ -3,73 +3,75 @@
   -->
 
 <template>
-    <div v-if="ready" class="panel panel--grey panel--rounded flow">
-        <ul v-if="selectedCollections.length > 0" class="list--nostyle flow flow--smaller">
-            <li
-                v-for="collection in selectedCollections"
-                class="cols cols--always cols--center cols--gap-smaller"
-            >
-                <span class="col--extend">
-                    {{ collection.name }}
-
-                    <span v-if="collection.isPublic" class="badge badge--accent">
-                        {{ t('collection.public') }}
-                    </span>
-                </span>
-
-                <button
-                    @click="() => removeCollection(collection)"
-                    type="button"
-                    class="button--small"
-                    :disabled="props.disabled"
+    <div>
+        <div v-if="open && ready" class="panel panel--grey panel--rounded flow">
+            <ul v-if="selectedCollections.length > 0" class="list--nostyle flow flow--smaller">
+                <li
+                    v-for="collection in selectedCollections"
+                    class="cols cols--always cols--center cols--gap-smaller"
                 >
-                    {{ t('collection.remove') }}
-                </button>
-            </li>
-        </ul>
-
-        <form
-            v-if="notSelectedCollections.length > 0"
-            @submit.prevent="addCollection"
-            class="flow flow--smaller"
-            :disabled="props.disabled"
-        >
-            <label for="collection-select">
-                {{ t('collection.add_to_collection') }}
-            </label>
-
-            <div class="cols cols--always cols--center cols--gap-smaller">
-                <select v-model="newCollectionId" id="collection-select" :disabled="props.disabled">
-                    <option v-for="collection in notSelectedCollectionsNoGroup" :value="collection.id">
+                    <span class="col--extend">
                         {{ collection.name }}
 
-                        <template v-if="collection.isPublic">
-                            ({{ t('collection.public') }})
-                        </template>
-                    </option>
+                        <span v-if="collection.isPublic" class="badge badge--accent">
+                            {{ t('collection.public') }}
+                        </span>
+                    </span>
 
-                    <optgroup v-for="[groupName, groupCollections] in notSelectedCollectionsByGroup" :label="groupName">
-                        <option v-for="collection in groupCollections" :value="collection.id">
+                    <button
+                        @click="() => removeCollection(collection)"
+                        type="button"
+                        class="button--small"
+                        :disabled="props.disabled"
+                    >
+                        {{ t('collection.remove') }}
+                    </button>
+                </li>
+            </ul>
+
+            <form
+                v-if="notSelectedCollections.length > 0"
+                @submit.prevent="addCollection"
+                class="flow flow--smaller"
+                :disabled="props.disabled"
+            >
+                <label for="collection-select">
+                    {{ t('collection.add_to_collection') }}
+                </label>
+
+                <div class="cols cols--always cols--center cols--gap-smaller">
+                    <select v-model="newCollectionId" id="collection-select" :disabled="props.disabled">
+                        <option v-for="collection in notSelectedCollectionsNoGroup" :value="collection.id">
                             {{ collection.name }}
 
                             <template v-if="collection.isPublic">
                                 ({{ t('collection.public') }})
                             </template>
                         </option>
-                    </optgroup>
-                </select>
 
-                <div>
-                    <button class="button--icon button--small" :disabled="props.disabled">
-                        <Icon name="plus" />
+                        <optgroup v-for="[groupName, groupCollections] in notSelectedCollectionsByGroup" :label="groupName">
+                            <option v-for="collection in groupCollections" :value="collection.id">
+                                {{ collection.name }}
 
-                        <span class="sr-only">
-                            {{ t('collection.add') }}
-                        </span>
-                    </button>
+                                <template v-if="collection.isPublic">
+                                    ({{ t('collection.public') }})
+                                </template>
+                            </option>
+                        </optgroup>
+                    </select>
+
+                    <div>
+                        <button class="button--icon button--small" :disabled="props.disabled">
+                            <Icon name="plus" />
+
+                            <span class="sr-only">
+                                {{ t('collection.add') }}
+                            </span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -88,6 +90,9 @@ const props = defineProps({
     link: {
         type: Object,
         required: true,
+    },
+    open: {
+        type: Boolean,
     },
     disabled: {
         type: Boolean,
