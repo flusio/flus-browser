@@ -2,6 +2,30 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import { reactive, computed } from "vue";
+import sanitizeHtml from "sanitize-html";
+
+// These are the same tags that are allowed server-side.
+// See https://github.com/flusio/Flus/blob/main/src/utils/MiniMarkdown.php
+const allowedNoteTags = [
+    "a",
+    "blockquote",
+    "br",
+    "code",
+    "del",
+    "em",
+    "li",
+    "ol",
+    "p",
+    "pre",
+    "strong",
+    "ul",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+];
 
 export const link = reactive({
     id: "",
@@ -12,6 +36,7 @@ export const link = reactive({
     tags: [],
     isRead: false,
     isReadLater: false,
+    notes: [],
 
     init(fetchedLink) {
         this.id = fetchedLink.id;
@@ -33,6 +58,12 @@ export const link = reactive({
         this.isReadLater = true;
     },
 
+    addTag(tag) {
+        if (!this.tags.includes(tag)) {
+            this.tags = [...this.tags, tag];
+        }
+    },
+
     addCollection(collection) {
         this.collections = [...this.collections, collection.id];
     },
@@ -41,6 +72,28 @@ export const link = reactive({
         this.collections = this.collections.filter((collectionId) => {
             return collectionId !== collection.id;
         });
+    },
+
+    addNote(note) {
+        this.notes = [
+            ...this.notes,
+            {
+                id: note.id,
+                createdAt: new Date(note.created_at),
+                htmlContent: sanitizeHtml(note.html_content, {
+                    allowedTags: allowedNoteTags,
+                    allowedSchemes: ["http", "https"],
+                    allowProtocolRelative: false,
+                }),
+                user: {
+                    username: note.user.username,
+                },
+            },
+        ];
+
+        for (const tag of note.tags) {
+            this.addTag(tag);
+        }
     },
 });
 

@@ -39,6 +39,10 @@ body {
     margin-right: var(--space-smaller);
 }
 
+.note {
+    --panel-background-color: var(--color-white);
+}
+
 img {
     vertical-align: middle;
 }
@@ -48,4 +52,8 @@ button[aria-expanded="true"]:hover {
     --button-color: var(--color-grey-base);
     --button-background-color: var(--color-grey-text-contrast);
     --button-border-color: transparent;
+}
+
+textarea {
+    min-height: 7rem;
 }

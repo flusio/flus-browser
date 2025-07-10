@@ -48,6 +48,16 @@ function removeCollectionFromLink(link, collection) {
     return http.delete(`/links/${link.id}/collections/${collection.id}`);
 }
 
+function notes(link) {
+    return http.get(`/links/${link.id}/notes`);
+}
+
+function addNoteToLink(link, noteContent) {
+    return http.post(`/links/${link.id}/notes`, {
+        content: noteContent,
+    });
+}
+
 export default {
     authenticate,
     collections,
@@ -56,4 +66,6 @@ export default {
     search,
     markLinkAsRead,
     markLinkAsReadLater,
+    notes,
+    addNoteToLink,
 };

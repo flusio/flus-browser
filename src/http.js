@@ -68,11 +68,11 @@ function request(
 }
 
 class HttpError extends Error {
-    constructor(status, errors) {
+    constructor(status, data) {
         super("HTTP error");
         this.name = this.constructor.name;
         this.status = status;
-        this.errors = errors;
+        this.errors = data.errors != null ? data.errors : data;
     }
 }
 
