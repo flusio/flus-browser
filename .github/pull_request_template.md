@@ -18,7 +18,7 @@
   -->
 
 - [ ] Code is manually tested
-- [ ] Interface works on both Firefox and Chrome
+- [ ] Interface works on Firefox (popup and sidebar), Firefox Mobile and Chrome
 - [ ] Accessibility has been tested
 - [ ] Translations are synchronized
 - [ ] Copyright notices are up to date

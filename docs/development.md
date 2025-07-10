@@ -31,6 +31,18 @@ Or in Chromium:
 $ make run BROWSER=chromium
 ```
 
+Or in Firefox for Android (connect your phone in USB first and make sure you have `adb` installed):
+
+```console
+$ make run BROWSER=<device>
+```
+
+You can find the name of your device with:
+
+```console
+$ adb devices
+```
+
 Build the extension with:
 
 ```console

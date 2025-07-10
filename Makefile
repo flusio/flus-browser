@@ -18,8 +18,10 @@ run: BROWSER ?= firefox
 run: ## Run the extension in a browser (can take a BROWSER argument)
 ifeq ($(BROWSER),chromium)
 	npm run start:browser -- --target chromium
-else
+else ifeq ($(BROWSER),firefox)
 	npm run start:browser -- --target firefox-desktop
+else
+	npm run start:browser -- --target firefox-android --android-device $(BROWSER)
 endif
 
 .PHONY: build
