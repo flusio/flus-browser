@@ -36,7 +36,9 @@ body {
 }
 
 .tag {
+    display: inline-block;
     margin-right: var(--space-smaller);
+    margin-bottom: var(--space-smaller);
 }
 
 .note {
