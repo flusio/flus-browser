@@ -10,14 +10,13 @@ Flus brings together news feed aggregation and social bookmarking in a modern wa
 It is designed as a simple, yet complete tool for organising the links you gather around the Web.
 
 This repository contains the code of the browser extension.
-For now, it allows you to easily add any website URL to your bookmarks.
-
-**Note that it only works for the [flus.fr](https://flus.fr) service at the moment.**
-If you want to use it with your self-hosted service, you’ll have to change the URL in the file [`src/configuration.js`](/src/configuration.js) and package the extension yourself.
+The extension is the perfect companion for the web application as it allows you to easily mark links as read, save them for later, or add them to collections, as well as add notes.
 
 For the code of the Web application, see [flusio/Flus](https://github.com/flusio/Flus).
 
 Flus Browser is licensed under [GNU Affero General Public License v3.0 or later](/LICENSE.txt).
+
+![Screenshot of the opened extension.](/docs/screenshot.webp)
 
 ## Quick start
 
