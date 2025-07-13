@@ -30,14 +30,14 @@
 
                 <div class="cols cols--always cols--center cols--gap-small">
                     <div class="col--extend cols cols--always cols--center cols--gap-small">
-                        <button v-if="!link.isRead || link.isReadLater" class="button--icon button--small" @click.prevent="markAsRead">
+                        <button v-if="!link.isRead || link.isReadLater" class="button--icon" @click.prevent="markAsRead">
                             <Icon name="check" />
                             <span class="sr-only">
                                 {{ t("link.mark_as_read") }}
                             </span>
                         </button>
 
-                        <button v-if="!link.isReadLater" class="button--icon button--small" @click.prevent="markAsReadLater">
+                        <button v-if="!link.isReadLater" class="button--icon" @click.prevent="markAsReadLater">
                             <Icon name="bookmark" />
                             <span class="sr-only">
                                 {{ t("link.mark_as_read_later") }}
@@ -47,7 +47,6 @@
 
                     <button
                         @click="toggleCollections"
-                        class="button--small"
                         :aria-expanded="displayCollections"
                         aria-controls="collections-selector"
                     >

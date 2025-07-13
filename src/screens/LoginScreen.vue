@@ -10,7 +10,7 @@
                     <div class="col--extend">
                     </div>
 
-                    <a href="#/menu" class="button button--icon button--ghost button--small">
+                    <a href="#/menu" class="button button--icon button--ghost">
                         <Icon name="menu" />
 
                         <span class="sr-only">
@@ -93,13 +93,13 @@
                         {{ t('login.server') }} {{ serverWithoutScheme }}
                     </p>
 
-                    <button @click="displayServerInput = true" type="button" class="button--small">
+                    <button @click="displayServerInput = true" type="button">
                         {{ t('login.server.change') }}
                     </button>
                 </div>
 
                 <div class="text--center">
-                    <button class="button--primary" :disabled="form.inProgress() ? 'true' : null">
+                    <button class="button--primary button--big" :disabled="form.inProgress() ? 'true' : null">
                         {{ t("login.submit") }}
                     </button>
                 </div>

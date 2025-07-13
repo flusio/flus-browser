@@ -10,7 +10,7 @@
             <article
                 v-for="note in notes"
                 :id="`note-${note.id}`"
-                class="note panel panel--rounded"
+                class="note panel panel--base panel--rounded"
             >
                 <header>
                     <div class="cols cols--always cols--center cols--gap-smaller">
@@ -72,7 +72,7 @@
             </div>
 
             <div class="text--center">
-                <button class="button--primary" :disabled="form.inProgress()">
+                <button class="button--primary button--big" :disabled="form.inProgress()">
                     {{ t('notes.add') }}
                 </button>
             </div>

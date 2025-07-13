@@ -21,7 +21,6 @@
                     <button
                         @click="() => removeCollection(collection)"
                         type="button"
-                        class="button--small"
                         :disabled="props.disabled"
                     >
                         {{ t('collection.remove') }}
@@ -61,7 +60,7 @@
                     </select>
 
                     <div>
-                        <button class="button--icon button--small" :disabled="props.disabled">
+                        <button class="button--icon" :disabled="props.disabled">
                             <Icon name="plus" />
 
                             <span class="sr-only">

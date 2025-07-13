@@ -41,14 +41,6 @@ body {
     margin-bottom: var(--space-smaller);
 }
 
-.note {
-    --panel-background-color: var(--color-white);
-}
-
-img {
-    vertical-align: middle;
-}
-
 button[aria-expanded="true"],
 button[aria-expanded="true"]:hover {
     --button-color: var(--color-grey-base);

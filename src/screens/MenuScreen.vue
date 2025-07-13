@@ -6,19 +6,19 @@
     <Screen :title="title" header menuOpened>
         <ul class="list--nostyle flow text--bold text--center">
             <li>
-                <a @click.prevent="openFlus" :href="store.auth.server" class="button button--ghost">
+                <a @click.prevent="openFlus" :href="store.auth.server" class="button button--big button--ghost">
                     {{ t("menu.open_flus") }}
                 </a>
             </li>
 
             <li>
-                <a href="#/settings" class="button button--ghost">
+                <a href="#/settings" class="button button--big button--ghost">
                     {{ t("menu.settings") }}
                 </a>
             </li>
 
             <li v-if="isAuthenticated()">
-                <button @click="logout" class="button--ghost">
+                <button @click="logout" class="button--big button--ghost">
                     {{ t("menu.logout") }}
                 </button>
             </li>

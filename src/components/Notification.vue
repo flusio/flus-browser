@@ -10,7 +10,7 @@
             </p>
 
             <div>
-                <button class="button--icon button--small" type="button" @click="store.resetNotification">
+                <button class="button--icon" type="button" @click="store.resetNotification">
                     <Icon name="times" />
 
                     <span class="sr-only">

@@ -12,7 +12,7 @@
             </div>
 
             <div>
-                <a v-if="menuOpened" href="#/" class="button button--icon button--ghost button--small">
+                <a v-if="menuOpened" href="#/" class="button button--icon button--ghost">
                     <Icon name="times" />
 
                     <span class="sr-only">
@@ -20,7 +20,7 @@
                     </span>
                 </a>
 
-                <a v-else href="#/menu" class="button button--icon button--ghost button--small">
+                <a v-else href="#/menu" class="button button--icon button--ghost">
                     <Icon name="menu" />
 
                     <span class="sr-only">
