@@ -182,7 +182,7 @@ function removeCollection(collection) {
 
 watch(
     () => props.link.collections,
-    (value) => {
+    () => {
         setDefaultSelectedCollectionId();
     },
 );

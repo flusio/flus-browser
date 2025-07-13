@@ -1,12 +1,13 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+    "root": false,
+    "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
     "vcs": {
         "enabled": false,
         "clientKind": "git",
         "useIgnoreFile": false
     },
     "files": {
-        "include": ["src/**"],
+        "includes": ["**/src/**"],
         "ignoreUnknown": false
     },
     "formatter": {
@@ -15,13 +16,19 @@
         "indentWidth": 4,
         "lineWidth": 100
     },
-    "organizeImports": {
-        "enabled": true
-    },
+    "assist": { "actions": { "source": { "organizeImports": "on" } } },
     "linter": {
         "enabled": true,
         "rules": {
-            "recommended": true
+            "recommended": true,
+            "style": {
+                "useConst": "off",
+                "useImportType": "off"
+            },
+            "correctness": {
+                "noUnusedVariables": "off",
+                "noUnusedImports": "off"
+            }
         }
     },
     "javascript": {

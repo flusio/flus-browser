@@ -12,7 +12,7 @@
     "lint:biome": "biome lint --error-on-warnings --config-path=.biome.json && biome format --error-on-warnings --config-path=.biome.json"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "^2.1.0",
     "@flus/design": "^1.0.0",
     "@parcel/config-webextension": "^2.13.3",
     "@parcel/transformer-vue": "^2.13.3",

@@ -177,10 +177,10 @@ async function refreshForCurrentTab() {
 
 async function markAsRead() {
     api.markLinkAsRead(link)
-        .then((result) => {
+        .then(() => {
             link.markAsRead();
         })
-        .catch((error) => {
+        .catch(() => {
             alert.value = {
                 type: "error",
                 message: t("errors.unknown"),
@@ -190,10 +190,10 @@ async function markAsRead() {
 
 async function markAsReadLater() {
     api.markLinkAsReadLater(link)
-        .then((result) => {
+        .then(() => {
             link.markAsReadLater();
         })
-        .catch((error) => {
+        .catch(() => {
             alert.value = {
                 type: "error",
                 message: t("errors.unknown"),
@@ -208,7 +208,7 @@ function addCollection(collection) {
             collectionsForm.finishRequest();
             link.addCollection(collection);
         })
-        .catch((error) => {
+        .catch(() => {
             collectionsForm.finishRequest();
             store.notify("error", t("errors.unknown"));
         });
@@ -221,7 +221,7 @@ function removeCollection(collection) {
             collectionsForm.finishRequest();
             link.removeCollection(collection);
         })
-        .catch((error) => {
+        .catch(() => {
             collectionsForm.finishRequest();
             store.notify("error", t("errors.unknown"));
         });
