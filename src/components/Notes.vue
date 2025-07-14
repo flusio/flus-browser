@@ -6,29 +6,13 @@
     <div v-if="ready" class="flow flow--large">
         <h2 class="text--normal text--center">{{ t('notes.title') }}</h2>
 
-        <div class="flow">
-            <article
-                v-for="note in notes"
-                :id="`note-${note.id}`"
-                class="note panel panel--base panel--rounded"
-            >
-                <header>
-                    <div class="cols cols--always cols--center cols--gap-smaller">
-                        <p class="col--extend note__author text--bold">
-                            {{ note.user.username }}
-                        </p>
-
-                        <time class="text--secondary text--small" :datetime="note.createdAt.toISOString()">
-                            {{ note.createdAt.toLocaleString(locale, {
-                                'year': 'numeric',
-                                'month': 'short',
-                                'day': 'numeric',
-                                'hour': '2-digit',
-                                'minute': '2-digit',
-                            }) }}
-                        </time>
-                    </div>
-                </header>
+        <article v-if="link.notes.length > 0" class="panel panel--base panel--rounded text-container">
+            <div v-for="[dateIso, notes] in notesByDates">
+                <p class="text--secondary text--small text--right">
+                    <time :datetime="dateIso">
+                        {{ dateToLocaleString(dateIso) }}
+                    </time>
+                </p>
 
                 <!-- This displays raw HTML coming from the API. The HTML
                      should already be safe as it is generated from Markdown
@@ -36,12 +20,12 @@
                      measure, the HTML is also sanitized on client-side (see the
                      models/link.js file). -->
                 <div
-                    class="message__content text-container"
+                    v-for="note in notes"
                     v-html="note.htmlContent"
                 >
                 </div>
-            </article>
-        </div>
+            </div>
+        </article>
 
         <form
             @submit.prevent="addNote"
@@ -66,6 +50,7 @@
                     v-model="newNoteContent"
                     id="note-content"
                     required
+                    ref="note-content"
                     :aria-invalid="form.isInvalid('content')"
                     :aria-errormessage="form.isInvalid('content') ? 'note-content-error' : null"
                 ></textarea>
@@ -81,7 +66,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, useTemplateRef, onMounted, computed } from "vue";
 import { useI18n } from "vue-i18n";
 
 import api from "../api.js";
@@ -102,15 +87,35 @@ const props = defineProps({
 const ready = ref(false);
 const newNoteContent = ref("");
 
-const notes = computed(() => {
+const noteContentRef = useTemplateRef("note-content");
+
+const notesByDates = computed(() => {
     const linkNotes = props.link.notes;
 
     linkNotes.sort((note1, note2) => {
         return note1.createdAt - note2.createdAt;
     });
 
-    return linkNotes;
+    const linkNotesByDates = Map.groupBy(linkNotes, (note) => {
+        const date = new Date(note.createdAt);
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
+        date.setMilliseconds(0);
+        return date.toISOString();
+    });
+
+    return Array.from(linkNotesByDates.entries());
 });
+
+function dateToLocaleString(dateIso) {
+    const date = new Date(dateIso);
+    return date.toLocaleDateString(locale.value, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+}
 
 function loadNotes() {
     api.notes(props.link).then((linkNotes) => {
@@ -127,8 +132,11 @@ function addNote() {
     api.addNoteToLink(props.link, newNoteContent.value)
         .then((note) => {
             form.finishRequest();
+
             newNoteContent.value = "";
             props.link.addNote(note);
+
+            noteContentRef.value.focus();
         })
         .catch((error) => {
             form.finishRequest();
@@ -138,6 +146,8 @@ function addNote() {
             } else {
                 store.notify("error", t("errors.unknown"));
             }
+
+            noteContentRef.value.focus();
         });
 }
 
