@@ -85,9 +85,6 @@ export const link = reactive({
                     allowedSchemes: ["http", "https"],
                     allowProtocolRelative: false,
                 }),
-                user: {
-                    username: note.user.username,
-                },
             },
         ];
 
