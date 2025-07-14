@@ -4,10 +4,14 @@
 import { reactive, watch, toRaw } from "vue";
 import browser from "webextension-polyfill";
 
+import { applyTheme } from "./theme.js";
+
 export const store = reactive({
     ready: false,
 
     locale: "fr",
+
+    theme: "auto",
 
     auth: {
         server: "https://app.flus.fr",
@@ -19,6 +23,10 @@ export const store = reactive({
 
     setLocale(locale) {
         this.locale = locale;
+    },
+
+    setTheme(theme) {
+        this.theme = theme;
     },
 
     rememberCredentials(server, email, token) {
@@ -49,7 +57,12 @@ export const store = reactive({
     },
 });
 
-browser.storage.local.get(["locale", "auth"]).then((results) => {
+browser.storage.local.get(["theme", "locale", "auth"]).then((results) => {
+    if (Object.hasOwn(results, "theme")) {
+        store.theme = results.theme;
+        applyTheme(store.theme);
+    }
+
     if (Object.hasOwn(results, "locale")) {
         store.setLocale(results.locale);
     }
@@ -73,5 +86,13 @@ watch(
     (locale) => {
         document.documentElement.setAttribute("lang", locale);
         browser.storage.local.set({ locale: toRaw(locale) });
+    },
+);
+
+watch(
+    () => store.theme,
+    (theme) => {
+        applyTheme(theme);
+        browser.storage.local.set({ theme: toRaw(theme) });
     },
 );

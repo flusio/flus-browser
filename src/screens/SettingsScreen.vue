@@ -32,6 +32,29 @@
                 </select>
             </div>
 
+            <div class="flow flow--smaller">
+                <label for="settings-theme">
+                    {{ t('settings.theme.label') }}
+                </label>
+
+                <p v-if="form.isInvalid('theme')" id="settings-theme-error" class="form-group__error" role="alert">
+                    {{ t('forms.error') }}
+                    {{ form.error('theme') }}
+                </p>
+
+                <select
+                    id="settings-theme"
+                    required
+                    v-model.trim="theme"
+                    :aria-invalid="form.isInvalid('theme')"
+                    :aria-errormessage="form.isInvalid('theme') ? 'settings-theme-error' : null"
+                >
+                    <option value="auto">{{ t('settings.theme.auto') }}</option>
+                    <option value="light">{{ t('settings.theme.light') }}</option>
+                    <option value="dark">{{ t('settings.theme.dark') }}</option>
+                </select>
+            </div>
+
             <div class="text--center">
                 <button class="button--primary button--big" :disabled="form.inProgress() ? 'true' : null">
                     {{ t("settings.submit") }}
@@ -55,11 +78,19 @@ locale.value = store.locale;
 const title = t("settings.title");
 
 const language = ref(store.locale);
+const theme = ref(store.theme);
 
 watch(
     () => store.locale,
     (storeLocale) => {
         locale.value = storeLocale;
+    },
+);
+
+watch(
+    () => store.theme,
+    (storeTheme) => {
+        theme.value = storeTheme;
     },
 );
 
@@ -72,6 +103,17 @@ function save() {
         form.setAndFormatErrors(
             {
                 language: [{ code: "invalid" }],
+            },
+            t,
+        );
+    }
+
+    if (["auto", "light", "dark"].includes(theme.value)) {
+        store.setTheme(theme.value);
+    } else {
+        form.setAndFormatErrors(
+            {
+                theme: [{ code: "invalid" }],
             },
             t,
         );

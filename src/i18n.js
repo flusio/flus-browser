@@ -21,6 +21,7 @@ export const i18n = createI18n({
             "errors.email.presence": "The email address is required.",
             "errors.language.invalid": "The language is invalid.",
             "errors.password.presence": "The password is required.",
+            "errors.theme.invalid": "The theme is invalid.",
             "errors.unknown":
                 "An unknown error has occurred. Please close and reopen the extension. If it still doesn’t work, please contact the support.",
             "errors.url.url": "The URL of the current page is not supported by Flus.",
@@ -62,6 +63,10 @@ export const i18n = createI18n({
             "notification.close": "Close the notification",
             "settings.language.label": "Interface language",
             "settings.submit": "Save",
+            "settings.theme.auto": "Auto",
+            "settings.theme.dark": "Dark",
+            "settings.theme.label": "Theme",
+            "settings.theme.light": "Light",
             "settings.title": "Settings",
         },
 
@@ -77,6 +82,7 @@ export const i18n = createI18n({
             "errors.email.presence": "L’adresse email est obligatoire.",
             "errors.language.invalid": "La langue est invalide.",
             "errors.password.presence": "Le mot de passe est obligatoire.",
+            "errors.theme.invalid": "Le thème est invalide.",
             "errors.unknown":
                 "Une erreur inconnue est survenue. Veuillez fermer et réouvrir l’extension. Si cela ne suffit pas, veuillez contacter le support.",
             "errors.url.url": "L’URL de la page actuelle n’est pas supportée par Flus.",
@@ -118,6 +124,10 @@ export const i18n = createI18n({
             "notification.close": "Fermer la notification",
             "settings.language.label": "Langue de l’interface",
             "settings.submit": "Sauvegarder",
+            "settings.theme.auto": "Auto",
+            "settings.theme.dark": "Sombre",
+            "settings.theme.label": "Thème",
+            "settings.theme.light": "Clair",
             "settings.title": "Paramètres",
         },
     },
