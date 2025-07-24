@@ -4,7 +4,19 @@
 
 <template>
     <div v-if="ready" class="flow flow--large">
-        <h2 class="text--normal text--center">{{ t('notes.title') }}</h2>
+        <div class="cols cols--always cols--center cols--gap">
+            <h2 class="col--extend text--big">{{ t('notes.title') }}</h2>
+
+            <a
+                class="button button--ghost"
+                :href="notesUrl"
+                :title="t('notes.open_in_flus')"
+                target="_blank"
+            >
+                <Icon name="pop-out" />
+                {{ t('notes.open') }}
+            </a>
+        </div>
 
         <article v-if="link.notes.length > 0" class="panel panel--base panel--rounded text-container">
             <div v-for="[dateIso, notes] in notesByDates">
@@ -106,6 +118,10 @@ const notesByDates = computed(() => {
     });
 
     return Array.from(linkNotesByDates.entries());
+});
+
+const notesUrl = computed(() => {
+    return `${store.auth.server}/links/${props.link.id}`;
 });
 
 function dateToLocaleString(dateIso) {
