@@ -6,7 +6,7 @@
     <Screen :title="title" header menuOpened>
         <ul class="list--nostyle flow text--bold text--center">
             <li>
-                <a @click.prevent="openFlus" :href="store.auth.server" class="button button--big button--ghost">
+                <a :href="store.auth.server" target="_blank" class="button button--big button--ghost">
                     {{ t("menu.open_flus") }}
                 </a>
             </li>
@@ -42,11 +42,5 @@ const title = t("menu.title");
 function logout() {
     store.logout();
     redirect("/login");
-}
-
-function openFlus() {
-    browser.tabs.create({
-        url: store.auth.server,
-    });
 }
 </script>
