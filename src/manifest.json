@@ -22,5 +22,13 @@
         "default_icon": "icons/icon-32.png",
         "default_title": "Flus",
         "default_popup": "popup/index.html"
+    },
+
+    "commands": {
+        "_execute_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+1"
+            }
+        }
     }
 }
