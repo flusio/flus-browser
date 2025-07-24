@@ -47,6 +47,7 @@ export const link = reactive({
         this.tags = Object.values(fetchedLink.tags);
         this.isRead = fetchedLink.is_read;
         this.isReadLater = fetchedLink.is_read_later;
+        this.notes = [];
     },
 
     markAsRead() {
