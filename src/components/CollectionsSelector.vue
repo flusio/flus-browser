@@ -31,14 +31,14 @@
             <form
                 v-if="notSelectedCollections.length > 0"
                 @submit.prevent="addCollection"
-                class="flow flow--smaller"
+                class="flow flow--small"
                 :disabled="props.disabled"
             >
-                <label for="collection-select">
-                    {{ t('collection.add_to_collection') }}
-                </label>
+                <div class="flow flow--smaller">
+                    <label for="collection-select">
+                        {{ t('collection.add_to_collection') }}
+                    </label>
 
-                <div class="cols cols--always cols--center cols--gap-smaller">
                     <select v-model="newCollectionId" id="collection-select" :disabled="props.disabled">
                         <option v-for="collection in notSelectedCollectionsNoGroup" :value="collection.id">
                             {{ collection.name }}
@@ -58,16 +58,12 @@
                             </option>
                         </optgroup>
                     </select>
+                </div>
 
-                    <div>
-                        <button class="button--icon" :disabled="props.disabled">
-                            <Icon name="plus" />
-
-                            <span class="sr-only">
-                                {{ t('collection.add') }}
-                            </span>
-                        </button>
-                    </div>
+                <div class="text--center">
+                    <button class="button--primary" :disabled="props.disabled">
+                        {{ t('collection.add') }}
+                    </button>
                 </div>
             </form>
         </div>

@@ -10,7 +10,7 @@ export const i18n = createI18n({
 
     messages: {
         en: {
-            "collection.add": "Add",
+            "collection.add": "Confirm",
             "collection.add_to_collection": "Add to a collection",
             "collection.public": "public",
             "collection.remove": "Remove",
@@ -73,7 +73,7 @@ export const i18n = createI18n({
         },
 
         fr: {
-            "collection.add": "Ajouter",
+            "collection.add": "Confirmer",
             "collection.add_to_collection": "Ajouter à une collection",
             "collection.public": "publique",
             "collection.remove": "Retirer",
