@@ -16,10 +16,10 @@ watch: ## Watch and build the assets
 .PHONY: run
 run: BROWSER ?= firefox
 run: ## Run the extension in a browser (can take a BROWSER argument)
-ifeq ($(BROWSER),chromium)
-	npm run start:browser -- --target chromium
-else ifeq ($(BROWSER),firefox)
+ifeq ($(BROWSER), $(filter $(BROWSER), firefox))
 	npm run start:browser -- --target firefox-desktop
+else ifeq ($(BROWSER), $(filter $(BROWSER), chromium))
+	npm run start:browser -- --target chromium
 else
 	npm run start:browser -- --target firefox-android --android-device $(BROWSER)
 endif
