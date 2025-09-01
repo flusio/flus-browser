@@ -6,7 +6,7 @@
   "scripts": {
     "build:assets": "parcel build --dist-dir dist/assets src/manifest.json",
     "build:artifact": "web-ext build --source-dir dist/assets --artifacts-dir dist/artifacts --overwrite-dest",
-    "start:watcher": "parcel watch --no-hmr --dist-dir dist/dev_assets src/manifest.json",
+    "start:watcher": "parcel watch --no-hmr --no-autoinstall --dist-dir dist/dev_assets src/manifest.json",
     "start:browser": "web-ext run --source-dir dist/dev_assets --devtools",
     "lint:webext": "web-ext lint --source-dir dist/assets",
     "lint:biome": "biome lint --error-on-warnings --config-path=.biome.json && biome format --error-on-warnings --config-path=.biome.json"
@@ -16,6 +16,7 @@
     "@flus/design": "^1.0.0",
     "@parcel/config-webextension": "^2.13.3",
     "@parcel/transformer-vue": "^2.13.3",
+    "buffer": "^6.0.3",
     "parcel": "^2.13.3",
     "sanitize-html": "^2.17.0",
     "svgo": "^4.0.0",
