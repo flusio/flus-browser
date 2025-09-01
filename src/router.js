@@ -3,14 +3,13 @@
 
 import { ref, computed } from "vue";
 
+import { store } from "./store.js";
+
 import LinkScreen from "./screens/LinkScreen.vue";
-import LoginScreen from "./screens/LoginScreen.vue";
-import MenuScreen from "./screens/MenuScreen.vue";
 import SettingsScreen from "./screens/SettingsScreen.vue";
 
 const routes = {
     "/": LinkScreen,
-    "/menu": MenuScreen,
     "/settings": SettingsScreen,
 };
 
@@ -18,6 +17,7 @@ const currentHash = ref(window.location.hash);
 
 window.addEventListener("hashchange", () => {
     currentHash.value = window.location.hash;
+    store.closeMenu();
 });
 
 export const currentPath = computed(() => {

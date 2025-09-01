@@ -3,7 +3,7 @@
   -->
 
 <template>
-    <Screen :title="title" header menuOpened>
+    <Screen :title="title" header>
         <ul class="list--nostyle flow text--bold text--center">
             <li>
                 <a :href="store.auth.server" target="_blank" class="button button--big button--ghost">

@@ -7,30 +7,42 @@
         <header v-if="header" class="screen__header panel panel--gable cols cols--always cols--center">
             <div class="col--extend">
                 <a class="screen__logo" href="#/">
-                    <img :src="logo" alt="Flus" height="32">
+                    <img v-if="currentPath == '/'" :src="logo" alt="Flus" height="32">
+                    <span v-else>
+                        <Icon name="arrow-left" />
+                        {{ t("menu.back") }}
+                    </span>
                 </a>
             </div>
 
             <div>
-                <a v-if="menuOpened" href="#/" class="button button--icon button--ghost">
+                <button
+                    v-if="store.menuOpened"
+                    class="button button--icon button--ghost"
+                    @click.prevent="store.closeMenu"
+                >
                     <Icon name="times" />
 
                     <span class="sr-only">
                         {{ t("menu.close") }}
                     </span>
-                </a>
+                </button>
 
-                <a v-else href="#/menu" class="button button--icon button--ghost">
+                <button
+                    v-else
+                    class="button button--icon button--ghost"
+                    @click.prevent="store.openMenu"
+                >
                     <Icon name="menu" />
 
                     <span class="sr-only">
                         {{ t("menu.open") }}
                     </span>
-                </a>
+                </button>
             </div>
         </header>
 
-        <main role="main" :class="{ 'panel': true, 'screen__body': true, 'panel--gable': menuOpened }">
+        <main role="main" :class="{ 'panel': true, 'screen__body': true, 'panel--gable': store.menuOpened }">
             <span
                 ref="title"
                 tabindex="-1"
@@ -50,6 +62,7 @@ import { watch, useTemplateRef, onMounted, onUpdated } from "vue";
 import { useI18n } from "vue-i18n";
 
 import { store } from "../store.js";
+import { currentPath } from "../router.js";
 import Notification from "../components/Notification.vue";
 
 import logo from "url:../images/logo-white.svg";
@@ -60,9 +73,6 @@ const props = defineProps({
         required: true,
     },
     header: {
-        type: Boolean,
-    },
-    menuOpened: {
         type: Boolean,
     },
 });

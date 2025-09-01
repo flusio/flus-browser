@@ -32,6 +32,10 @@ body {
     height: 4.2rem;
 }
 
+.screen__header a {
+    color: currentcolor;
+}
+
 .screen__logo {
     display: inline-block;
     padding: var(--space-smaller);

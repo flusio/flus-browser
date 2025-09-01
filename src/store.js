@@ -21,6 +21,8 @@ export const store = reactive({
 
     notification: null,
 
+    menuOpened: false,
+
     setLocale(locale) {
         this.locale = locale;
     },
@@ -54,6 +56,14 @@ export const store = reactive({
 
     resetNotification() {
         this.notification = null;
+    },
+
+    openMenu() {
+        this.menuOpened = true;
+    },
+
+    closeMenu() {
+        this.menuOpened = false;
     },
 });
 

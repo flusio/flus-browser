@@ -15,6 +15,7 @@ import { currentScreen } from "./router.js";
 
 import LoadingScreen from "./screens/LoadingScreen.vue";
 import LoginScreen from "./screens/LoginScreen.vue";
+import MenuScreen from "./screens/MenuScreen.vue";
 import NotFoundScreen from "./screens/NotFoundScreen.vue";
 
 const screen = computed(() => {
@@ -28,6 +29,10 @@ const screen = computed(() => {
 
     if (requireAuth() && !isAuthenticated()) {
         return LoginScreen;
+    }
+
+    if (store.menuOpened) {
+        return MenuScreen;
     }
 
     return currentScreen.value;
