@@ -16,7 +16,7 @@ function handleErrors(response) {
     if (response.status === 401) {
         store.logout();
         store.notify("error", t("errors.auth.invalid_token"));
-        redirect("/login");
+        redirect("/");
     } else if (!response.ok) {
         throw new HttpError(response.status, response.data);
     }

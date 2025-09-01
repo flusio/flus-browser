@@ -97,11 +97,10 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import browser from "webextension-polyfill";
 
-import { requireAuth, isAuthenticated } from "../auth.js";
 import { store } from "../store.js";
 import api from "../api.js";
 import http from "../http.js";
@@ -109,8 +108,6 @@ import collectionsForm from "../form.js";
 import { link, host, readingTime } from "../models/link.js";
 import CollectionsSelector from "../components/CollectionsSelector.vue";
 import Notes from "../components/Notes.vue";
-
-requireAuth();
 
 const { t, locale } = useI18n();
 locale.value = store.locale;
@@ -227,7 +224,5 @@ function removeCollection(collection) {
         });
 }
 
-if (isAuthenticated()) {
-    onMounted(refreshForCurrentTab);
-}
+onMounted(refreshForCurrentTab);
 </script>

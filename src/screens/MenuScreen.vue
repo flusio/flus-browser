@@ -41,6 +41,6 @@ const title = t("menu.title");
 
 function logout() {
     store.logout();
-    redirect("/login");
+    redirect("/");
 }
 </script>

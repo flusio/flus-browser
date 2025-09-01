@@ -120,15 +120,12 @@
 import { ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 
-import { requireNotAuth } from "../auth.js";
 import { store } from "../store.js";
 import api from "../api.js";
 import form from "../form.js";
 import http from "../http.js";
 
 import logo from "url:../images/logo.svg";
-
-requireNotAuth();
 
 const { t, locale } = useI18n();
 locale.value = store.locale;
