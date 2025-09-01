@@ -50,6 +50,7 @@
                         :aria-expanded="displayCollections"
                         aria-controls="collections-selector"
                     >
+                        <Icon name="collection" />
                         {{ t("link.count_collections", link.collections.length) }}
                     </button>
                 </div>
