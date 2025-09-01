@@ -27,12 +27,12 @@ const screen = computed(() => {
         return NotFoundScreen;
     }
 
-    if (requireAuth() && !isAuthenticated()) {
-        return LoginScreen;
-    }
-
     if (store.menuOpened) {
         return MenuScreen;
+    }
+
+    if (requireAuth() && !isAuthenticated()) {
+        return LoginScreen;
     }
 
     return currentScreen.value;

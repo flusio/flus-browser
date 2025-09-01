@@ -10,13 +10,13 @@
                     <div class="col--extend">
                     </div>
 
-                    <a href="#/menu" class="button button--icon button--ghost">
+                    <button class="button button--icon button--ghost" @click.prevent="store.openMenu">
                         <Icon name="menu" />
 
                         <span class="sr-only">
                             {{ t("menu.open") }}
                         </span>
-                    </a>
+                    </button>
                 </div>
 
                 <div class="panel text--center flow flow--small">
