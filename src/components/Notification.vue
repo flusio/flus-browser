@@ -43,16 +43,3 @@ const panelType = computed(() => {
     return "panel--grey";
 });
 </script>
-
-<style>
-.notification {
-    overflow: hidden;
-
-    position: absolute;
-    top: var(--space-medium);
-    right: var(--space-small);
-    left: var(--space-small);
-
-    box-shadow: 1px 2px 3px 0 var(--color-box-shadow);
-}
-</style>
