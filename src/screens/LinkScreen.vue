@@ -4,7 +4,7 @@
 
 <template>
     <Screen :title="link.title" header>
-        <div v-if="ready && alert.type === ''" class="flow flow--large">
+        <div v-if="ready && alert.type === ''" class="flow">
             <div class="flow">
                 <div class="flow flow--smaller">
                     <h1 class="text--normal">

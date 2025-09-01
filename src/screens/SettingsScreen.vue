@@ -4,7 +4,7 @@
 
 <template>
     <Screen :title="title" header>
-        <form @submit.prevent="save" class="flow">
+        <form @submit.prevent="save" class="flow flow--small">
             <p v-if="form.isInvalid('@base')" class="form-group__error" role="alert">
                 {{ t('forms.error') }}
                 {{ form.error('@base') }}

@@ -19,7 +19,7 @@
                     </a>
                 </div>
 
-                <div class="panel text--center flow">
+                <div class="panel text--center flow flow--small">
                     <img :src="logo" alt="Flus" height="50">
 
                     <p>
@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <form @submit.prevent="login" class="flow">
+            <form @submit.prevent="login" class="flow flow--small">
                 <p v-if="form.isInvalid('@base')" class="form-group__error" role="alert">
                     {{ t('forms.error') }}
                     {{ form.error('@base') }}
@@ -98,20 +98,22 @@
                     </button>
                 </div>
 
-                <div class="text--center">
-                    <button class="button--primary button--big" :disabled="form.inProgress() ? 'true' : null">
-                        {{ t("login.submit") }}
-                    </button>
+                <div class="flow flow--small text--center">
+                    <div>
+                        <button class="button--primary button--big" :disabled="form.inProgress() ? 'true' : null">
+                            {{ t("login.submit") }}
+                        </button>
+                    </div>
+
+                    <p>
+                        {{ t("login.or") }}
+
+                        <a @click.prevent="openRegistrationPage" :href="registrationUrl">
+                            {{ t("login.register") }}
+                        </a>
+                    </p>
                 </div>
             </form>
-
-            <div class="text--center">
-                {{ t("login.or") }}
-
-                <a @click.prevent="openRegistrationPage" :href="registrationUrl">
-                    {{ t("login.register") }}
-                </a>
-            </div>
         </div>
     </Screen>
 </template>

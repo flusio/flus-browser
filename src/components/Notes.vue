@@ -3,7 +3,7 @@
   -->
 
 <template>
-    <div v-if="ready" class="flow flow--large">
+    <div v-if="ready" class="flow">
         <div class="cols cols--always cols--center cols--gap">
             <h2 class="col--extend text--big">{{ t('notes.title') }}</h2>
 
@@ -41,14 +41,14 @@
 
         <form
             @submit.prevent="addNote"
-            class="flow"
+            class="flow flow--small"
         >
             <p v-if="form.isInvalid('@base')" class="form-group__error" role="alert">
                 {{ t('forms.error') }}
                 {{ form.error('@base') }}
             </p>
 
-            <div class="flow flow--small">
+            <div class="flow flow--smaller">
                 <label for="note-content">
                     {{ t('notes.content') }}
                 </label>
