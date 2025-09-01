@@ -1,5 +1,36 @@
 # Changelog of Flus Browser
 
+## 2025-09-01 - v1.0.0
+
+### New
+
+This version brings a whole new version of Flus Browser, allowing you to:
+
+- mark links as read;
+- save them for later;
+- add them to collections;
+- add notes.
+
+The extension is now translated in both English and French.
+It comes with a native dark mode.
+
+Also, self-hosted users can now use the extension as well, without having to recompile the extension.
+
+### Technical
+
+- Remove the `host_permissions` in manifest ([060304f](https://github.com/flusio/flus-browser/commit/060304f))
+
+### Documentation
+
+- Provide a quick start in the README ([0c64c7e](https://github.com/flusio/flus-browser/commit/0c64c7e))
+- Adapt the README to the new version ([d6f7d01](https://github.com/flusio/flus-browser/commit/d6f7d01))
+
+### Developers
+
+- Setup Vue.js ([a9f7abc](https://github.com/flusio/flus-browser/commit/a9f7abc))
+- Don't optimize SVG images ([334ea95](https://github.com/flusio/flus-browser/commit/334ea95))
+- Don't fail on webext lint warnings ([1ea0929](https://github.com/flusio/flus-browser/commit/1ea0929))
+
 ## 2025-03-07 - v0.9.0
 
 ### Documentation
