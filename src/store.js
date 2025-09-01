@@ -23,6 +23,8 @@ export const store = reactive({
 
     menuOpened: false,
 
+    drafts: {},
+
     setLocale(locale) {
         this.locale = locale;
     },
@@ -65,9 +67,28 @@ export const store = reactive({
     closeMenu() {
         this.menuOpened = false;
     },
+
+    getDraft(link) {
+        return this.drafts[link.id] || "";
+    },
+
+    saveDraft(link, noteContent) {
+        if (noteContent) {
+            this.drafts = {
+                ...this.drafts,
+                [link.id]: noteContent,
+            };
+        } else {
+            const newDraftEntries = Object.entries(this.drafts).filter(([linkId, _noteContent]) => {
+                return linkId !== link.id;
+            });
+
+            this.drafts = Object.fromEntries(newDraftEntries);
+        }
+    },
 });
 
-browser.storage.local.get(["theme", "locale", "auth"]).then((results) => {
+browser.storage.local.get(["theme", "locale", "auth", "drafts"]).then((results) => {
     if (Object.hasOwn(results, "theme")) {
         store.theme = results.theme;
         applyTheme(store.theme);
@@ -79,6 +100,10 @@ browser.storage.local.get(["theme", "locale", "auth"]).then((results) => {
 
     if (Object.hasOwn(results, "auth")) {
         store.auth = results.auth;
+    }
+
+    if (Object.hasOwn(results, "drafts")) {
+        store.drafts = results.drafts;
     }
 
     store.ready = true;
@@ -104,5 +129,12 @@ watch(
     (theme) => {
         applyTheme(theme);
         browser.storage.local.set({ theme: toRaw(theme) });
+    },
+);
+
+watch(
+    () => store.drafts,
+    (drafts) => {
+        browser.storage.local.set({ drafts: toRaw(drafts) });
     },
 );

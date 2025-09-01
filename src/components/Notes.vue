@@ -78,7 +78,7 @@
 </template>
 
 <script setup>
-import { ref, useTemplateRef, onMounted, computed } from "vue";
+import { ref, useTemplateRef, onMounted, computed, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
 import api from "../api.js";
@@ -97,9 +97,13 @@ const props = defineProps({
 });
 
 const ready = ref(false);
-const newNoteContent = ref("");
+const newNoteContent = ref(store.getDraft(props.link));
 
 const noteContentRef = useTemplateRef("note-content");
+
+watch(newNoteContent, (noteContent) => {
+    store.saveDraft(props.link, noteContent);
+});
 
 const notesByDates = computed(() => {
     const linkNotes = props.link.notes;
