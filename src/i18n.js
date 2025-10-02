@@ -53,6 +53,7 @@ export const i18n = createI18n({
             "menu.open": "Open the menu",
             "menu.open_flus": "Open Flus",
             "menu.settings": "Settings",
+            "menu.shortcuts": "Keyboard shortcuts",
             "menu.title": "Menu",
             "not_found.back": "Back",
             "not_found.details":
@@ -117,6 +118,7 @@ export const i18n = createI18n({
             "menu.open": "Ouvrir le menu",
             "menu.open_flus": "Ouvrir Flus",
             "menu.settings": "Paramètres",
+            "menu.shortcuts": "Raccourcis clavier",
             "menu.title": "Menu",
             "not_found.back": "Retour",
             "not_found.details":

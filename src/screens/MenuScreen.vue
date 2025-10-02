@@ -17,6 +17,12 @@
                 </a>
             </li>
 
+            <li v-if="shouldShowShortcuts">
+                <a href="#" class="button button--big button--ghost" @click="openShortcuts">
+                    {{ t("menu.shortcuts") }}
+                </a>
+            </li>
+
             <li v-if="isAuthenticated()">
                 <button @click="logout" class="button--big button--ghost">
                     {{ t("menu.logout") }}
@@ -27,6 +33,7 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import browser from "webextension-polyfill";
 
@@ -34,6 +41,8 @@ import { isAuthenticated } from "../auth.js";
 import { store } from "../store.js";
 import { redirect } from "../router.js";
 import api from "../api.js";
+import * as browserUtils from "../browser.js";
+import * as tabs from "../tabs.js";
 
 const { t, locale } = useI18n();
 locale.value = store.locale;
@@ -46,4 +55,19 @@ function logout() {
         redirect("/");
     });
 }
+
+async function openShortcuts() {
+    if (await browserUtils.isChrome()) {
+        tabs.open("chrome://extensions/shortcuts");
+    } else {
+        browser.commands.openShortcutSettings();
+    }
+}
+
+const shouldShowShortcuts = ref(false);
+
+onMounted(async () => {
+    shouldShowShortcuts.value =
+        (await browserUtils.isChrome()) || browser.commands.openShortcutSettings != null;
+});
 </script>
