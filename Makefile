@@ -17,9 +17,19 @@ watch: ## Watch and build the assets
 run: BROWSER ?= firefox
 run: ## Run the extension in a browser (can take a BROWSER argument)
 ifeq ($(BROWSER), $(filter $(BROWSER), firefox))
-	npm run start:browser -- --target firefox-desktop --firefox-profile ./profile-firefox
+	npm run start:browser -- \
+		--target firefox-desktop \
+		--firefox-profile ./profile-firefox \
+		--profile-create-if-missing \
+		--keep-profile-changes \
+		--url=https://flus.fr
 else ifeq ($(BROWSER), $(filter $(BROWSER), chromium))
-	npm run start:browser -- --target chromium --chromium-profile ./profile-chromium
+	npm run start:browser -- \
+		--target chromium \
+		--chromium-profile ./profile-chromium \
+		--profile-create-if-missing \
+		--keep-profile-changes \
+		--url=https://flus.fr
 else
 	npm run start:browser -- --target firefox-android --android-device $(BROWSER)
 endif
