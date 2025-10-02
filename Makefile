@@ -17,9 +17,9 @@ watch: ## Watch and build the assets
 run: BROWSER ?= firefox
 run: ## Run the extension in a browser (can take a BROWSER argument)
 ifeq ($(BROWSER), $(filter $(BROWSER), firefox))
-	npm run start:browser -- --target firefox-desktop
+	npm run start:browser -- --target firefox-desktop --firefox-profile ./profile-firefox
 else ifeq ($(BROWSER), $(filter $(BROWSER), chromium))
-	npm run start:browser -- --target chromium
+	npm run start:browser -- --target chromium --chromium-profile ./profile-chromium
 else
 	npm run start:browser -- --target firefox-android --android-device $(BROWSER)
 endif
