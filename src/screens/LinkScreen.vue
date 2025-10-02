@@ -105,6 +105,7 @@ import browser from "webextension-polyfill";
 import { store } from "../store.js";
 import api from "../api.js";
 import http from "../http.js";
+import * as tabs from "../tabs.js";
 import collectionsForm from "../form.js";
 import { link, host, readingTime } from "../models/link.js";
 import CollectionsSelector from "../components/CollectionsSelector.vue";
@@ -124,19 +125,8 @@ function toggleCollections() {
     displayCollections.value = !displayCollections.value;
 }
 
-async function getCurrentTab() {
-    return await browser.tabs
-        .query({
-            active: true,
-            currentWindow: true,
-        })
-        .then((tabs) => {
-            return tabs[0];
-        });
-}
-
 async function refreshForCurrentTab() {
-    const url = (await getCurrentTab()).url;
+    const url = (await tabs.current()).url;
 
     if (!url.startsWith("http://") && !url.startsWith("https://")) {
         alert.value = {
