@@ -126,6 +126,7 @@ import { store } from "../store.js";
 import api from "../api.js";
 import form from "../form.js";
 import http from "../http.js";
+import * as tabs from "../tabs.js";
 
 import logo from "url:../images/logo.svg";
 
@@ -174,8 +175,6 @@ function login() {
 }
 
 function openRegistrationPage() {
-    browser.tabs.create({
-        url: registrationUrl.value,
-    });
+    tabs.open(registrationUrl.value);
 }
 </script>
