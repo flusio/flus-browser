@@ -22,6 +22,10 @@ function authenticate(server, email, password) {
         });
 }
 
+function logout() {
+    return http.delete("/session");
+}
+
 function search(url) {
     return http.post("/search", { url }).then((data) => {
         return data.links[0];
@@ -60,6 +64,7 @@ function addNoteToLink(link, noteContent) {
 
 export default {
     authenticate,
+    logout,
     collections,
     addCollectionToLink,
     removeCollectionFromLink,

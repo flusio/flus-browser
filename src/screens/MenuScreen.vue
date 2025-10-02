@@ -33,6 +33,7 @@ import browser from "webextension-polyfill";
 import { isAuthenticated } from "../auth.js";
 import { store } from "../store.js";
 import { redirect } from "../router.js";
+import api from "../api.js";
 
 const { t, locale } = useI18n();
 locale.value = store.locale;
@@ -40,7 +41,9 @@ locale.value = store.locale;
 const title = t("menu.title");
 
 function logout() {
-    store.logout();
-    redirect("/");
+    api.logout().finally(() => {
+        store.logout();
+        redirect("/");
+    });
 }
 </script>
