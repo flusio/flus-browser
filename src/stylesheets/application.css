@@ -61,6 +61,10 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.list--separated > * + * {
+    border-top: 1px solid var(--color-grey-line);
+}
+
 .tag {
     display: inline-block;
     margin-right: var(--space-smaller);

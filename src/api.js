@@ -27,9 +27,7 @@ function logout() {
 }
 
 function search(url) {
-    return http.post("/search", { url }).then((data) => {
-        return data.links[0];
-    });
+    return http.post("/search", { url });
 }
 
 function markLinkAsRead(link) {
@@ -42,6 +40,14 @@ function markLinkAsReadLater(link) {
 
 function collections() {
     return http.get("/collections");
+}
+
+function follow(collection) {
+    return http.post(`/collections/${collection.id}/follow`);
+}
+
+function unfollow(collection) {
+    return http.delete(`/collections/${collection.id}/follow`);
 }
 
 function addCollectionToLink(link, collection) {
@@ -66,6 +72,8 @@ export default {
     authenticate,
     logout,
     collections,
+    follow,
+    unfollow,
     addCollectionToLink,
     removeCollectionFromLink,
     search,

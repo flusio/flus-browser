@@ -11,6 +11,7 @@ It is designed as a simple, yet complete tool for organising the links you gathe
 
 This repository contains the code of the browser extension.
 The extension is the perfect companion for the web application as it allows you to easily mark links as read, save them for later, or add them to collections, as well as add notes.
+It is also able to let you follow Web feeds.
 
 For the code of the Web application, see [flusio/Flus](https://github.com/flusio/Flus).
 

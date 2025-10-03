@@ -151,8 +151,8 @@ async function refreshForCurrentTab() {
     }
 
     api.search(url)
-        .then((fetchedLink) => {
-            link.init(fetchedLink);
+        .then((data) => {
+            link.init(data.links[0]);
             ready.value = true;
         })
         .catch((error) => {

@@ -15,7 +15,20 @@
                 </a>
             </div>
 
-            <div>
+            <div class="cols cols--always cols--gap-smaller">
+                <a
+                    v-if="currentPath != '/feeds'"
+                    href="#/feeds"
+                    class="button button--icon button--ghost"
+                    :title="t('menu.feeds')"
+                >
+                    <Icon name="feed" />
+
+                    <span class="sr-only">
+                        {{ t("menu.feeds") }}
+                    </span>
+                </a>
+
                 <button
                     v-if="store.menuOpened"
                     class="button button--icon button--ghost"

@@ -25,6 +25,13 @@ export const i18n = createI18n({
             "errors.unknown":
                 "An unknown error has occurred. Please close and reopen the extension. If it still doesn’t work, please contact the support.",
             "errors.url.url": "The URL of the current page is not supported by Flus.",
+            "feeds.count_detected":
+                "No feeds detected on this page. | 1 feed detected on this page. | {count} feeds detected on this page.",
+            "feeds.follow": "Follow",
+            "feeds.loading": "Loading the feeds…",
+            "feeds.open_in_flus": "Open in Flus",
+            "feeds.title": "List of Web feeds",
+            "feeds.unfollow": "Unfollow",
             "forms.error": "Error:",
             "link.count_collections": "No collections | 1 collection | {count} collections",
             "link.invalid_protocol":
@@ -49,6 +56,7 @@ export const i18n = createI18n({
             "login.title": "Login",
             "menu.back": "Back",
             "menu.close": "Close the menu",
+            "menu.feeds": "List of Web feeds",
             "menu.logout": "Log out",
             "menu.open": "Open the menu",
             "menu.open_flus": "Open Flus",
@@ -90,6 +98,13 @@ export const i18n = createI18n({
             "errors.unknown":
                 "Une erreur inconnue est survenue. Veuillez fermer et réouvrir l’extension. Si cela ne suffit pas, veuillez contacter le support.",
             "errors.url.url": "L’URL de la page actuelle n’est pas supportée par Flus.",
+            "feeds.count_detected":
+                "Aucun flux détecté sur cette page. | 1 flux détecté sur cette page. | {count} flux détectés sur cette page.",
+            "feeds.follow": "Suivre",
+            "feeds.loading": "Chargement des flux…",
+            "feeds.open_in_flus": "Ouvrir dans Flus",
+            "feeds.title": "Liste des flux Web",
+            "feeds.unfollow": "Ne plus suivre",
             "forms.error": "Erreur :",
             "link.count_collections": "Aucune collection | 1 collection | {count} collections",
             "link.invalid_protocol":
@@ -114,6 +129,7 @@ export const i18n = createI18n({
             "login.title": "Connexion",
             "menu.back": "Retour",
             "menu.close": "Fermer le menu",
+            "menu.feeds": "Liste des flux Web",
             "menu.logout": "Se déconnecter",
             "menu.open": "Ouvrir le menu",
             "menu.open_flus": "Ouvrir Flus",
