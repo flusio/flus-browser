@@ -26,9 +26,15 @@ function logout() {
     return http.delete("/session");
 }
 
-function search(url) {
+function searchLink(url) {
     return http.post("/search", { url }).then((data) => {
         return data.links[0];
+    });
+}
+
+function searchFeeds(url) {
+    return http.post("/search", { url }).then((data) => {
+        return data.feeds;
     });
 }
 
@@ -42,6 +48,14 @@ function markLinkAsReadLater(link) {
 
 function collections() {
     return http.get("/collections");
+}
+
+function follow(collection) {
+    return http.post(`/collections/${collection.id}/follow`);
+}
+
+function unfollow(collection) {
+    return http.delete(`/collections/${collection.id}/follow`);
 }
 
 function addCollectionToLink(link, collection) {
@@ -66,9 +80,12 @@ export default {
     authenticate,
     logout,
     collections,
+    follow,
+    unfollow,
     addCollectionToLink,
     removeCollectionFromLink,
-    search,
+    searchLink,
+    searchFeeds,
     markLinkAsRead,
     markLinkAsReadLater,
     notes,

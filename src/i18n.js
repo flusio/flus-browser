@@ -25,6 +25,9 @@ export const i18n = createI18n({
             "errors.unknown":
                 "An unknown error has occurred. Please close and reopen the extension. If it still doesn’t work, please contact the support.",
             "errors.url.url": "The URL of the current page is not supported by Flus.",
+            "feeds.loading": "Loading the feeds…",
+            "feeds.open_feed": "Open the feed",
+            "feeds.title": "Web feeds",
             "forms.error": "Error:",
             "link.count_collections": "No collections | 1 collection | {count} collections",
             "link.invalid_protocol":
@@ -49,6 +52,7 @@ export const i18n = createI18n({
             "login.title": "Login",
             "menu.back": "Back",
             "menu.close": "Close the menu",
+            "menu.feeds": "Web feeds",
             "menu.logout": "Log out",
             "menu.open": "Open the menu",
             "menu.open_flus": "Open Flus",
@@ -90,6 +94,9 @@ export const i18n = createI18n({
             "errors.unknown":
                 "Une erreur inconnue est survenue. Veuillez fermer et réouvrir l’extension. Si cela ne suffit pas, veuillez contacter le support.",
             "errors.url.url": "L’URL de la page actuelle n’est pas supportée par Flus.",
+            "feeds.loading": "Chargement des flux…",
+            "feeds.open_feed": "Ouvrir le flux",
+            "feeds.title": "Flux Web",
             "forms.error": "Erreur :",
             "link.count_collections": "Aucune collection | 1 collection | {count} collections",
             "link.invalid_protocol":
@@ -114,6 +121,7 @@ export const i18n = createI18n({
             "login.title": "Connexion",
             "menu.back": "Retour",
             "menu.close": "Fermer le menu",
+            "menu.feeds": "Flux Web",
             "menu.logout": "Se déconnecter",
             "menu.open": "Ouvrir le menu",
             "menu.open_flus": "Ouvrir Flus",

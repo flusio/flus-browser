@@ -149,7 +149,7 @@ async function refreshForCurrentTab() {
         return;
     }
 
-    api.search(url)
+    api.searchLink(url)
         .then((fetchedLink) => {
             link.init(fetchedLink);
             ready.value = true;

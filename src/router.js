@@ -5,11 +5,13 @@ import { ref, computed } from "vue";
 
 import { store } from "./store.js";
 
+import FeedsScreen from "./screens/FeedsScreen.vue";
 import LinkScreen from "./screens/LinkScreen.vue";
 import SettingsScreen from "./screens/SettingsScreen.vue";
 
 const routes = {
     "/": LinkScreen,
+    "/feeds": FeedsScreen,
     "/settings": SettingsScreen,
 };
 

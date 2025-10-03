@@ -15,7 +15,15 @@
                 </a>
             </div>
 
-            <div>
+            <div class="cols cols--always cols--gap-smaller">
+                <a href="#/feeds" class="button button--icon button--ghost">
+                    <Icon name="feed" />
+
+                    <span class="sr-only">
+                        {{ t("menu.feeds") }}
+                    </span>
+                </a>
+
                 <button
                     v-if="store.menuOpened"
                     class="button button--icon button--ghost"
