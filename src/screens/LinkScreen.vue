@@ -12,7 +12,7 @@
                     </h1>
 
                     <p class="text--secondary">
-                        {{ host }}&nbsp;·&nbsp;{{ readingTime }}
+                        {{ link.host() }}&nbsp;·&nbsp;{{ link.readingTimeLabel() }}
 
                         <span v-if="link.isRead" :title="t('link.is_read')">
                             <Icon name="check" />
@@ -98,7 +98,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import browser from "webextension-polyfill";
 
@@ -106,13 +106,14 @@ import { store } from "../store.js";
 import api from "../api.js";
 import http from "../http.js";
 import collectionsForm from "../form.js";
-import { link, host, readingTime } from "../models/link.js";
+import Link from "../models/link.js";
 import CollectionsSelector from "../components/CollectionsSelector.vue";
 import Notes from "../components/Notes.vue";
 
 const { t, locale } = useI18n();
 locale.value = store.locale;
 
+const link = reactive(new Link());
 const ready = ref(false);
 const displayCollections = ref(false);
 const alert = ref({
