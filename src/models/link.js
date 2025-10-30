@@ -82,8 +82,16 @@ export default class {
         }
     }
 
+    hasCollection(collection) {
+        return this.collections.some((collectionId) => {
+            return collectionId === collection.id;
+        });
+    }
+
     addCollection(collection) {
-        this.collections = [...this.collections, collection.id];
+        if (!this.hasCollection(collection)) {
+            this.collections = [...this.collections, collection.id];
+        }
     }
 
     removeCollection(collection) {

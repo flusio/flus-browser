@@ -42,6 +42,12 @@ function collections() {
     return http.get("/collections");
 }
 
+function createCollection(name) {
+    return http.post("/collections", {
+        name,
+    });
+}
+
 function follow(collection) {
     return http.post(`/collections/${collection.id}/follow`);
 }
@@ -72,6 +78,7 @@ export default {
     authenticate,
     logout,
     collections,
+    createCollection,
     follow,
     unfollow,
     addCollectionToLink,

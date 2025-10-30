@@ -21,7 +21,7 @@
                     <button
                         @click="() => removeCollection(collection)"
                         type="button"
-                        :disabled="props.disabled"
+                        :disabled="form.inProgress() ? 'true' : null"
                     >
                         {{ t('collection.remove') }}
                     </button>
@@ -32,14 +32,33 @@
                 v-if="notSelectedCollections.length > 0"
                 @submit.prevent="addCollection"
                 class="flow flow--small"
-                :disabled="props.disabled"
+                :disabled="form.inProgress() ? 'true' : null"
             >
-                <div class="flow flow--smaller">
-                    <label for="collection-select">
-                        {{ t('collection.add_to_collection') }}
-                    </label>
+                <div v-if="fillMode === 'select'" class="flow flow--smaller">
+                    <div class="cols cols--always cols--center cols--gap-smaller">
+                        <label for="collection-select" class="col--extend">
+                            {{ t('collection.add_to_collection') }}
+                        </label>
 
-                    <select v-model="newCollectionId" id="collection-select" :disabled="props.disabled">
+                        <div>
+                            <button
+                                type="button"
+                                class="button--smaller"
+                                @click="setFillModeToText"
+                                :disabled="form.inProgress() ? 'true' : null"
+                            >
+                                <Icon name="pencil" />
+                                {{ t('collection.new') }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <select
+                        v-model="newCollectionId"
+                        id="collection-select"
+                        ref="collection-select"
+                        :disabled="form.inProgress() ? 'true' : null"
+                    >
                         <option v-for="collection in notSelectedCollectionsNoGroup" :value="collection.id">
                             {{ collection.name }}
 
@@ -60,8 +79,35 @@
                     </select>
                 </div>
 
+                <div v-else class="flow flow--smaller">
+                    <div class="cols cols--always cols--center cols--gap-smaller">
+                        <label for="collection-name" class="col--extend">
+                            {{ t('collection.name') }}
+                        </label>
+
+                        <div>
+                            <button
+                                type="button"
+                                class="button--smaller"
+                                @click="setFillModeToSelect"
+                                :disabled="form.inProgress() ? 'true' : null"
+                            >
+                                {{ t('collection.new_cancel') }}
+                            </button>
+                        </div>
+                    </div>
+
+                    <input
+                        type="text"
+                        v-model="newCollectionName"
+                        id="collection-name"
+                        ref="collection-name"
+                        :disabled="form.inProgress() ? 'true' : null"
+                    >
+                </div>
+
                 <div class="text--center">
-                    <button class="button--primary" :disabled="props.disabled">
+                    <button class="button--primary" :disabled="form.inProgress() ? 'true' : null">
                         {{ t('collection.add') }}
                     </button>
                 </div>
@@ -71,12 +117,14 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from "vue";
+import { ref, useTemplateRef, reactive, computed, watch, onMounted, nextTick } from "vue";
 import { useI18n } from "vue-i18n";
 
 import api from "../api.js";
 import http from "../http.js";
 import { store } from "../store.js";
+import form from "../form.js";
+import Collection from "../models/collection.js";
 
 const { t, locale } = useI18n();
 locale.value = store.locale;
@@ -89,16 +137,16 @@ const props = defineProps({
     open: {
         type: Boolean,
     },
-    disabled: {
-        type: Boolean,
-    },
 });
-
-const emit = defineEmits(["add", "remove"]);
 
 const ready = ref(false);
 const collections = ref([]);
 const newCollectionId = ref("");
+const newCollectionName = ref("");
+const fillMode = ref("select");
+
+const collectionSelectRef = useTemplateRef("collection-select");
+const collectionNameRef = useTemplateRef("collection-name");
 
 const selectedCollections = computed(() => {
     return collections.value.filter((collection) => {
@@ -130,6 +178,23 @@ const notSelectedCollectionsByGroup = computed(() => {
     return Object.entries(groupedCollections);
 });
 
+async function setFillModeToText() {
+    fillMode.value = "text";
+
+    await nextTick();
+
+    collectionNameRef.value.focus();
+}
+
+async function setFillModeToSelect() {
+    fillMode.value = "select";
+    newCollectionName.value = "";
+
+    await nextTick();
+
+    collectionSelectRef.value.focus();
+}
+
 function setDefaultSelectedCollectionId() {
     if (notSelectedCollectionsNoGroup.value.length > 0) {
         newCollectionId.value = notSelectedCollectionsNoGroup.value[0].id;
@@ -139,19 +204,15 @@ function setDefaultSelectedCollectionId() {
 }
 
 function loadCollections() {
-    api.collections().then((userCollections) => {
-        userCollections.sort((collection1, collection2) => {
+    api.collections().then((fetchedCollections) => {
+        fetchedCollections.sort((collection1, collection2) => {
             return collection1.name.localeCompare(collection2.name);
         });
 
-        collections.value = userCollections.map((collection) => {
-            return {
-                id: collection.id,
-                name: collection.name,
-                description: collection.description,
-                group: collection.group,
-                isPublic: collection.is_public,
-            };
+        collections.value = fetchedCollections.map((fetchedCollection) => {
+            const collection = reactive(new Collection());
+            collection.init(fetchedCollection);
+            return collection;
         });
 
         setDefaultSelectedCollectionId();
@@ -160,20 +221,66 @@ function loadCollections() {
     });
 }
 
-function addCollection() {
-    const collection = collections.value.find((collection) => {
-        return collection.id === newCollectionId.value;
-    });
+async function addCollection() {
+    form.startRequest();
+
+    let collection = null;
+
+    if (newCollectionName.value) {
+        // First, check if the "new" name already exists.
+        collection = collections.value.find((collection) => {
+            return collection.name === newCollectionName.value;
+        });
+
+        if (!collection) {
+            try {
+                // No? Then create the collection.
+                const fetchedCollection = await api.createCollection(newCollectionName.value);
+
+                collection = new Collection();
+                collection.init(fetchedCollection);
+
+                collections.value = [...collections.value, collection];
+            } catch (error) {
+                store.notify("error", t("errors.unknown"));
+            }
+        }
+    } else {
+        collection = collections.value.find((collection) => {
+            return collection.id === newCollectionId.value;
+        });
+    }
 
     if (!collection) {
+        form.finishRequest();
         return;
     }
 
-    emit("add", collection);
+    try {
+        await api.addCollectionToLink(props.link, collection);
+
+        props.link.addCollection(collection);
+
+        setFillModeToSelect();
+    } catch (error) {
+        store.notify("error", t("errors.unknown"));
+    }
+
+    form.finishRequest();
 }
 
-function removeCollection(collection) {
-    emit("remove", collection);
+async function removeCollection(collection) {
+    form.startRequest();
+
+    try {
+        await api.removeCollectionFromLink(props.link, collection);
+
+        props.link.removeCollection(collection);
+    } catch (error) {
+        store.notify("error", t("errors.unknown"));
+    }
+
+    form.finishRequest();
 }
 
 watch(

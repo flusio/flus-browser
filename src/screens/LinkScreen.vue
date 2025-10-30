@@ -59,9 +59,6 @@
                     id="collections-selector"
                     :link="link"
                     :open="displayCollections"
-                    :disabled="collectionsForm.inProgress()"
-                    @add="addCollection"
-                    @remove="removeCollection"
                 />
             </div>
 
@@ -105,7 +102,6 @@ import browser from "webextension-polyfill";
 import { store } from "../store.js";
 import api from "../api.js";
 import http from "../http.js";
-import collectionsForm from "../form.js";
 import Link from "../models/link.js";
 import CollectionsSelector from "../components/CollectionsSelector.vue";
 import Notes from "../components/Notes.vue";
@@ -197,32 +193,6 @@ async function markAsReadLater() {
                 type: "error",
                 message: t("errors.unknown"),
             };
-        });
-}
-
-function addCollection(collection) {
-    collectionsForm.startRequest();
-    api.addCollectionToLink(link, collection)
-        .then(() => {
-            collectionsForm.finishRequest();
-            link.addCollection(collection);
-        })
-        .catch(() => {
-            collectionsForm.finishRequest();
-            store.notify("error", t("errors.unknown"));
-        });
-}
-
-function removeCollection(collection) {
-    collectionsForm.startRequest();
-    api.removeCollectionFromLink(link, collection)
-        .then(() => {
-            collectionsForm.finishRequest();
-            link.removeCollection(collection);
-        })
-        .catch(() => {
-            collectionsForm.finishRequest();
-            store.notify("error", t("errors.unknown"));
         });
 }
 

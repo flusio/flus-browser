@@ -12,6 +12,9 @@ export const i18n = createI18n({
         en: {
             "collection.add": "Confirm",
             "collection.add_to_collection": "Add to a collection",
+            "collection.name": "Collection name",
+            "collection.new": "New",
+            "collection.new_cancel": "Cancel",
             "collection.public": "public",
             "collection.remove": "Remove",
             "errors.@base.invalid_credentials": "The credentials are invalid.",
@@ -85,6 +88,9 @@ export const i18n = createI18n({
         fr: {
             "collection.add": "Confirmer",
             "collection.add_to_collection": "Ajouter à une collection",
+            "collection.name": "Nom de la collection",
+            "collection.new": "Nouvelle",
+            "collection.new_cancel": "Annuler",
             "collection.public": "publique",
             "collection.remove": "Retirer",
             "errors.@base.invalid_credentials": "Les identifiants sont incorrects.",
