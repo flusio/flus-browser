@@ -42,6 +42,7 @@
         <form
             @submit.prevent="addNote"
             class="flow flow--small"
+            :disabled="form.inProgress()"
         >
             <p v-if="form.isInvalid('@base')" class="form-group__error" role="alert">
                 {{ t('forms.error') }}
@@ -65,6 +66,7 @@
                     ref="note-content"
                     :aria-invalid="form.isInvalid('content')"
                     :aria-errormessage="form.isInvalid('content') ? 'note-content-error' : null"
+                    :disabled="form.inProgress()"
                 ></textarea>
             </div>
 
