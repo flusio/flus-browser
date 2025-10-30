@@ -44,6 +44,8 @@ export const i18n = createI18n({
             "link.loading": "Loading the link…",
             "link.mark_as_read": "Mark as read",
             "link.mark_as_read_later": "Read later",
+            "link.refresh": "Refresh",
+            "link.tab_unsync": "This link does not correspond to the current tab.",
             "loading.in_progress": "Loading in progress…",
             "login.email.label": "Email address",
             "login.errors.server_error":
@@ -120,6 +122,8 @@ export const i18n = createI18n({
             "link.loading": "Chargement du lien…",
             "link.mark_as_read": "Marquer comme lu",
             "link.mark_as_read_later": "Lire plus tard",
+            "link.refresh": "Actualiser",
+            "link.tab_unsync": "Ce lien ne correspond pas à l’onglet courant.",
             "loading.in_progress": "Chargement en cours…",
             "login.email.label": "Adresse courriel",
             "login.errors.server_error":

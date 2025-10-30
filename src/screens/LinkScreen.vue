@@ -28,6 +28,19 @@
                     </div>
                 </div>
 
+                <div v-if="link.url != currentTabUrl" class="panel panel--rounded panel--grey cols cols--always cols--gap-small cols--center">
+                    <p class="col--extend">
+                        {{ t("link.tab_unsync") }}
+                    </p>
+
+                    <div>
+                        <button type="button" @click="refreshForCurrentTab">
+                            <Icon name="sync" />
+                            {{ t("link.refresh") }}
+                        </button>
+                    </div>
+                </div>
+
                 <div class="cols cols--always cols--center cols--gap-small">
                     <div class="col--extend cols cols--always cols--center cols--gap-small">
                         <button v-if="!link.isRead || link.isReadLater" class="button--icon" @click.prevent="markAsRead">
@@ -110,6 +123,7 @@ const { t, locale } = useI18n();
 locale.value = store.locale;
 
 const link = reactive(new Link());
+const currentTabUrl = ref("");
 const ready = ref(false);
 const displayCollections = ref(false);
 const alert = ref({
@@ -133,6 +147,8 @@ async function getCurrentTab() {
 }
 
 async function refreshForCurrentTab() {
+    ready.value = false;
+
     const url = (await getCurrentTab()).url;
 
     if (!url.startsWith("http://") && !url.startsWith("https://")) {
@@ -170,6 +186,10 @@ async function refreshForCurrentTab() {
         });
 }
 
+async function refreshCurrentTabUrl() {
+    currentTabUrl.value = (await getCurrentTab()).url;
+}
+
 async function markAsRead() {
     api.markLinkAsRead(link)
         .then(() => {
@@ -197,4 +217,9 @@ async function markAsReadLater() {
 }
 
 onMounted(refreshForCurrentTab);
+onMounted(refreshCurrentTabUrl);
+
+browser.tabs.onUpdated.addListener(refreshCurrentTabUrl);
+browser.tabs.onActivated.addListener(refreshCurrentTabUrl);
+browser.windows.onFocusChanged.addListener(refreshCurrentTabUrl);
 </script>
