@@ -21,7 +21,7 @@
                     <button
                         @click="() => removeCollection(collection)"
                         type="button"
-                        :disabled="form.inProgress() ? 'true' : null"
+                        :disabled="form.inProgress()"
                     >
                         {{ t('collection.remove') }}
                     </button>
@@ -32,7 +32,7 @@
                 v-if="notSelectedCollections.length > 0"
                 @submit.prevent="addCollection"
                 class="flow flow--small"
-                :disabled="form.inProgress() ? 'true' : null"
+                :disabled="form.inProgress()"
             >
                 <div v-if="fillMode === 'select'" class="flow flow--smaller">
                     <div class="cols cols--always cols--center cols--gap-smaller">
@@ -45,7 +45,7 @@
                                 type="button"
                                 class="button--smaller"
                                 @click="setFillModeToText"
-                                :disabled="form.inProgress() ? 'true' : null"
+                                :disabled="form.inProgress()"
                             >
                                 <Icon name="pencil" />
                                 {{ t('collection.new') }}
@@ -57,7 +57,7 @@
                         v-model="newCollectionId"
                         id="collection-select"
                         ref="collection-select"
-                        :disabled="form.inProgress() ? 'true' : null"
+                        :disabled="form.inProgress()"
                     >
                         <option v-for="collection in notSelectedCollectionsNoGroup" :value="collection.id">
                             {{ collection.name }}
@@ -90,7 +90,7 @@
                                 type="button"
                                 class="button--smaller"
                                 @click="setFillModeToSelect"
-                                :disabled="form.inProgress() ? 'true' : null"
+                                :disabled="form.inProgress()"
                             >
                                 {{ t('collection.new_cancel') }}
                             </button>
@@ -102,12 +102,12 @@
                         v-model="newCollectionName"
                         id="collection-name"
                         ref="collection-name"
-                        :disabled="form.inProgress() ? 'true' : null"
+                        :disabled="form.inProgress()"
                     >
                 </div>
 
                 <div class="text--center">
-                    <button class="button--primary" :disabled="form.inProgress() ? 'true' : null">
+                    <button class="button--primary" :disabled="form.inProgress()">
                         {{ t('collection.add') }}
                     </button>
                 </div>

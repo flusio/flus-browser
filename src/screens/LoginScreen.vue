@@ -100,7 +100,7 @@
 
                 <div class="flow flow--small text--center">
                     <div>
-                        <button class="button--primary button--big" :disabled="form.inProgress() ? 'true' : null">
+                        <button class="button--primary button--big" :disabled="form.inProgress()">
                             {{ t("login.submit") }}
                         </button>
                     </div>

@@ -56,7 +56,7 @@
             </div>
 
             <div class="text--center">
-                <button class="button--primary button--big" :disabled="form.inProgress() ? 'true' : null">
+                <button class="button--primary button--big" :disabled="form.inProgress()">
                     {{ t("settings.submit") }}
                 </button>
             </div>
