@@ -48,15 +48,15 @@
                     <button
                         @click="toggleCollections"
                         :aria-expanded="displayCollections"
-                        aria-controls="collections-selector"
+                        aria-controls="collections"
                     >
                         <Icon name="collection" />
                         {{ t("link.count_collections", link.collections.length) }}
                     </button>
                 </div>
 
-                <CollectionsSelector
-                    id="collections-selector"
+                <Collections
+                    id="collections"
                     :link="link"
                     :open="displayCollections"
                 />
@@ -103,7 +103,7 @@ import { store } from "../store.js";
 import api from "../api.js";
 import http from "../http.js";
 import Link from "../models/link.js";
-import CollectionsSelector from "../components/CollectionsSelector.vue";
+import Collections from "../components/Collections.vue";
 import Notes from "../components/Notes.vue";
 
 const { t, locale } = useI18n();
