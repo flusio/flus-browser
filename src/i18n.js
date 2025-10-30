@@ -27,14 +27,19 @@ export const i18n = createI18n({
             "errors.theme.invalid": "The theme is invalid.",
             "errors.unknown":
                 "An unknown error has occurred. Please close and reopen the extension. If it still doesn’t work, please contact the support.",
+            "errors.url.presence": "Enter a URL.",
             "errors.url.url": "The URL of the current page is not supported by Flus.",
             "feeds.count_detected":
                 "No feeds detected on this page. | 1 feed detected on this page. | {count} feeds detected on this page.",
             "feeds.follow": "Follow",
             "feeds.loading": "Loading the feeds…",
             "feeds.open_in_flus": "Open in Flus",
+            "feeds.search_tip":
+                "Tip: search for mentions of the word “RSS” on the page. If there are any, copy and paste the corresponding URL below.",
+            "feeds.test": "Test",
             "feeds.title": "List of Web feeds",
             "feeds.unfollow": "Unfollow",
+            "feeds.url_potential_feed": "URL of a potential feed",
             "forms.error": "Error:",
             "link.count_collections": "No collections | 1 collection | {count} collections",
             "link.invalid_protocol":
@@ -105,14 +110,19 @@ export const i18n = createI18n({
             "errors.theme.invalid": "Le thème est invalide.",
             "errors.unknown":
                 "Une erreur inconnue est survenue. Veuillez fermer et réouvrir l’extension. Si cela ne suffit pas, veuillez contacter le support.",
+            "errors.url.presence": "Saisissez une URL.",
             "errors.url.url": "L’URL de la page actuelle n’est pas supportée par Flus.",
             "feeds.count_detected":
                 "Aucun flux détecté sur cette page. | 1 flux détecté sur cette page. | {count} flux détectés sur cette page.",
             "feeds.follow": "Suivre",
             "feeds.loading": "Chargement des flux…",
             "feeds.open_in_flus": "Ouvrir dans Flus",
+            "feeds.search_tip":
+                "Astuce : recherchez des mentions du mot « RSS » dans la page. S’il en existe, copiez-collez l’URL correspondante ci-dessous.",
+            "feeds.test": "Tester",
             "feeds.title": "Liste des flux Web",
             "feeds.unfollow": "Ne plus suivre",
+            "feeds.url_potential_feed": "URL d’un flux potentiel",
             "forms.error": "Erreur :",
             "link.count_collections": "Aucune collection | 1 collection | {count} collections",
             "link.invalid_protocol":

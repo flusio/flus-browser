@@ -4,7 +4,7 @@
 
 <template>
     <Screen :title="title" header>
-        <div v-if="ready && alert.type === ''" class="flow">
+        <div v-if="ready && alert.type === ''" class="flow flow--large">
             <p class="text--center">
                 {{ t("feeds.count_detected", feeds.length) }}
             </p>
@@ -44,6 +44,46 @@
                     </div>
                 </li>
             </ul>
+
+            <div v-else class="flow">
+                <p>
+                    {{ t("feeds.search_tip") }}
+                </p>
+
+                <form
+                    @submit.prevent="testUrl"
+                    class="flow flow--small"
+                    :disabled="form.inProgress()"
+                >
+                    <div class="flow flow--smaller">
+                        <label for="url">
+                            {{ t('feeds.url_potential_feed') }}
+                        </label>
+
+                        <p v-if="form.isInvalid('url')" id="url-error" class="form-group__error" role="alert">
+                            {{ t('forms.error') }}
+                            {{ form.error('url') }}
+                        </p>
+
+                        <input
+                            v-model="urlToTest"
+                            type="url"
+                            id="url"
+                            placeholder="https://…"
+                            required
+                            :aria-invalid="form.isInvalid('url')"
+                            :aria-errormessage="form.isInvalid('url') ? 'url-error' : null"
+                            :disabled="form.inProgress()"
+                        />
+                    </div>
+
+                    <div class="text--center">
+                        <button class="button--primary button--big" :disabled="form.inProgress()">
+                            {{ t('feeds.test') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <div v-else-if="ready && alert.type == 'info'">
@@ -81,6 +121,7 @@ import browser from "webextension-polyfill";
 import { store } from "../store.js";
 import api from "../api.js";
 import http from "../http.js";
+import form from "../form.js";
 import Feed from "../models/feed.js";
 
 const { t, locale } = useI18n();
@@ -95,6 +136,8 @@ const alert = ref({
 });
 
 const feeds = ref([]);
+
+const urlToTest = ref("");
 
 function feedUrl(feed) {
     return `${store.auth.server}/collections/${feed.id}`;
@@ -111,20 +154,7 @@ async function getCurrentTab() {
         });
 }
 
-async function refreshForCurrentTab() {
-    const url = (await getCurrentTab()).url;
-
-    if (!url.startsWith("http://") && !url.startsWith("https://")) {
-        alert.value = {
-            type: "info",
-            message: t("link.invalid_protocol"),
-        };
-
-        ready.value = true;
-
-        return;
-    }
-
+function refreshForUrl(url) {
     api.search(url)
         .then((data) => {
             // This array is used to deduplicate feeds with the same name.
@@ -144,12 +174,7 @@ async function refreshForCurrentTab() {
         })
         .catch((error) => {
             if (error instanceof http.HttpError) {
-                alert.value = {
-                    type: "error",
-                    message: error.errors.url.map((error) => {
-                        return t(`errors.url.${error.code}`);
-                    }),
-                };
+                form.setAndFormatErrors(error.errors, t);
             } else {
                 alert.value = {
                     type: "error",
@@ -159,6 +184,23 @@ async function refreshForCurrentTab() {
 
             ready.value = true;
         });
+}
+
+async function refreshForCurrentTab() {
+    const url = (await getCurrentTab()).url;
+
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+        alert.value = {
+            type: "info",
+            message: t("link.invalid_protocol"),
+        };
+
+        ready.value = true;
+
+        return;
+    }
+
+    refreshForUrl(url);
 }
 
 async function follow(feed) {
@@ -185,6 +227,10 @@ async function unfollow(feed) {
                 message: t("errors.unknown"),
             };
         });
+}
+
+function testUrl() {
+    refreshForUrl(urlToTest.value);
 }
 
 onMounted(refreshForCurrentTab);
