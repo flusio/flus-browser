@@ -46,6 +46,8 @@
             </ul>
 
             <div v-else class="flow">
+                <hr>
+
                 <p>
                     {{ t("feeds.search_tip") }}
                 </p>
@@ -65,22 +67,37 @@
                             {{ form.error('url') }}
                         </p>
 
-                        <input
-                            v-model="urlToTest"
-                            type="url"
-                            id="url"
-                            placeholder="https://…"
-                            required
-                            :aria-invalid="form.isInvalid('url')"
-                            :aria-errormessage="form.isInvalid('url') ? 'url-error' : null"
-                            :disabled="form.inProgress()"
-                        />
+                        <div class="cols cols--always cols--gap-smaller">
+                            <input
+                                v-model="urlToTest"
+                                type="url"
+                                id="url"
+                                placeholder="https://…"
+                                required
+                                :aria-invalid="form.isInvalid('url')"
+                                :aria-errormessage="form.isInvalid('url') ? 'url-error' : null"
+                                :disabled="form.inProgress()"
+                            />
+
+                            <button class="button--primary button--big" :disabled="form.inProgress()">
+                                {{ t('feeds.test') }}
+                            </button>
+                        </div>
                     </div>
 
-                    <div class="text--center">
-                        <button class="button--primary button--big" :disabled="form.inProgress()">
-                            {{ t('feeds.test') }}
-                        </button>
+                    <div aria-live="polite">
+                        <div v-if="!autotestResult">
+                            {{ t('forms.or') }}
+
+                            <button type="button" @click="testCommonFeedsPatterns">
+                                {{ t('feeds.autotest.submit') }}
+                            </button>
+                        </div>
+
+                        <p v-else class="form-group__error">
+                            <Icon name="error"></Icon>
+                            {{ autotestResult }}
+                        </p>
                     </div>
                 </form>
             </div>
@@ -138,6 +155,7 @@ const alert = ref({
 const feeds = ref([]);
 
 const urlToTest = ref("");
+const autotestResult = ref("");
 
 function feedUrl(feed) {
     return `${store.auth.server}/collections/${feed.id}`;
@@ -155,6 +173,8 @@ async function getCurrentTab() {
 }
 
 function refreshForUrl(url) {
+    form.startRequest();
+
     api.search(url)
         .then((data) => {
             // This array is used to deduplicate feeds with the same name.
@@ -171,6 +191,7 @@ function refreshForUrl(url) {
                 }
             });
             ready.value = true;
+            form.finishRequest();
         })
         .catch((error) => {
             if (error instanceof http.HttpError) {
@@ -183,6 +204,7 @@ function refreshForUrl(url) {
             }
 
             ready.value = true;
+            form.finishRequest();
         });
 }
 
@@ -231,6 +253,98 @@ async function unfollow(feed) {
 
 function testUrl() {
     refreshForUrl(urlToTest.value);
+}
+
+async function testCommonFeedsPatterns() {
+    // Try not to add too many patterns as they generate several HTTP requests.
+    const commonFeedsPatterns = [
+        "/feed",
+        "/feed.xml",
+        "/rss.xml",
+        "/atom.xml",
+        "/index.xml",
+        "/rss",
+        "/rss/",
+        "/rss/feed.xml",
+    ];
+
+    const tabUrl = (await getCurrentTab()).url;
+    const parsedUrl = URL.parse(tabUrl);
+
+    if (!parsedUrl) {
+        autotestResult.value = t("feeds.autotest.invalid_url");
+        return;
+    }
+
+    if (!(await hasPermissionsForAutotest())) {
+        const result = await requestPermissionsForAutotest();
+        if (!result) {
+            autotestResult.value = t("feeds.autotest.missing_permissions");
+            return;
+        }
+    }
+
+    form.startRequest();
+
+    const baseUrl = parsedUrl.origin;
+    let foundFeed = false;
+
+    for (const urlPattern of commonFeedsPatterns) {
+        const testedFeedUrl = baseUrl + urlPattern;
+
+        urlToTest.value = testedFeedUrl;
+
+        const response = await fetch(testedFeedUrl);
+
+        if (!response.ok) {
+            continue;
+        }
+
+        const content = await response.text();
+        foundFeed = looksLikeFeedContent(content);
+
+        if (foundFeed) {
+            break;
+        }
+    }
+
+    form.finishRequest();
+
+    if (foundFeed) {
+        testUrl();
+    } else {
+        urlToTest.value = "";
+        autotestResult.value = t("feeds.autotest.no_results");
+    }
+}
+
+function looksLikeFeedContent(content) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, "application/xml");
+
+    const rootElement = doc.documentElement ? doc.documentElement.tagName : null;
+
+    return rootElement === "rss" || rootElement === "feed" || rootElement === "rdf";
+}
+
+async function hasPermissionsForAutotest() {
+    const origins = ["http://*/*", "https://*/*"];
+
+    return await browser.permissions.contains({ origins });
+}
+
+async function requestPermissionsForAutotest() {
+    const origins = ["http://*/*", "https://*/*"];
+
+    try {
+        return await browser.permissions.request({ origins });
+    } catch {
+        // On Firefox, requesting the permission fails with the error:
+        // "permissions.request may only be called from a user input handler".
+        // See https://stackoverflow.com/q/47723297 for a bit more context. I
+        // wasn't able to make it works though.
+        return false;
+    }
 }
 
 onMounted(refreshForCurrentTab);

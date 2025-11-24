@@ -106,7 +106,7 @@
                     </div>
 
                     <p>
-                        {{ t("login.or") }}
+                        {{ t("forms.or") }}
 
                         <a @click.prevent="openRegistrationPage" :href="registrationUrl">
                             {{ t("login.register") }}

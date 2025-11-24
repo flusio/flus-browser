@@ -29,6 +29,12 @@ export const i18n = createI18n({
                 "An unknown error has occurred. Please close and reopen the extension. If it still doesn’t work, please contact the support.",
             "errors.url.presence": "Enter a URL.",
             "errors.url.url": "The URL of the current page is not supported by Flus.",
+            "feeds.autotest.invalid_url":
+                "Unable to test URLs automatically as the tab URL looks invalid.",
+            "feeds.autotest.missing_permissions":
+                "You must authorize the extension to access all websites in the browser settings.",
+            "feeds.autotest.no_results": "No URL corresponding to a feed was found.",
+            "feeds.autotest.submit": "Test URLs automatically",
             "feeds.count_detected":
                 "No feeds detected on this page. | 1 feed detected on this page. | {count} feeds detected on this page.",
             "feeds.follow": "Follow",
@@ -41,6 +47,7 @@ export const i18n = createI18n({
             "feeds.unfollow": "Unfollow",
             "feeds.url_potential_feed": "URL of a potential feed",
             "forms.error": "Error:",
+            "forms.or": "or",
             "link.count_collections": "No collections | 1 collection | {count} collections",
             "link.invalid_protocol":
                 "This page cannot be handled by Flus (non-supported protocol).",
@@ -56,7 +63,6 @@ export const i18n = createI18n({
             "login.errors.server_error":
                 "The server “{server}” cannot be reached, please check its address.",
             "login.intro": "Log in to access Flus.",
-            "login.or": "or",
             "login.password.label": "Password",
             "login.register": "create an account",
             "login.server": "Server:",
@@ -112,6 +118,12 @@ export const i18n = createI18n({
                 "Une erreur inconnue est survenue. Veuillez fermer et réouvrir l’extension. Si cela ne suffit pas, veuillez contacter le support.",
             "errors.url.presence": "Saisissez une URL.",
             "errors.url.url": "L’URL de la page actuelle n’est pas supportée par Flus.",
+            "feeds.autotest.invalid_url":
+                "Impossible de tester les URL automatiquement car l’URL de l’onglet semble invalide.",
+            "feeds.autotest.missing_permissions":
+                "Vous devez autoriser l’extension à accéder à tous les sites dans les paramètres du navigateur.",
+            "feeds.autotest.no_results": "Aucune URL correspondante à un flux n’a été trouvée.",
+            "feeds.autotest.submit": "Tester des URL automatiquement",
             "feeds.count_detected":
                 "Aucun flux détecté sur cette page. | 1 flux détecté sur cette page. | {count} flux détectés sur cette page.",
             "feeds.follow": "Suivre",
@@ -124,6 +136,7 @@ export const i18n = createI18n({
             "feeds.unfollow": "Ne plus suivre",
             "feeds.url_potential_feed": "URL d’un flux potentiel",
             "forms.error": "Erreur :",
+            "forms.or": "ou",
             "link.count_collections": "Aucune collection | 1 collection | {count} collections",
             "link.invalid_protocol":
                 "Cette page ne peut pas être enregistrée dans Flus (protocole non supporté).",
@@ -139,7 +152,6 @@ export const i18n = createI18n({
             "login.errors.server_error":
                 "Le serveur « {server} » est injoignable, veuillez vérifier son adresse.",
             "login.intro": "Identifiez-vous pour accéder à votre veille Flus.",
-            "login.or": "ou",
             "login.password.label": "Mot de passe",
             "login.register": "créer un compte",
             "login.server": "Serveur :",
