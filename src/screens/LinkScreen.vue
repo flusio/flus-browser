@@ -221,5 +221,7 @@ onMounted(refreshCurrentTabUrl);
 
 browser.tabs.onUpdated.addListener(refreshCurrentTabUrl);
 browser.tabs.onActivated.addListener(refreshCurrentTabUrl);
-browser.windows.onFocusChanged.addListener(refreshCurrentTabUrl);
+if (browser.windows) {
+    browser.windows.onFocusChanged.addListener(refreshCurrentTabUrl);
+}
 </script>

@@ -67,7 +67,9 @@ async function openShortcuts() {
 const shouldShowShortcuts = ref(false);
 
 onMounted(async () => {
-    shouldShowShortcuts.value =
-        (await browserUtils.isChrome()) || browser.commands.openShortcutSettings != null;
+    const isChrome = await browserUtils.isChrome();
+    const hasShortcutCommand = browser.commands && browser.commands.openShortcutSettings != null;
+
+    shouldShowShortcuts.value = isChrome || hasShortcutCommand;
 });
 </script>
