@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Flus",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Collect, organise, annotate on and share links from around the Web.",
     "homepage_url": "https://flus.fr",
 

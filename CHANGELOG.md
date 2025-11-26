@@ -1,5 +1,36 @@
 # Changelog of Flus Browser
 
+## 2025-11-26 - v1.1.0
+
+### Features
+
+- Add Web feeds support to the extension
+    - Allow to follow the feeds of the current page ([ec7912b](https://github.com/flusio/flus-browser/commit/ec7912b))
+    - Allow to search for feeds by URL ([4789aab](https://github.com/flusio/flus-browser/commit/4789aab))
+    - Allow to test common feeds URLs patterns ([d6db32e](https://github.com/flusio/flus-browser/commit/d6db32e))
+- Allow to refresh extension if the tab URL changed ([1df5413](https://github.com/flusio/flus-browser/commit/1df5413))
+- Allow to create collections ([435252a](https://github.com/flusio/flus-browser/commit/435252a))
+- Allow to open shortcuts edition page ([da69d0f](https://github.com/flusio/flus-browser/commit/da69d0f))
+
+### Bug fixes
+
+- Fix opening registration url on Chrome ([9cf8c97](https://github.com/flusio/flus-browser/commit/9cf8c97))
+- Disable note textarea during submission ([e47e139](https://github.com/flusio/flus-browser/commit/e47e139))
+
+### Maintenance
+
+- Delete session on logout ([22de5a1](https://github.com/flusio/flus-browser/commit/22de5a1))
+- Update the Manifest description ([f16e6f7](https://github.com/flusio/flus-browser/commit/f16e6f7))
+- Update the dependencies ([9732245](https://github.com/flusio/flus-browser/commit/9732245), [a631328](https://github.com/flusio/flus-browser/commit/a631328), [bb8f636](https://github.com/flusio/flus-browser/commit/bb8f636), [c8f7068](https://github.com/flusio/flus-browser/commit/c8f7068))
+
+### Developers
+
+- Execute "make run" with a profile ([bea1686](https://github.com/flusio/flus-browser/commit/bea1686))
+- Fix "make run" for Android ([00437fc](https://github.com/flusio/flus-browser/commit/00437fc))
+- Improve code to disable forms elements ([44501e4](https://github.com/flusio/flus-browser/commit/44501e4))
+- Refactor the link model ([3bb55b9](https://github.com/flusio/flus-browser/commit/3bb55b9))
+- Rename CollectionsSelector component into Collections ([2f3e5a0](https://github.com/flusio/flus-browser/commit/2f3e5a0))
+
 ## 2025-09-01 - v1.0.0
 
 ### New
