@@ -41,7 +41,7 @@
 
         <form
             @submit.prevent="addNote"
-            class="flow flow--small"
+            class="flow"
             :disabled="form.inProgress()"
         >
             <p v-if="form.isInvalid('@base')" class="form-group__error" role="alert">
@@ -49,7 +49,7 @@
                 {{ form.error('@base') }}
             </p>
 
-            <div class="flow flow--smaller">
+            <div class="form-group">
                 <label for="note-content">
                     {{ t('notes.content') }}
                 </label>

@@ -6,12 +6,12 @@
     <div class="screen">
         <header v-if="header" class="screen__header panel panel--gable cols cols--always cols--center">
             <div class="col--extend">
-                <a class="screen__logo" href="#/">
-                    <img v-if="currentPath == '/'" :src="logo" alt="Flus" height="32">
-                    <span v-else>
-                        <Icon name="arrow-left" />
-                        {{ t("menu.back") }}
-                    </span>
+                <a v-if="currentPath == '/'" class="screen__logo" href="#/">
+                    <img :src="logo" alt="Flus" height="32">
+                </a>
+                <a v-else class="button button--ghost button--big button--animated" href="#/">
+                    <Icon name="arrow-left" />
+                    {{ t("menu.back") }}
                 </a>
             </div>
 
@@ -55,7 +55,7 @@
             </div>
         </header>
 
-        <main role="main" :class="{ 'panel': true, 'screen__body': true, 'panel--gable': store.menuOpened }">
+        <main role="main" :class="{ 'screen__body': true, 'screen__body--menu': store.menuOpened }">
             <span
                 ref="title"
                 tabindex="-1"

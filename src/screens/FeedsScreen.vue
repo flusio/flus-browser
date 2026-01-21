@@ -54,10 +54,10 @@
 
                 <form
                     @submit.prevent="testUrl"
-                    class="flow flow--small"
+                    class="flow"
                     :disabled="form.inProgress()"
                 >
-                    <div class="flow flow--smaller">
+                    <div class="form-group">
                         <label for="url">
                             {{ t('feeds.url_potential_feed') }}
                         </label>

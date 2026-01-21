@@ -4,13 +4,13 @@
 
 <template>
     <Screen :title="title" header>
-        <form @submit.prevent="save" class="flow flow--small">
+        <form @submit.prevent="save" class="flow">
             <p v-if="form.isInvalid('@base')" class="form-group__error" role="alert">
                 {{ t('forms.error') }}
                 {{ form.error('@base') }}
             </p>
 
-            <div class="flow flow--smaller">
+            <div class="form-group">
                 <label for="settings-language">
                     {{ t('settings.language.label') }}
                 </label>
@@ -32,7 +32,7 @@
                 </select>
             </div>
 
-            <div class="flow flow--smaller">
+            <div class="form-group">
                 <label for="settings-theme">
                     {{ t('settings.theme.label') }}
                 </label>

@@ -31,10 +31,10 @@
             <form
                 v-if="notSelectedCollections.length > 0"
                 @submit.prevent="addCollection"
-                class="flow flow--small"
+                class="flow"
                 :disabled="form.inProgress()"
             >
-                <div v-if="fillMode === 'select'" class="flow flow--smaller">
+                <div v-if="fillMode === 'select'" class="form-group">
                     <div class="cols cols--always cols--center cols--gap-smaller">
                         <label for="collection-select" class="col--extend">
                             {{ t('collection.add_to_collection') }}
@@ -79,7 +79,7 @@
                     </select>
                 </div>
 
-                <div v-else class="flow flow--smaller">
+                <div v-else class="form-group">
                     <div class="cols cols--always cols--center cols--gap-smaller">
                         <label for="collection-name" class="col--extend">
                             {{ t('collection.name') }}

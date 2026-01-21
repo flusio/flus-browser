@@ -23,8 +23,8 @@
                         </span>
                     </p>
 
-                    <div v-if="link.tags">
-                        <span v-for="tag in link.tags" class="tag badge badge--accent">#{{ tag }}</span>
+                    <div v-if="link.tags" class="stack stack--gap-smaller">
+                        <span v-for="tag in link.tags" class="badge badge--tag">#{{ tag }}</span>
                     </div>
                 </div>
 

@@ -28,13 +28,13 @@
                 </div>
             </div>
 
-            <form @submit.prevent="login" class="flow flow--small">
+            <form @submit.prevent="login" class="flow">
                 <p v-if="form.isInvalid('@base')" class="form-group__error" role="alert">
                     {{ t('forms.error') }}
                     {{ form.error('@base') }}
                 </p>
 
-                <div class="flow flow--smaller">
+                <div class="form-group">
                     <label for="login-email">
                         {{ t('login.email.label') }}
                     </label>
@@ -54,7 +54,7 @@
                     >
                 </div>
 
-                <div class="flow flow--smaller">
+                <div class="form-group">
                     <label for="login-password">
                         {{ t('login.password.label') }}
                     </label>
@@ -74,7 +74,7 @@
                     >
                 </div>
 
-                <div v-if="displayServerInput" class="flow flow--smaller">
+                <div v-if="displayServerInput" class="form-group">
                     <label for="login-server">
                         {{ t('login.server.label') }}
                     </label>
@@ -100,8 +100,9 @@
 
                 <div class="flow flow--small text--center">
                     <div>
-                        <button class="button--primary button--big" :disabled="form.inProgress()">
+                        <button class="button--primary button--big button--animated" :disabled="form.inProgress()">
                             {{ t("login.submit") }}
+                            <Icon name="arrow-right" />
                         </button>
                     </div>
 
