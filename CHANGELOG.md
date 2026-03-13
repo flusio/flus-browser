@@ -1,5 +1,15 @@
 # Changelog of Flus Browser
 
+## 2026-03-13 - v1.1.1
+
+### Improvements
+
+- Add titles to "mark as read" and "read later" buttons ([7b95581](https://github.com/flusio/flus-browser/commit/7b95581))
+
+### Maintenance
+
+- Update the dependencies ([ed8ad91](https://github.com/flusio/flus-browser/commit/ed8ad91), [b3f1524](https://github.com/flusio/flus-browser/commit/b3f1524), [1388340](https://github.com/flusio/flus-browser/commit/1388340), [67416df](https://github.com/flusio/flus-browser/commit/67416df))
+
 ## 2025-11-26 - v1.1.0
 
 ### Features
