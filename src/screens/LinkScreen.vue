@@ -43,18 +43,12 @@
 
                 <div class="cols cols--always cols--center cols--gap-small">
                     <div class="col--extend cols cols--always cols--center cols--gap-small">
-                        <button v-if="!link.isRead || link.isReadLater" class="button--icon" @click.prevent="markAsRead">
+                        <button v-if="!link.isRead || link.isReadLater" class="button--icon" @click.prevent="markAsRead" :title="t('link.mark_as_read')">
                             <Icon name="check" />
-                            <span class="sr-only">
-                                {{ t("link.mark_as_read") }}
-                            </span>
                         </button>
 
-                        <button v-if="!link.isReadLater" class="button--icon" @click.prevent="markAsReadLater">
+                        <button v-if="!link.isReadLater" class="button--icon" @click.prevent="markAsReadLater" :title="t('link.mark_as_read_later')">
                             <Icon name="bookmark" />
-                            <span class="sr-only">
-                                {{ t("link.mark_as_read_later") }}
-                            </span>
                         </button>
                     </div>
 
