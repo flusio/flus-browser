@@ -3,6 +3,10 @@
 
 @import "npm:@flus/design/src/stylesheets/application.css";
 
+html {
+    font-size: 115%;
+}
+
 body {
     font-size: 100%;
 }
