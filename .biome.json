@@ -1,6 +1,6 @@
 {
     "root": false,
-    "$schema": "https://biomejs.dev/schemas/2.1.1/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.6.6/schema.json",
     "vcs": {
         "enabled": false,
         "clientKind": "git",
@@ -20,10 +20,14 @@
     "linter": {
         "enabled": true,
         "rules": {
-            "recommended": true,
+            "preset": "recommended",
             "style": {
                 "useConst": "off",
-                "useImportType": "off"
+                "useImportType": "off",
+                "useVueMultiWordComponentNames": "off"
+            },
+            "a11y": {
+                "noSvgWithoutTitle": "off"
             },
             "correctness": {
                 "noUnusedVariables": "off",

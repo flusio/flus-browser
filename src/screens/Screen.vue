@@ -96,7 +96,7 @@ const { t, locale } = useI18n();
 locale.value = store.locale;
 
 function giveFocusToTitle() {
-    const titleValue = titleRef.value.innerText;
+    const titleValue = titleRef.value.textContent;
 
     const previousTitle = document.title;
 
